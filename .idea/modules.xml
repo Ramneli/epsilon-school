@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/epsilon-school.iml" filepath="$PROJECT_DIR$/epsilon-school.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/epsilon-school_main.iml" filepath="$PROJECT_DIR$/.idea/modules/epsilon-school_main.iml" group="epsilon-school" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/epsilon-school_test.iml" filepath="$PROJECT_DIR$/.idea/modules/epsilon-school_test.iml" group="epsilon-school" />
+    </modules>
+  </component>
+</project>
