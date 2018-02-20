@@ -19,7 +19,7 @@ public class DatabaseInput {
         database.update(sqlQuery, subject_id, subject_text, tahtaeg);
     }
 
-    public void insertSubjectTable(int user_id, int subject_id){
+    public void insertSubjectToTimeTable(int user_id, int subject_id){
         String sqlQuery = "INSERT INTO tunniplaan(kasutaja_id, aine_id) VALUES (?,?)";
         database.update(sqlQuery, user_id, subject_id);
     }

@@ -11,7 +11,6 @@ import java.util.Arrays;
 
 @SpringBootApplication
 public class Main {
-
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
         AbstractApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
@@ -20,6 +19,6 @@ public class Main {
         //input.insertSubject("mata", "YMR3730", "Kairi Kasemets");
         //input.insertTask(5, "Kodune töö.", "2018.02.26");
         controller.setDatabases();
-        System.out.println(Arrays.toString(controller.getSubject(3)));
+        System.out.println(Arrays.toString(controller.getTask(1)));
     }
 }

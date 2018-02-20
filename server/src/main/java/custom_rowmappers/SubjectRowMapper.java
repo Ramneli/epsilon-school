@@ -1,4 +1,5 @@
-package database_objects;
+package custom_rowmappers;
+import database_objects.Subject;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
