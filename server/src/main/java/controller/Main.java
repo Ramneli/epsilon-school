@@ -11,8 +11,8 @@ import org.springframework.context.support.AbstractApplicationContext;
 public class Main {
 
     public static void main(String[] args) {
-        AbstractApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
         SpringApplication.run(Main.class, args);
+        AbstractApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
         //DatabaseInput input = (DatabaseInput) context.getBean("databaseController");
         DatabaseController controller = (DatabaseController) context.getBean("databaseController");
         //input.insertSubject("mata", "YMR3730", "Kairi Kasemets");

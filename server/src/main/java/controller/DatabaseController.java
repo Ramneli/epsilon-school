@@ -17,10 +17,6 @@ public class DatabaseController {
     public DatabaseController() {
     }
 
-    @Autowired
-    public void setDatabase(JdbcTemplate database) {
-        this.database = database;
-    }
 
     public void setDatabases() {
         databaseInput = new DatabaseInput(database);
