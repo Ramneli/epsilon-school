@@ -13,8 +13,11 @@ public class Main {
     public static void main(String[] args) {
         AbstractApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
         SpringApplication.run(Main.class, args);
-        DatabaseInput input = (DatabaseInput) context.getBean("insertService");
-        input.insertSubject("mata", "YMR3730", "Kairi Kasemets");
+        //DatabaseInput input = (DatabaseInput) context.getBean("databaseController");
+        DatabaseController controller = (DatabaseController) context.getBean("databaseController");
+        //input.insertSubject("mata", "YMR3730", "Kairi Kasemets");
         //input.insertTask(5, "Kodune töö.", "2018.02.26");
+        controller.setDatabases();
+        controller.insertSubject("mata", "YMR3730", "Kairi Kasemets");
     }
 }
