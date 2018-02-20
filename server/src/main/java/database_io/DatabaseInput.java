@@ -14,8 +14,18 @@ public class DatabaseInput {
         database.update(sqlQuery, name, subjectCode, lecturer);
     }
 
-    public void insertTask(int aine_id, String ylesanne_tekst, String tahtaeg) {
+    public void insertTask(int subject_id, String subject_text, String tahtaeg) {
         String sqlQuery = "INSERT INTO ylesanne(aine_id, ylesanne_tekst, tahtaeg) VALUES (?,?,?)";
-        database.update(sqlQuery, aine_id, ylesanne_tekst, tahtaeg);
+        database.update(sqlQuery, subject_id, subject_text, tahtaeg);
+    }
+
+    public void insertSubjectTable(int user_id, int subject_id){
+        String sqlQuery = "INSERT INTO tunniplaan(kasutaja_id, aine_id) VALUES (?,?)";
+        database.update(sqlQuery, user_id, subject_id);
+    }
+
+    public void insertUser(String name) {
+        String sqlQuery = "INSERT INTO kasutaja(nimi) VALUES (?)";
+        database.update(sqlQuery, name);
     }
 }
