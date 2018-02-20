@@ -1,7 +1,7 @@
 package controller;
 
-import Database.DatabaseInput;
-import Database.DatabaseOutput;
+import database_io.DatabaseInput;
+import database_io.DatabaseOutput;
 import org.springframework.beans.factory.annotation.Autowired;
 
 

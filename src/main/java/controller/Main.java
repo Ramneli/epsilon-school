@@ -1,17 +1,11 @@
 package controller;
 
-import Database.DatabaseInput;
+import database_io.DatabaseInput;
 import configuration.ApplicationConfiguration;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.AbstractApplicationContext;
-
-import java.util.Arrays;
 
 @SpringBootApplication
 public class Main {
@@ -21,5 +15,6 @@ public class Main {
         SpringApplication.run(Main.class, args);
         DatabaseInput input = (DatabaseInput) context.getBean("insertService");
         input.insertSubject("mata", "YMR3730", "Kairi Kasemets");
+        //input.insertTask(5, "Kodune töö.", "2018.02.26");
     }
 }

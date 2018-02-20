@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 
 
 @Configuration
-@ComponentScan(basePackages = "Database")
+@ComponentScan(basePackages = "database_io")
 @PropertySource(value = {"classpath:application.properties"})
 public class ApplicationConfiguration {
 
