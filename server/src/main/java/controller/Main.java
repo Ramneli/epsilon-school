@@ -7,6 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 
+import java.util.Arrays;
+
 @SpringBootApplication
 public class Main {
 
@@ -18,6 +20,6 @@ public class Main {
         //input.insertSubject("mata", "YMR3730", "Kairi Kasemets");
         //input.insertTask(5, "Kodune töö.", "2018.02.26");
         controller.setDatabases();
-        controller.insertSubject("mata", "YMR3730", "Kairi Kasemets");
+        System.out.println(Arrays.toString(controller.getSubject(3)));
     }
 }
