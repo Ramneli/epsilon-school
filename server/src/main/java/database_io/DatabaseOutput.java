@@ -23,7 +23,7 @@ public class DatabaseOutput {
     public String[] getTask(int task_id) {
         Task task =  (Task) database.queryForObject("SELECT * FROM ylesanne where ylesanne_id=?",
                 new Object[] { task_id }, new TaskRowMapper());
-        return new String[]{Integer.toString(task.getTask_ID()), Integer.toString(task.getSubject_ID()),
+        return new String[]{Integer.toString(task.getTask_id()), Integer.toString(task.getSubject_id()),
                 task.getTaskDescription(), task.getTaskDeadline().toString()};
     }
 
