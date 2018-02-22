@@ -21,4 +21,11 @@ public class JsonStrategy {
                 subject.getString("oppejoud")
         );
     }
+    public String convertTask(String[] data) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("nimi", data[0]);
+        jsonObject.put("ainekood", data[1]);
+        jsonObject.put("oppejoud", data[2]);
+        return jsonObject.toString();
+    }
 }
