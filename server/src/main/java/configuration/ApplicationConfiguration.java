@@ -1,7 +1,5 @@
 package configuration;
 
-import database_io.DatabaseInput;
-import database_io.DatabaseOutput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

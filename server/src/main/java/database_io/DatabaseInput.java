@@ -2,7 +2,6 @@ package database_io;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import javax.validation.constraints.Null;
 import java.sql.Date;
 
 public class DatabaseInput {
