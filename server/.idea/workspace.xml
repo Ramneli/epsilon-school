@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5fa017b6-fceb-47d3-823b-5138f43c9e48" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/classes/controller/DatabaseController$AdminController.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/classes/custom_rowmappers/SubjectRowMapper.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/classes/custom_rowmappers/TaskRowMapper.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/classes/database_objects/Subject.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/classes/database_objects/Task.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/classes/parsing_strategies/JsonStrategy.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/database_objects/User.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/server_main.iml" afterPath="$PROJECT_DIR$/.idea/modules/server_main.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/DatabaseController.java" afterPath="$PROJECT_DIR$/src/main/java/controller/DatabaseController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database_io/DatabaseInput.java" afterPath="$PROJECT_DIR$/src/main/java/database_io/DatabaseInput.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database_objects/Subject.java" afterPath="$PROJECT_DIR$/src/main/java/database_objects/Subject.java" />
-    </list>
+    <list default="true" id="5fa017b6-fceb-47d3-823b-5138f43c9e48" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
