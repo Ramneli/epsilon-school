@@ -69,11 +69,10 @@ public class DatabaseController {
         //System.out.println(Arrays.toString(new JsonStrategy().convertNotification(notificaitonData)));
         return notificaitonData;
     }
-
+    @CrossOrigin(origins = "http://localhost:9000")
     @RequestMapping(value = "/subject/get/{subjectName}", method = RequestMethod.POST)
     public String getSubject(@PathVariable String subjectName) {
-        System.out.println(databaseOutput.getSubject(subjectName));
-        return null;
+        return strategy.convertSubject(databaseOutput.getSubject(subjectName));
     }
 
 

@@ -13,13 +13,14 @@ export class CreatNewSubject {
 			"subjectName": "YEXD"
 		}*/
 
-	    client.fetch('http://localhost:9000/#/createnewsubject', {
+	    client.fetch('http://localhost:8080/subject/get/mata', {
 	    	'method': "POST",
 	    	'body': json(this.userData)
 	    })
 	        .then(response => response.json())
 	        .then(data => {
-	        	console.log("Server saatis: "data.fullName);
+			
+	        	console.log("Server saatis: " + JSON.stringify(data));
 	    });
 
 			console.log("Method executed!")
