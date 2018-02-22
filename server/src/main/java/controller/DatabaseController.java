@@ -8,10 +8,7 @@ import database_objects.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import parsing_strategies.JsonStrategy;
 
 @RestController("databaseController")
@@ -73,12 +70,13 @@ public class DatabaseController {
         return notificaitonData;
     }
 
-    public String[] getSubject(int id) {
-        return databaseOutput.getSubject(id);
+    @RequestMapping(value = "/subject/get/{subjectName}", method = RequestMethod.POST)
+    public String getSubject(@PathVariable String subjectName) {
+        System.out.println(databaseOutput.getSubject(subjectName));
+        return null;
     }
-    public String[] getTask(int task_id) {
-        return databaseOutput.getTask(task_id);
-    }
+
+
 
     @Bean
     public DatabaseInput databaseInput() {

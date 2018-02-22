@@ -1,10 +1,11 @@
 package database_io;
 
-import custom_rowmappers.SubjectRowMapper;
 import custom_rowmappers.TaskRowMapper;
 import database_objects.Task;
 import org.springframework.jdbc.core.JdbcTemplate;
-import database_objects.Subject;
+
+import java.util.List;
+import java.util.Map;
 
 public class DatabaseOutput {
 
@@ -14,10 +15,10 @@ public class DatabaseOutput {
         this.database = database;
     }
 
-    public String[] getSubject(int id) {
-        Subject subject =  (Subject) database.queryForObject("SELECT * FROM aine where id=?", new Object[] { id },
-                new SubjectRowMapper());
-        return new String[]{subject.getName(), subject.getCode(), subject.getLecturer()};
+    public List<Map<String, Object>> getSubject(String subjectName) {
+        //Subject subject =  (Subject) database.queryForObject("SELECT * FROM aine where nimi LIKE '%?%'", new Object[] { subjectName },
+                //new SubjectRowMapper());
+        return database.queryForList("SELECT * FROM aine where nimi LIKE CONCAT('%',?,'%')", subjectName);
 }
 
     public String[] getTask(int task_id) {

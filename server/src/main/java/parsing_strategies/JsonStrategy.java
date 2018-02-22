@@ -21,7 +21,7 @@ public class JsonStrategy {
                 subject.getString("oppejoud")
         );
     }
-    public String convertTask(String[] data) {
+    public String convertSubject(String[] data) {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("nimi", data[0]);
         jsonObject.put("ainekood", data[1]);
