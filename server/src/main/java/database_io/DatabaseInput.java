@@ -3,6 +3,7 @@ package database_io;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.validation.constraints.Null;
+import java.sql.Date;
 
 public class DatabaseInput {
     private JdbcTemplate database;
@@ -16,7 +17,7 @@ public class DatabaseInput {
         database.update(sqlQuery, name, subjectCode, lecturer);
     }
 
-    public void insertTask(int subject_id, String subject_text, String tahtaeg) {
+    public void insertTask(int subject_id, String subject_text, Date tahtaeg) {
         String sqlQuery = "INSERT INTO ylesanne(aine_id, ylesanne_tekst, tahtaeg) VALUES (?,?,?)";
         database.update(sqlQuery, subject_id, subject_text, tahtaeg);
     }

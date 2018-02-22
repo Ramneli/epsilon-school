@@ -1,6 +1,7 @@
 package database_objects;
 
 public class Subject {
+    private int subject_id;
     private String name;
     private String code;
     private String lecturer;
@@ -35,5 +36,9 @@ public class Subject {
 
     public String getCode() {
         return code;
+    }
+
+    public int getSubjectId() {
+        return subject_id;
     }
 }
