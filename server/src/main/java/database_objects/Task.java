@@ -8,6 +8,14 @@ public class Task {
     private String taskDescription;
     private Date taskDeadline;
 
+    public Task() {}
+
+    public Task(int task_id, int subject_id, String taskDescription, Date taskDeadline) {
+        this.task_id = task_id;
+        this.subject_id = subject_id;
+        this.taskDescription = taskDescription;
+        this.taskDeadline = taskDeadline;
+    }
 
     public void setSubject_id(int subject_id) {
         this.subject_id = subject_id;

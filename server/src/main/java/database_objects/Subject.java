@@ -5,6 +5,14 @@ public class Subject {
     private String code;
     private String lecturer;
 
+    public Subject() {}
+
+    public Subject(String name, String code, String lecturer) {
+        this.name = name;
+        this.code = code;
+        this.lecturer = lecturer;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
