@@ -19,6 +19,6 @@ public class Main {
         //input.insertSubject("mata", "YMR3730", "Kairi Kasemets");
         //input.insertTask(5, "Kodune töö.", "2018.02.26");
         controller.setDatabases();
-        System.out.println(Arrays.toString(controller.getTask(1)));
+        //System.out.println(Arrays.toString(controller.getTask(1)));
     }
 }

@@ -25,8 +25,7 @@ public class DatabaseController {
     private JdbcTemplate database;
     private DatabaseInput databaseInput;
     private DatabaseOutput databaseOutput;
-    @Autowired
-    private JsonStrategy strategy;
+    private JsonStrategy strategy = new JsonStrategy();
 
     public DatabaseController() {
     }
@@ -85,5 +84,7 @@ public class DatabaseController {
     public String[] getSubject(int id) {
         return databaseOutput.getSubject(id);
     }
-    public String[] getTask(int task_id) { return databaseOutput.getTask(task_id); }
+    public String[] getTask(int task_id) {
+        return databaseOutput.getTask(task_id);
+    }
 }
