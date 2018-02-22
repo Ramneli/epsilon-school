@@ -35,6 +35,7 @@ public class DatabaseController {
         databaseInput.insertSubjectToTimeTable(user.getUserId(), subject.getSubjectId());
     }
 
+    @CrossOrigin(origins = "http://localhost:9000")
     @RequestMapping(value = "/subject/add", method = RequestMethod.POST)
     public String addSubject(@RequestBody String subjectData) {
         Subject subject  = strategy.convertSubject(subjectData);
@@ -42,6 +43,7 @@ public class DatabaseController {
         return subjectData;
     }
 
+    @CrossOrigin(origins = "http://localhost:9000")
     @RequestMapping(value = "/task/add", method = RequestMethod.POST)
     public String addTask(@RequestBody String taskData) {
         Task task = strategy.convertTask(taskData);
@@ -49,6 +51,7 @@ public class DatabaseController {
         return taskData;
     }
 
+    @CrossOrigin(origins = "http://localhost:9000")
     @RequestMapping(value = "/timetable/addTo", method = RequestMethod.POST)
     public String addToTimetable(@RequestBody String timetableData) {
         //TODO: Implement timetable creation.
@@ -63,12 +66,14 @@ public class DatabaseController {
         return userData;
     }
 
+    @CrossOrigin(origins = "http://localhost:9000")
     @RequestMapping(value = "/notification/add", method = RequestMethod.POST)
     public String addNotification(@RequestBody String notificaitonData) {
         //TODO: Implement notification adding and creation.
         //System.out.println(Arrays.toString(new JsonStrategy().convertNotification(notificaitonData)));
         return notificaitonData;
     }
+
     @CrossOrigin(origins = "http://localhost:9000")
     @RequestMapping(value = "/subject/get/{subjectName}", method = RequestMethod.POST)
     public String getSubject(@PathVariable String subjectName) {
