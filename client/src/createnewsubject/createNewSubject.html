@@ -1,0 +1,14 @@
+<template>
+	<form id="createNewSubject" submit.delegate="creatSubject()">
+		<div>
+			<label for="fullName">Täisnimi</label><input id="fullName" type="text" name="fullName" value.bind="userData.firstName">
+		</div>
+		<div>
+			<label for="subjectCode">Ainekood</label><input id="subjectCode" type="text" name="subjectCode" value.bind="userData.subjectCode">
+		</div>
+		<div>
+			<label for="subjectName">Aine nimi</label><input id="subjectName" type="text" name="subjectName" value.bind="userData.subjectName">
+		</div>
+		<input type="submit" name="Loo Aine">
+	</form>
+</template>
