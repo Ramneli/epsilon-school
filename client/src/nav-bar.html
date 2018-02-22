@@ -1,0 +1,7 @@
+<template bindable="router">
+
+	<p>
+		<a repeat.for="item of router.navigation" href.bind="item.href" style="margin: 3px">${item.title}</a>
+	</p>
+
+</template>
