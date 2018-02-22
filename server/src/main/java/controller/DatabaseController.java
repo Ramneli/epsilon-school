@@ -1,39 +1,32 @@
 package controller;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import database_io.DatabaseInput;
 import database_io.DatabaseOutput;
 import database_objects.Subject;
 import database_objects.Task;
 import database_objects.User;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import parsing_strategies.JsonStrategy;
 
-import java.util.Arrays;
-
 @RestController("databaseController")
 public class DatabaseController {
 
     @Autowired
     private JdbcTemplate database;
+    @Autowired
     private DatabaseInput databaseInput;
+    @Autowired
     private DatabaseOutput databaseOutput;
     private JsonStrategy strategy = new JsonStrategy();
 
     public DatabaseController() {
-    }
-
-
-    public void setDatabases() {
-        databaseInput = new DatabaseInput(database);
-        databaseOutput = new DatabaseOutput(database);
     }
 
     public void insertSubject(Subject subjectData) {
@@ -86,5 +79,15 @@ public class DatabaseController {
     }
     public String[] getTask(int task_id) {
         return databaseOutput.getTask(task_id);
+    }
+
+    @Bean
+    public DatabaseInput databaseInput() {
+        return new DatabaseInput(database);
+    }
+
+    @Bean
+    public DatabaseOutput databaseOutput() {
+        return new DatabaseOutput(database);
     }
 }

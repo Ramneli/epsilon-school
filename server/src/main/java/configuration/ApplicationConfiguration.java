@@ -1,5 +1,7 @@
 package configuration;
 
+import database_io.DatabaseInput;
+import database_io.DatabaseOutput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,7 +15,7 @@ import javax.sql.DataSource;
 
 
 @Configuration
-@ComponentScan(basePackages = "controller")
+@ComponentScan({"controller", "database_io"})
 @PropertySource(value = {"classpath:application.properties"})
 public class ApplicationConfiguration {
 

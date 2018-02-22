@@ -18,7 +18,7 @@ public class Main {
         DatabaseController controller = (DatabaseController) context.getBean("databaseController");
         //input.insertSubject("mata", "YMR3730", "Kairi Kasemets");
         //input.insertTask(5, "Kodune töö.", "2018.02.26");
-        controller.setDatabases();
+        //controller.setDatabases();
         //System.out.println(Arrays.toString(controller.getTask(1)));
     }
 }
