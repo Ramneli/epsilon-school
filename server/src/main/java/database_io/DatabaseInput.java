@@ -2,6 +2,8 @@ package database_io;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import javax.validation.constraints.Null;
+
 public class DatabaseInput {
     private JdbcTemplate database;
 
