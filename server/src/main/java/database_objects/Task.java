@@ -10,7 +10,7 @@ public class Task {
 
     public Task() {}
 
-    public Task(int task_id, int subject_id, String taskDescription, Date taskDeadline) {
+    public Task(int subject_id, String taskDescription, Date taskDeadline) {
         this.task_id = task_id;
         this.subject_id = subject_id;
         this.taskDescription = taskDescription;

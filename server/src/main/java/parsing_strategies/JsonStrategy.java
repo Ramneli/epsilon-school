@@ -12,7 +12,6 @@ public class JsonStrategy {
     public Task convertTask(String json_task) {
         JSONObject task = new JSONObject(json_task);
         return new Task(
-                task.getInt("ylesanne_id"),
                 task.getInt("aine_id"),
                 task.getString("ylesanne_tekst"),
                 java.sql.Date.valueOf(task.getString("tahtaeg")));
