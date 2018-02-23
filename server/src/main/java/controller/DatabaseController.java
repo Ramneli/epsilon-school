@@ -31,8 +31,12 @@ public class DatabaseController {
     public void insertTask(Task taskData) {
         databaseInput.insertTask(taskData.getSubject_id(), taskData.getTaskDescription(), taskData.getTaskDeadline());
     }
-    public void insertSubjectToTimeTable(User user, Subject subject){
-        databaseInput.insertSubjectToTimeTable(user.getUserId(), subject.getSubjectId());
+    public void insertSubjectToTimeTable(int user_id, int subject_id){
+        databaseInput.insertSubjectToTimeTable(user_id, subject_id);
+    }
+
+    private void insertUser(String username) {
+        databaseInput.insertUser(username);
     }
 
     @CrossOrigin(origins = "http://localhost:9000")
@@ -53,17 +57,17 @@ public class DatabaseController {
 
     @CrossOrigin(origins = "http://localhost:9000")
     @RequestMapping(value = "/timetable/addTo", method = RequestMethod.POST)
-    public String addToTimetable(@RequestBody String timetableData) {
-        //TODO: Implement timetable creation. User has to be done before this one.
-        //System.out.println(Arrays.toString(new JsonStrategy().convertTimetable(timetableData)));
-        return timetableData;
+    public String addToTimetable(@RequestBody String data) {
+        //TODO: GET USER ID. And other stuff.
+        int userId = 1;
+        //this.insertSubjectToTimeTable(userId);
+        return "Success.";
     }
 
-    @RequestMapping(value = "/user/add", method = RequestMethod.POST)
-    public String addUser(@RequestBody String userData) {
-        //TODO: Implement user adding. Make user creation to json strategy. Method also makes new timetable for user.
-        //System.out.println(Arrays.toString(new JsonStrategy().convertUser(userData)));
-        return userData;
+    @RequestMapping(value = "/user/add/{username}", method = RequestMethod.POST)
+    public String addUser(@PathVariable String username) {
+        this.insertUser(username);
+        return username;
     }
 
     @CrossOrigin(origins = "http://localhost:9000")
