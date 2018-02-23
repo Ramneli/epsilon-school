@@ -21,11 +21,7 @@ public class DatabaseOutput {
         return database.queryForList("SELECT * FROM aine where nimi LIKE CONCAT('%',?,'%')", subjectName);
 }
 
-    public String[] getTask(int task_id) {
-        Task task =  (Task) database.queryForObject("SELECT * FROM ylesanne where ylesanne_id=?",
-                new Object[] { task_id }, new TaskRowMapper());
-        return new String[]{Integer.toString(task.getTask_id()), Integer.toString(task.getSubject_id()),
-                task.getTaskDescription(), task.getTaskDeadline().toString()};
+    public List<Map<String, Object>> getTask(int task_id) {
+        return database.queryForList("SELECT * FROM ylesanne where aine_id=?", task_id);
     }
-
 }

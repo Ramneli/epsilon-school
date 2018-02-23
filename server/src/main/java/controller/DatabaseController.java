@@ -54,14 +54,14 @@ public class DatabaseController {
     @CrossOrigin(origins = "http://localhost:9000")
     @RequestMapping(value = "/timetable/addTo", method = RequestMethod.POST)
     public String addToTimetable(@RequestBody String timetableData) {
-        //TODO: Implement timetable creation.
+        //TODO: Implement timetable creation. User has to be done before this one.
         //System.out.println(Arrays.toString(new JsonStrategy().convertTimetable(timetableData)));
         return timetableData;
     }
 
     @RequestMapping(value = "/user/add", method = RequestMethod.POST)
     public String addUser(@RequestBody String userData) {
-        //TODO: Implement user adding.
+        //TODO: Implement user adding. Make user creation to json strategy. Method also makes new timetable for user.
         //System.out.println(Arrays.toString(new JsonStrategy().convertUser(userData)));
         return userData;
     }
@@ -80,6 +80,11 @@ public class DatabaseController {
         return strategy.convertSubject(databaseOutput.getSubject(subjectName));
     }
 
+    @CrossOrigin(origins = "http://localhost:9000")
+    @RequestMapping(value = "/task/get/{taskId}", method = RequestMethod.POST)
+    public String getTask(@PathVariable int taskId) {
+        return strategy.convertTask(databaseOutput.getTask(taskId));
+    }
 
 
     @Bean
