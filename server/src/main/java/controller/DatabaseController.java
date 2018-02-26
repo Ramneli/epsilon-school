@@ -5,6 +5,7 @@ import database_io.DatabaseOutput;
 import database_objects.Subject;
 import database_objects.Task;
 import database_objects.User;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -34,6 +35,9 @@ public class DatabaseController {
     public void insertSubjectToTimeTable(int user_id, int subject_id){
         databaseInput.insertSubjectToTimeTable(user_id, subject_id);
     }
+    public User getUser(String username) {
+        return databaseOutput.getUser(username);
+    }
 
     private void insertUser(String username) {
         databaseInput.insertUser(username);
@@ -59,8 +63,10 @@ public class DatabaseController {
     @RequestMapping(value = "/timetable/addTo", method = RequestMethod.POST)
     public String addToTimetable(@RequestBody String data) {
         //TODO: GET USER ID. And other stuff.
-        int userId = 1;
-        //this.insertSubjectToTimeTable(userId);
+        int subjectId = JsonStrategy.TimeTable.getSubjectId(data);
+        String username = JsonStrategy.TimeTable.getUsername(data);
+        int userId = getUser(username).getUserId();
+        this.insertSubjectToTimeTable(userId, subjectId);
         return "Success.";
     }
 

@@ -72,4 +72,12 @@ public class JsonStrategy {
         }
         return jsonArray.toString();
     }
+    public static class TimeTable {
+        public static String getUsername(String data) {
+            return new JSONObject(data).getString("username");
+        }
+        public static int getSubjectId(String data) {
+            return new JSONObject(data).getInt("id");
+        }
+    }
 }
