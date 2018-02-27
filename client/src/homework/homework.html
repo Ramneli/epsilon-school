@@ -1,13 +1,14 @@
 <template>
-	<form id="addHomework"> <!--submit.delegate="addSubject()-->
-		<div>
-			<label for="subjectName">Aine nimi</label><input id="subjectName" type="text" name="subjectName">
+	<form id="createNewSubject" submit.delegate="getSubjectDetails()">
+		<!--<div>
+			<label for="fullName">Täisnimi</label><input id="fullName" type="text" name="fullName" value.bind="userData.firstName">
 		</div> 
 		<div>
-			<label for="homeworkDescription">Kodune ülesanne</label><input id="homeworkDescription" type="text" name="homeworkDescription">
+			<label for="subjectCode">Ainekood</label><input id="subjectCode" type="text" name="subjectCode" value.bind="userData.subjectCode">
 		</div>
 		<div>
-			<label for="deadline">Tähtaeg</label><input id="deadline" type="text" name="deadline">
-		</div>
+			<label for="subjectName">Aine nimi</label><input id="subjectName" type="text" name="subjectName" value.bind="userData.subjectName">
+		</div>-->
+		<input type="submit" name="Loo Aine">
 	</form>
 </template>
