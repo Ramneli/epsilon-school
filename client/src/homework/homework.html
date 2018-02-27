@@ -1,14 +1,48 @@
 <template>
-	<form id="createNewSubject" submit.delegate="getSubjectDetails()">
+	<div style="width: 100%;">
+		<div style="width: 75%; border:1px solid black; float: left; margin-left: 15px;">
+			<div id="tableDiv">
+				<table id="homeworkTable" style="text-align: left;">
+				  	<tr>
+					    <th>Aine</th>
+					    <th>Ülesanne</th> 
+					    <th>Õppejõud</th>
+					    <th>Tähtaeg</th>
+				 	</tr>
+				</table>
+			</div>
+		</div>
+		<div style="width: 20%; float: right; margin-right: 25px;">
+			<div style="border:1px solid black; height: 50px; text-align: center;">
+				Teavitused
+			</div>
+			<div style="border:1px solid black; margin-top: 20px;">
+				<span style="text-align: center; width: 100%;">Minu Ained</span>
+				<ul>
+						<li repeat.for="subject of mySubjects">
+							<button click.delegate="getSubjectDetails()" type="submit">${subject}</button>
+						</li>
+				</ul>
+
+			</div>
+			<!--<div style="margin-top: 20px; text-align: center;">
+				<form>
+					<button type="submit" style="width: 80%; height:25px; margin-bottom: 5px;">Lisa aine tunniplaani</button><br>
+					<button type="submit" style="width: 80%; height:25px; margin-bottom: 5px;">Lisa ülesanne</button><br>
+					<button type="submit" style="width: 80%; height:25px; margin-bottom: 5px;">Loo uus aine</a><br>
+					<button type="submit" style="width: 80%; height:25px;">Saada teavitus</button><br>
+			  	</form>
+			</div>-->
+		</div>
+	</div>
 		<!--<div>
 			<label for="fullName">Täisnimi</label><input id="fullName" type="text" name="fullName" value.bind="userData.firstName">
-		</div> 
+		</div>
 		<div>
 			<label for="subjectCode">Ainekood</label><input id="subjectCode" type="text" name="subjectCode" value.bind="userData.subjectCode">
 		</div>
 		<div>
 			<label for="subjectName">Aine nimi</label><input id="subjectName" type="text" name="subjectName" value.bind="userData.subjectName">
 		</div>-->
-		<input type="submit" name="Loo Aine">
-	</form>
+	
 </template>
