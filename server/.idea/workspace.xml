@@ -2,45 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5fa017b6-fceb-47d3-823b-5138f43c9e48" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/epsilonschool/app/Application.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/epsilonschool/controller/SubjectController.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/epsilonschool/dao/repository/SubjectRepository.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/epsilonschool/dao/repository/TaskRepository.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/epsilonschool/dao/repository/UserRepository.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/epsilonschool/dao/service/SubjectService.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/epsilonschool/dao/service/TaskService.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/epsilonschool/dao/service/UserService.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/epsilonschool/entity/Subject.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/epsilonschool/entity/Task.java" />
       <change beforePath="$PROJECT_DIR$/../client/src/createnewsubject/createNewSubject.js" afterPath="$PROJECT_DIR$/../client/src/createnewsubject/createNewSubject.js" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.0/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.0/fileHashes/fileHashes.bin" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.0/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.0/fileHashes/fileHashes.lock" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/configuration/ApplicationConfiguration.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/controller/DatabaseController.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/controller/Main.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/custom_rowmappers/SubjectRowMapper.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/custom_rowmappers/TaskRowMapper.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/custom_rowmappers/UserRowMapper.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/database_io/DatabaseInput.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/database_io/DatabaseOutput.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/database_objects/Subject.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/database_objects/Task.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/database_objects/User.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/parsing_strategies/JsonStrategy$TimeTable.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/parsing_strategies/JsonStrategy.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/configuration/ApplicationConfiguration.java" afterPath="$PROJECT_DIR$/src/main/java/com/epsilonschool/configuration/ApplicationConfiguration.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/DatabaseController.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/Main.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/custom_rowmappers/SubjectRowMapper.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/custom_rowmappers/TaskRowMapper.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/custom_rowmappers/UserRowMapper.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database_io/DatabaseInput.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database_io/DatabaseOutput.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database_objects/Subject.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database_objects/Task.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database_objects/User.java" afterPath="$PROJECT_DIR$/src/main/java/com/epsilonschool/entity/User.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parsing_strategies/JsonStrategy.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epsilonschool/configuration/ApplicationConfiguration.java" afterPath="$PROJECT_DIR$/src/main/java/com/epsilonschool/configuration/ApplicationConfiguration.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -64,105 +27,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="ApplicationConfiguration.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/epsilonschool/configuration/ApplicationConfiguration.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="38" lean-forward="true" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="59" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Application.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/epsilonschool/app/Application.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="14" column="56" lean-forward="false" selection-start-line="14" selection-start-column="56" selection-end-line="14" selection-end-column="56" />
+            <state relative-caret-position="225">
+              <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="e#856#857#0" expanded="true" />
                 <element signature="e#918#919#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TaskService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/epsilonschool/dao/service/TaskService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Task.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/epsilonschool/entity/Task.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="15" column="24" lean-forward="true" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Subject.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/epsilonschool/entity/Subject.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/epsilonschool/entity/User.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="20" lean-forward="true" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SubjectService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/epsilonschool/dao/service/SubjectService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SubjectController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/epsilonschool/controller/SubjectController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="16" column="21" lean-forward="true" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#547#548#0" expanded="true" />
-                <element signature="e#599#600#0" expanded="true" />
-                <element signature="e#1144#1145#0" expanded="true" />
-                <element signature="e#1194#1195#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SubjectRepository.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/epsilonschool/dao/repository/SubjectRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="6" column="11" lean-forward="true" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ApplicationConfiguration.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/epsilonschool/configuration/ApplicationConfiguration.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="19" column="119" lean-forward="false" selection-start-line="19" selection-start-column="86" selection-end-line="19" selection-end-column="119" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -640,10 +536,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/epsilonschool/entity/Subject.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/epsilonschool/controller/DatabaseController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/epsilonschool/controller/SubjectController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/epsilonschool/configuration/ApplicationConfiguration.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/epsilonschool/app/Application.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/epsilonschool/entity/Task.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/epsilonschool/entity/User.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/epsilonschool/configuration/ApplicationConfiguration.java" />
       </list>
     </option>
   </component>
@@ -1372,10 +1268,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/epsilonschool/dao/service/SubjectService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/epsilonschool/dao/repository/SubjectRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        <state relative-caret-position="90">
+          <caret line="6" column="11" lean-forward="true" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1384,8 +1280,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/epsilonschool/controller/SubjectController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="16" column="21" lean-forward="true" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
+        <state relative-caret-position="165">
+          <caret line="11" column="32" lean-forward="true" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#547#548#0" expanded="true" />
@@ -1396,46 +1292,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/epsilonschool/dao/repository/SubjectRepository.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/epsilonschool/dao/service/SubjectService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="6" column="11" lean-forward="true" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="38" lean-forward="true" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/epsilonschool/configuration/ApplicationConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="19" column="119" lean-forward="false" selection-start-line="19" selection-start-column="86" selection-end-line="19" selection-end-column="119" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/epsilonschool/app/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="14" column="56" lean-forward="false" selection-start-line="14" selection-start-column="56" selection-end-line="14" selection-end-column="56" />
-          <folding>
-            <element signature="e#856#857#0" expanded="true" />
-            <element signature="e#918#919#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/epsilonschool/dao/service/TaskService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
+        <state relative-caret-position="105">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1449,19 +1312,63 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/epsilonschool/entity/Subject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/epsilonschool/entity/Task.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
+        <state relative-caret-position="225">
           <caret line="15" column="24" lean-forward="true" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/epsilonschool/dao/service/TaskService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/epsilonschool/app/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#856#857#0" expanded="true" />
+            <element signature="e#918#919#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="38" lean-forward="true" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="59" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/epsilonschool/entity/Subject.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/epsilonschool/configuration/ApplicationConfiguration.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-          <folding />
+        <state relative-caret-position="105">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

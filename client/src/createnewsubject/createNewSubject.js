@@ -6,7 +6,7 @@ export class CreatNewSubject {
 		let client = new HttpClient();
 		let homeWorkTableData = new Object();
 
-	    client.fetch('http://localhost:8080/subject/get/mari', {
+	    client.fetch('http://localhost:8080/subject/get/mata', {
 	    	'method': "POST",
 	    	'body': json(this.userData)
 	    })
@@ -15,7 +15,7 @@ export class CreatNewSubject {
 				homeWorkTableData.aine = data[0].nimi;
 				homeWorkTableData.opnimi = data[0].oppejoud;
 				homeWorkTableData.ainekood = data[0].ainekood;
-				this.getHomeworks("1", homeWorkTableData);
+				this.getHomeworks("5", homeWorkTableData);
 	        	console.log("Server saatis: " + JSON.stringify(data));
 	    });
 			console.log("getSubjectDetails method executed!");
