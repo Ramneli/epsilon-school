@@ -1,29 +1,32 @@
 package com.epsilonschool.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class User {
     @Id
-    private int userId;
-    private String username;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String userId;
+    private String name;
 
-    public User() {}
-
-    public void setUsername(String username) {
-        this.username = username;
+    public User(String name) {
+        this.name = name;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUsername(String name) {
+        this.name = name;
     }
 
     public String getUsername() {
-        return username;
+        return name;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 }

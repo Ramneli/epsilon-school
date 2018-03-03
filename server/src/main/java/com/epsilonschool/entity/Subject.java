@@ -1,14 +1,17 @@
 package com.epsilonschool.entity;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 
 @Entity
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @JsonProperty("id")
+    private String id;
     @JsonProperty("name")
     private String name;
     @JsonProperty("subject_code")
@@ -48,7 +51,7 @@ public class Subject {
         return subjectCode;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 }

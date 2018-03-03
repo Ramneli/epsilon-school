@@ -11,8 +11,8 @@ public class SubjectService {
 
     private SubjectRepository subjectRepository;
 
-    public Subject getDataFromRepo(String id) {
-        return subjectRepository.findOne(id);
+    public List<Subject> getSubject(String name) {
+        return subjectRepository.findByName(name);
     }
 
     public Subject getCustomSubject() {

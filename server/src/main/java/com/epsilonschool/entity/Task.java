@@ -1,5 +1,6 @@
 package com.epsilonschool.entity;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.Entity;
@@ -9,15 +10,17 @@ import javax.persistence.Id;
 import java.sql.Date;
 
 @Entity
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty(value = "task_id", required = false)
     private String taskId;
-    @JsonProperty("subject_id")
+    @JsonProperty(value = "subject_id")
     private int subjectId;
-    @JsonProperty("task_description")
+    @JsonProperty(value = "task_description")
     private String taskDescription;
-    @JsonProperty("task_deadline")
+    @JsonProperty(value = "task_deadline")
     private Date taskDeadline;
 
     public Task(){}

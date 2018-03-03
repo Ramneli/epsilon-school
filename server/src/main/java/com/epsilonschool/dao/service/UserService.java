@@ -13,6 +13,10 @@ public class UserService {
         return userRepository.findOne(userId);
     }
 
+    public void addUser(User user) {
+        userRepository.save(user);
+    }
+
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }

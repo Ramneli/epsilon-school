@@ -11,6 +11,7 @@ public class TaskController {
     public TaskController(TaskService taskService) {
         this.taskService = taskService;
     }
+
     @CrossOrigin(origins = "http://localhost:9000")
     @RequestMapping(value = "/task/get/{taskId}", method = RequestMethod.POST)
     public Task getTask(@PathVariable String taskId) {
