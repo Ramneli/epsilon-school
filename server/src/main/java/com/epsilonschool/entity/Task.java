@@ -1,19 +1,28 @@
 package com.epsilonschool.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.sql.Date;
 
 @Entity
 public class Task {
     @Id
-    private int taskId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String taskId;
+    @JsonProperty("subject_id")
     private int subjectId;
+    @JsonProperty("task_description")
     private String taskDescription;
+    @JsonProperty("task_deadline")
     private Date taskDeadline;
 
+    public Task(){}
+
     public Task(int subjectId, String taskDescription, Date taskDeadline) {
-        this.taskId = taskId;
         this.subjectId = subjectId;
         this.taskDescription = taskDescription;
         this.taskDeadline = taskDeadline;
@@ -23,15 +32,11 @@ public class Task {
         this.subjectId = subjectId;
     }
 
-    public void setTaskId(int taskId) {
-        this.taskId = taskId;
-    }
-
-    public void setTaskDeadline(Date taskDeadline) {
+    public void setDeadline(Date taskDeadline) {
         this.taskDeadline = taskDeadline;
     }
 
-    public void setTaskDescription(String taskDescription) {
+    public void setDescription(String taskDescription) {
         this.taskDescription = taskDescription;
     }
 
@@ -39,15 +44,15 @@ public class Task {
         return subjectId;
     }
 
-    public int getTaskId() {
+    public String getTaskId() {
         return taskId;
     }
 
-    public Date getTaskDeadline() {
+    public Date getDeadline() {
         return taskDeadline;
     }
 
-    public String getTaskDescription() {
+    public String getDescription() {
         return taskDescription;
     }
 }

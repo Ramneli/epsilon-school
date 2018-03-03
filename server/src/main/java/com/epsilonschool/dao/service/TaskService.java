@@ -15,4 +15,8 @@ public class TaskService {
     public Task getTask(String taskId) {
         return taskRepository.findOne(taskId);
     }
+
+    public void addTask(Task task) {
+        taskRepository.save(task);
+    }
 }

@@ -1,14 +1,19 @@
 package com.epsilonschool.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.persistence.*;
 
 @Entity
 public class Subject {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @JsonProperty("name")
     private String name;
+    @JsonProperty("subject_code")
     private String subjectCode;
+    @JsonProperty("lecturer_name")
     private String lecturerName;
 
     public Subject() {}
@@ -43,7 +48,7 @@ public class Subject {
         return subjectCode;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 }
