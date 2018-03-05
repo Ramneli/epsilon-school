@@ -15,4 +15,5 @@ public interface SubjectRepository extends CrudRepository<Subject, String> {
 
     List<Subject> findAll();
     List<Subject> findByName(String name);
+    Subject findById(String id);
 }

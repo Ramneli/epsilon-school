@@ -23,6 +23,10 @@ public class SubjectService {
         subjectRepository.save(subject);
     }
 
+    public Subject getById(String id) {
+        return subjectRepository.findById(id);
+    }
+
     public List<Subject> getSubjects() {
         return subjectRepository.findAll();
     }

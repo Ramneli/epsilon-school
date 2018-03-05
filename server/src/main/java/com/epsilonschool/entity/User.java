@@ -11,8 +11,10 @@ import javax.persistence.Id;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String userId;
+    private String id;
     private String name;
+
+    public User() {}
 
     public User(String name) {
         this.name = name;
@@ -26,7 +28,7 @@ public class User {
         return name;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getId() {
+        return id;
     }
 }

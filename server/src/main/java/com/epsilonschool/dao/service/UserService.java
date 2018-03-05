@@ -9,10 +9,12 @@ public class UserService {
 
     private UserRepository userRepository;
 
-    public User getUser (String userId) {
+    public User getUser(String userId) {
         return userRepository.findOne(userId);
     }
-
+    public User getUserByName(String username) {
+        return userRepository.findByName(username);
+    }
     public void addUser(User user) {
         userRepository.save(user);
     }

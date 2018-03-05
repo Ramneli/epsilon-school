@@ -14,25 +14,25 @@ public class Timetable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     @JsonProperty("user_id")
-    private int userId;
+    private String userId;
     @JsonProperty("subject_id")
-    private int subjectId;
+    private String subjectId;
 
     public Timetable(){}
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    public void setSubjectId(int subjectId) {
+    public void setSubjectId(String subjectId) {
         this.subjectId = subjectId;
     }
 
-    public int getSubjectId() {
+    public String getSubjectId() {
         return subjectId;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 }

@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface TimetableRepository extends CrudRepository<Timetable, String> {
 
-    List<Timetable> findByUserId(String userId);
+    List<Timetable> findAll();
 }
