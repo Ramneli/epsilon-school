@@ -7,10 +7,10 @@ export class App {
         this.router = router;
         config.title = 'Aurelia Config Title';
         config.map([
-            { route: ['', 'home'],       name: 'home',       moduleId: 'home/index', nav: true, title: 'Home'},
             { route: 'homework',        name: 'homework',      moduleId: 'homework/homework', nav: true, title: 'Ülesanded'},
-            { route: 'addnewsubject',        name: 'addnewsubject',      moduleId: 'addnewsubject/addnewsubject', nav: true, title: 'Lisa Aine Tunniplaani'},
-            { route: 'addtask',        name: 'addtask',      moduleId: 'addtask/addtask', nav: true, title: 'Lisa Ülesanne'}
+            { route: 'addtask',        name: 'addtask',      moduleId: 'addtask/addtask', nav: true, title: 'Lisa ülesanne'},
+            { route: 'addnewsubject',        name: 'addnewsubject',      moduleId: 'addnewsubject/addnewsubject', nav: true, title: 'Lisa aine tunniplaani'},
+            { route: ['', 'home'],       name: 'home',       moduleId: 'home/index', nav: true, title: 'Loo aine'}
 
         ]);
       }

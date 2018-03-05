@@ -1,14 +1,54 @@
 <template>
-<form id="addTask" submit.delegate="addTask()">
-		<div>
-			<label for="subjectID">Aine ID</label><input id="subjectID" type="text" name="subjectID" value.bind="userData.subject_id">
-		</div> 
-		<div>
-			<label for="description">Ülesande kirjeldus</label><input id="description" type="text" name="description" value.bind="userData.description">
+	<style>
+	textarea {
+		width: 398px;
+		resize: none;
+		margin-top: 5px;
+	}
+	input {
+		margin-top: 5px;
+		margin-bottom: 10px;
+	}
+	label {
+		margin-top: 5px;
+	}
+	button {
+
+    background-color: #008CBA; /* Green */
+    border: none;
+    color: white;
+    padding: 0px 0px;
+    width:100%;
+    word-break: break-word;
+    height:50px;
+    margin: 0 auto;
+    margin-top: 5px;
+    margin-bottom:5px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    text-align: center;
+	}
+	button:hover {
+		background-color: #04a3d8;
+	}
+
+	</style>
+	<div style="width: 100%;">
+		<div style="width:405px; margin: 0 auto;";>
+			<form id="addTask" submit.delegate="addTask()">
+				<label for="subjectID">Aine ID</label><br>
+				<input size="53" id="subjectID" type="text" name="subjectID" value.bind="userData.subject_id"><br>
+
+				<label for="description">Ülesande kirjeldus</label><br>
+				<textarea rows="6" id="description" type="text" name="description" value.bind="userData.description"></textarea><br>
+
+				<label for="deadline">Tähtaeg (yyyy-mm-dd)</label><br>
+				<input size="53" id="deadline" type="text" name="deadline" value.bind="userData.deadline"><br>
+
+				<button type="submit" name="Lisa Aine">Lisa aine</button>
+			</form>
 		</div>
-		<div>
-			<label for="deadline">Tähtaeg(yyyy-mm-dd)</label><input id="deadline" type="text" name="deadline" value.bind="userData.deadline">
-		</div>
-		<input type="submit" name="Lisa Aine">
-	</form>
+	</div>
 </template>
