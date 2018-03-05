@@ -6,12 +6,11 @@ export class Homework {
 		this.mySubjectsId = [];
 	}
 
-	getSubjectDetails() {
-		this.deleteTable();
-		for (var i = 1; i <= this.mySubjectsId.length; i++) {
+	getSubjectDetails(subjectId) {
+		for (var i = 1; i <= 1; i++) {
 			let client = new HttpClient();
 			let homeWorkTableData = new Object();
-			let url = 'http://localhost:8080/subject/get/' + this.mySubjectsId[i - 1];
+			let url = 'http://localhost:8080/subject/get/' + subjectId;
 
 			client.fetch(url, {
 				'method': "POST",
@@ -19,14 +18,12 @@ export class Homework {
 			})
 				.then(response => response.json())
 				.then(data => {
-					console.log("HUVITAV saatis: " + JSON.stringify(data));
 					homeWorkTableData.aine = data.name;
 					homeWorkTableData.opnimi = data.lecturer_name;
 					homeWorkTableData.ainekood = data.code;
 					homeWorkTableData.aineID = data.id;
 					this.getHomeworks(homeWorkTableData);
 			});
-			console.log("getSubjectDetails method executed!");
 		}
 	}
 
@@ -41,12 +38,16 @@ export class Homework {
 	        .then(data => {
 				console.log("Server saatis kodutöö: " + JSON.stringify(data));
 				if (data.length != 0) {
+					this.deleteTable();
 					for (var i = 0; i < data.length; i++) {
 						console.log("aine " + tableData.aine);
 						tableData.exercise = data[i].description;
 						tableData.deadline = data[i].deadline;
 						this.createTable(tableData);
 					}
+				} else {
+					this.deleteTable();
+					this.createTableWithNotification();
 				}
 	    });
 	}
@@ -81,7 +82,9 @@ export class Homework {
 
 	deleteTable() {
 		var table = document.getElementById("homeworkTable");
-		table.parentNode.removeChild(table);
+		if (table) {
+			table.parentNode.removeChild(table);
+		}
 	}
 
 	getAllSubjects() {
@@ -102,5 +105,25 @@ export class Homework {
 	    });
 		console.log("getSubjectDetails method executed!");
 		return allSubjects;
+	}
+
+	createTableWithNotification() {
+		let table = document.getElementById("homeworkTable");
+		if (!table) {
+			var headers = ["Aine", "Ülesanne", "Õppejõud", "Tähtaeg"];
+			table = document.createElement("Table");
+			table.setAttribute("id", "homeworkTable");
+			var tableHeader = document.createElement("tr");
+				var cell = document.createElement("th");
+				cell.textContent = "Teade";
+				tableHeader.appendChild(cell);
+			var tableRow = document.createElement("tr");
+			var cell2 = document.createElement("th");
+			cell2.textContent = "Ülesandeid ei ole.";
+			tableRow.appendChild(cell2);
+			table.appendChild(tableHeader);
+			table.appendChild(tableRow);
+			document.getElementById("tableDiv").appendChild(table);
+		}
 	}
 }

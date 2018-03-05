@@ -66,7 +66,7 @@
 			</div>
 			<div id="wrapper" style="border:1px solid gray; border-radius:3px ; margin-top: 5px">
 				<p style="text-align: center;">Minu Ained</p>
-					<button repeat.for="subject of mySubjects" class="subjectButton" click.delegate="getSubjectDetails()" type="submit">${subject}</button>
+					<button repeat.for="subject of mySubjects" class="subjectButton" id=${mySubjectsId[mySubjects.indexOf(subject)]} click.delegate="getSubjectDetails($event.target.id)" type="submit">${subject}</button>
 			</div>
 		</div>
 	</div>
