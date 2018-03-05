@@ -2,27 +2,31 @@ import {HttpClient, json} from 'aurelia-fetch-client'
 
 export class Homework {
 	constructor() {
-		this.mySubjects = ["Matemaatiline analüüs"];
+		this.mySubjects = this.getAllSubjects();
+		this.mySubjectsId = [];
 	}
-	getSubjectDetails() {
-		let client = new HttpClient();
-		let homeWorkTableData = new Object();
-		let url = 'http://localhost:8080/subject/get/1';
 
-	    client.fetch(url, {
-	    	'method': "POST",
-	    	'body': json(this.userData)
-	    })
-	        .then(response => response.json())
-	        .then(data => {
-				console.log("Server saatis: " + JSON.stringify(data));
-				homeWorkTableData.aine = data.name;
-				homeWorkTableData.opnimi = data.lecturer_name;
-				homeWorkTableData.ainekood = data.code;
-				homeWorkTableData.aineID = data.id;
-				this.getHomeworks(homeWorkTableData);
-	    });
+	getSubjectDetails() {
+		for (var i = 1; i <= this.mySubjectsId.length; i++) {
+			let client = new HttpClient();
+			let homeWorkTableData = new Object();
+			let url = 'http://localhost:8080/subject/get/' + this.mySubjectsId[i - 1];
+
+			client.fetch(url, {
+				'method': "POST",
+				'body': json(this.userData)
+			})
+				.then(response => response.json())
+				.then(data => {
+					console.log("HUVITAV saatis: " + JSON.stringify(data));
+					homeWorkTableData.aine = data.name;
+					homeWorkTableData.opnimi = data.lecturer_name;
+					homeWorkTableData.ainekood = data.code;
+					homeWorkTableData.aineID = data.id;
+					this.getHomeworks(homeWorkTableData);
+			});
 			console.log("getSubjectDetails method executed!");
+		}
 	}
 
 	getHomeworks(tableData) {
@@ -35,23 +39,20 @@ export class Homework {
 	        .then(response => response.json())
 	        .then(data => {
 				console.log("Server saatis kodutöö: " + JSON.stringify(data));
-				/*let exercise = [];
-				let deadline = [];
-				for(var i = 0; i < data.length; i++) {
-					exercise.push(data[i].description);
-					deadline.push(data[i].deadline);
-				}*/
-	        	tableData.exercise = data.description;
-	        	tableData.deadline = data.deadline;
-	        	console.log(tableData);
-	        	this.createTable(tableData);
+				if (data.length != 0) {
+					tableData.exercise = data[0].description;
+					tableData.deadline = data[0].deadline;
+					this.createTable(tableData);
+				} else {
+					tableData.exercise = "Ülesandeid ei ole.";
+					tableData.deadline = "";
+					tableData = null;
+				}
 	    });
-			console.log("getHomeworks method executed!");
 	}
 
 	createTable(tableData) {
 	    let table  = document.getElementById("homeworkTable");
-	    //console.log(tableData);
 
 	    for(var i = 0; i < 1; i++){
 	        var tr = table.insertRow();
@@ -68,5 +69,25 @@ export class Homework {
 	    }
 	    document.getElementById("tableDiv").appendChild(table);
 	    console.log("Table created.")
+	}
+
+	getAllSubjects() {
+		var allSubjects = [];
+		let client = new HttpClient();
+		let url = 'http://localhost:8080/subjects';
+
+	    client.fetch(url, {
+	    	'method': "POST"
+	    })
+	        .then(response => response.json())
+	        .then(data => {
+				console.log("Server saatis: " + JSON.stringify(data));
+				for (var i = 0; i < data.length; i++) {
+					allSubjects.push(data[i].name);
+					this.mySubjectsId.push(data[i].id);
+				}
+	    });
+		console.log("getSubjectDetails method executed!");
+		return allSubjects;
 	}
 }
