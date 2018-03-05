@@ -7,6 +7,7 @@ export class Homework {
 	}
 
 	getSubjectDetails() {
+		this.deleteTable();
 		for (var i = 1; i <= this.mySubjectsId.length; i++) {
 			let client = new HttpClient();
 			let homeWorkTableData = new Object();
@@ -40,35 +41,47 @@ export class Homework {
 	        .then(data => {
 				console.log("Server saatis kodutöö: " + JSON.stringify(data));
 				if (data.length != 0) {
-					tableData.exercise = data[0].description;
-					tableData.deadline = data[0].deadline;
-					this.createTable(tableData);
-				} else {
-					tableData.exercise = "Ülesandeid ei ole.";
-					tableData.deadline = "";
-					tableData = null;
+					for (var i = 0; i < data.length; i++) {
+						console.log("aine " + tableData.aine);
+						tableData.exercise = data[i].description;
+						tableData.deadline = data[i].deadline;
+						this.createTable(tableData);
+					}
 				}
 	    });
 	}
 
 	createTable(tableData) {
-	    let table  = document.getElementById("homeworkTable");
+		let table = document.getElementById("homeworkTable");
+		if (!table) {
+			var headers = ["Aine", "Ülesanne", "Õppejõud", "Tähtaeg"];
+			table = document.createElement("Table");
+			table.setAttribute("id", "homeworkTable");
+			var tableHeader = document.createElement("tr");
+			for (var i = 0; i < 4; i++) {
+				var cell = document.createElement("th");
+				cell.textContent = headers[i];
+				tableHeader.appendChild(cell);
+			}
+			table.appendChild(tableHeader);
+		}
 
-	    for(var i = 0; i < 1; i++){
-	        var tr = table.insertRow();
-            var td1 = tr.insertCell();
-            var td2 = tr.insertCell();
-            var td3 = tr.insertCell();
-            var td4 = tr.insertCell();
+		var tr = table.insertRow();
+		var td1 = tr.insertCell();
+		var td2 = tr.insertCell();
+		var td3 = tr.insertCell();
+		var td4 = tr.insertCell();
 
-            td1.appendChild(document.createTextNode(tableData.aine));
-            td2.appendChild(document.createTextNode(tableData.exercise));
-            td3.appendChild(document.createTextNode(tableData.opnimi));
-            td4.appendChild(document.createTextNode(tableData.deadline));
-
-	    }
+		td1.appendChild(document.createTextNode(tableData.aine));
+		td2.appendChild(document.createTextNode(tableData.exercise));
+		td3.appendChild(document.createTextNode(tableData.opnimi));
+		td4.appendChild(document.createTextNode(tableData.deadline));
 	    document.getElementById("tableDiv").appendChild(table);
-	    console.log("Table created.")
+	}
+
+	deleteTable() {
+		var table = document.getElementById("homeworkTable");
+		table.parentNode.removeChild(table);
 	}
 
 	getAllSubjects() {
