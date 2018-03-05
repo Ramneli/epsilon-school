@@ -1,14 +1,56 @@
 <template>
+	<style>
+	textarea {
+		width: 398px;
+		resize: none;
+		margin-top: 5px;
+	}
+	input {
+		margin-top: 5px;
+		margin-bottom: 10px;
+		width: 400px;
+	}
+	label {
+		margin-top: 5px;
+	}
+	button {
+
+    background-color: #008CBA; /* Green */
+    border: none;
+    color: white;
+    padding: 0px 0px;
+    width:100%;
+    word-break: break-word;
+    height:50px;
+    margin: 0 auto;
+    margin-top: 5px;
+    margin-bottom:5px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    text-align: center;
+	}
+	button:hover {
+		background-color: #04a3d8;
+	}
+
+	</style>
+
 	<form id="addSubject" submit.delegate="addSubject()">
-		<div>
-			<label for="subjectName">Aine nimi</label><input id="subjectName" type="text" name="subjectName" value.bind="userData.name">
-		</div> 
-		<div>
-			<label for="subjectCode">Aine kood</label><input id="subjectCode" type="text" name="subjectCode" value.bind="userData.code">
+		<div style="width: 100%;">
+			<div style="width:405px; margin: 0 auto;";>
+				<label for="subjectName">Aine nimi</label>
+				<input id="subjectName" type="text" name="subjectName" value.bind="userData.name">
+
+				<label for="subjectCode">Ainekood</label>
+				<input id="subjectCode" type="text" name="subjectCode" value.bind="userData.code">
+		
+				<label for="lecturerName">Õppejõud</label>
+				<input id="lecturerName" type="text" name="lecturerName" value.bind="userData.lecturer_name">
+				<button type="submit" name="Lisa Aine">Lisa aine tunniplaani</button>
+			</div>
 		</div>
-		<div>
-			<label for="lecturerName">Loengu pidaja</label><input id="lecturerName" type="text" name="lecturerName" value.bind="userData.lecturer_name">
-		</div>
-		<input type="submit" name="Lisa Aine">
+		
 	</form>
 </template>
