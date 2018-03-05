@@ -16,9 +16,9 @@ public class SubjectController {
     }
 
     @CrossOrigin(origins = "http://localhost:9000")
-    @RequestMapping(value = "/subject/get/{subjectName}", method = RequestMethod.POST)
-    public List<Subject> getSubject(@PathVariable String subjectName) {
-        return subjectService.getSubject(subjectName);
+    @RequestMapping(value = "/subject/get/{subjectId}", method = RequestMethod.POST)
+    public Subject getSubject(@PathVariable String subjectId) {
+        return subjectService.getById(subjectId);
     }
 
     @RequestMapping(value = "/subjects", method = RequestMethod.POST)
@@ -26,9 +26,11 @@ public class SubjectController {
         return subjectService.getSubjects();
     }
 
+    @CrossOrigin(origins = "http://localhost:9000")
     @RequestMapping(value = "/subject/add", method = RequestMethod.POST)
-    public void addSubject(@RequestBody Subject subject) {
+    public boolean addSubject(@RequestBody Subject subject) {
         subjectService.addSubject(subject);
+        return true;
     }
 
 }

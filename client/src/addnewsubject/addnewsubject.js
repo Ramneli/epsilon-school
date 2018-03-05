@@ -6,7 +6,7 @@ export class AddSubject {
 
 	addSubject() {
 		let client = new HttpClient();
-		let url = 'http://localhost:8080/subject/subject/add';
+		let url = 'http://localhost:8080/subject/add';
 
 		console.log("Serverile saadetakse: " + JSON.stringify(this.userData));
 	    client.fetch(url, {
@@ -16,7 +16,7 @@ export class AddSubject {
 	        .then(response => response.json())
 	        .then(data => {
 				
-	        	console.log("Server saatis: " + JSON.stringify(data));
+	        	console.log("Server saatis: " + data);
 	    });
 			console.log("addSubject method executed!");
 	}

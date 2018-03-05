@@ -2,12 +2,12 @@ import {HttpClient, json} from 'aurelia-fetch-client'
 
 export class Homework {
 	constructor() {
-		this.mySubjects = ["mata"];
+		this.mySubjects = ["Matemaatiline analüüs"];
 	}
 	getSubjectDetails() {
 		let client = new HttpClient();
 		let homeWorkTableData = new Object();
-		let url = 'http://localhost:8080/subject/get/mata';
+		let url = 'http://localhost:8080/subject/get/1';
 
 	    client.fetch(url, {
 	    	'method': "POST",
@@ -15,12 +15,12 @@ export class Homework {
 	    })
 	        .then(response => response.json())
 	        .then(data => {
-				homeWorkTableData.aine = data[0].name;
-				homeWorkTableData.opnimi = data[0].lecturer_name;
-				homeWorkTableData.ainekood = data[0].code;
-				homeWorkTableData.aineID = data[0].id;
+				console.log("Server saatis: " + JSON.stringify(data));
+				homeWorkTableData.aine = data.name;
+				homeWorkTableData.opnimi = data.lecturer_name;
+				homeWorkTableData.ainekood = data.code;
+				homeWorkTableData.aineID = data.id;
 				this.getHomeworks(homeWorkTableData);
-	        	console.log("Server saatis: " + JSON.stringify(data));
 	    });
 			console.log("getSubjectDetails method executed!");
 	}

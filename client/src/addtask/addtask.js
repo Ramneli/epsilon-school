@@ -5,7 +5,7 @@ export class AddTask {
 
 	addTask() {
 		let client = new HttpClient();
-		let url = 'http://localhost:8080/subject/task/add';
+		let url = 'http://localhost:8080/task/add';
 
 		console.log("Serverile saadetakse: " + JSON.stringify(this.userData));
 	    client.fetch(url, {
@@ -15,7 +15,7 @@ export class AddTask {
 	        .then(response => response.json())
 	        .then(data => {
 				
-	        	console.log("Server saatis: " + JSON.stringify(data));
+	        	console.log("Server saatis: " + data);
 	    });
 			console.log("addTask method executed!");
 	}

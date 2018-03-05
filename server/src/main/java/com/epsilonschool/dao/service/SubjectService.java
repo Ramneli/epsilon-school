@@ -11,10 +11,6 @@ public class SubjectService {
 
     private SubjectRepository subjectRepository;
 
-    public List<Subject> getSubject(String name) {
-        return subjectRepository.findByName(name);
-    }
-
     public Subject getCustomSubject() {
         return subjectRepository.getCustomSubject();
     }
