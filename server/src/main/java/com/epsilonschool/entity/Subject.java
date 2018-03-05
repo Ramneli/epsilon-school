@@ -14,8 +14,8 @@ public class Subject {
     private String id;
     @JsonProperty("name")
     private String name;
-    @JsonProperty("subject_code")
-    private String subjectCode;
+    @JsonProperty("code")
+    private String code;
     @JsonProperty("lecturer_name")
     private String lecturerName;
 
@@ -23,7 +23,7 @@ public class Subject {
 
     public Subject(String name, String code, String lecturerName) {
         this.name = name;
-        this.subjectCode = code;
+        this.code = code;
         this.lecturerName = lecturerName;
     }
 
@@ -32,7 +32,7 @@ public class Subject {
     }
 
     public void setCode(String code) {
-        this.subjectCode = code;
+        this.code = code;
     }
 
     public void setLecturerName(String lecturerName) {
@@ -48,7 +48,7 @@ public class Subject {
     }
 
     public String getCode() {
-        return subjectCode;
+        return code;
     }
 
     public String getId() {

@@ -14,21 +14,21 @@ import java.sql.Date;
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonProperty(value = "task_id", required = false)
-    private String taskId;
+    @JsonProperty(value = "id")
+    private String id;
     @JsonProperty(value = "subject_id")
     private int subjectId;
-    @JsonProperty(value = "task_description")
-    private String taskDescription;
-    @JsonProperty(value = "task_deadline")
-    private Date taskDeadline;
+    @JsonProperty(value = "description")
+    private String description;
+    @JsonProperty(value = "deadline")
+    private Date deadline;
 
     public Task(){}
 
     public Task(int subjectId, String taskDescription, Date taskDeadline) {
         this.subjectId = subjectId;
-        this.taskDescription = taskDescription;
-        this.taskDeadline = taskDeadline;
+        this.description = taskDescription;
+        this.deadline = taskDeadline;
     }
 
     public void setSubjectId(int subjectId) {
@@ -36,11 +36,11 @@ public class Task {
     }
 
     public void setDeadline(Date taskDeadline) {
-        this.taskDeadline = taskDeadline;
+        this.deadline = taskDeadline;
     }
 
     public void setDescription(String taskDescription) {
-        this.taskDescription = taskDescription;
+        this.description = taskDescription;
     }
 
     public int getSubjectId() {
@@ -48,14 +48,14 @@ public class Task {
     }
 
     public String getTaskId() {
-        return taskId;
+        return id;
     }
 
     public Date getDeadline() {
-        return taskDeadline;
+        return deadline;
     }
 
     public String getDescription() {
-        return taskDescription;
+        return description;
     }
 }

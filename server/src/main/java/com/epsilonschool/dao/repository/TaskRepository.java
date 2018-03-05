@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TaskRepository extends CrudRepository<Task, String> {
-
+    // TODO: Return all tasks that are relevant: task date > current date. Use @Query.
 
 }
