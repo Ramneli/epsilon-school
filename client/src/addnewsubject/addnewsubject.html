@@ -1,10 +1,14 @@
 <template>
-	<form id="addHomework"> <!--submit.delegate="addSubject()-->
+	<form id="addSubject" submit.delegate="addSubject()">
 		<div>
-			<label for="subjectName">Aine nimi</label><input id="subjectName" type="text" name="subjectName">
+			<label for="subjectName">Aine nimi</label><input id="subjectName" type="text" name="subjectName" value.bind="userData.name">
 		</div> 
 		<div>
-			<label for="subjectCode">Aine kood</label><input id="subjectCode" type="text" name="subjectCode">
+			<label for="subjectCode">Aine kood</label><input id="subjectCode" type="text" name="subjectCode" value.bind="userData.code">
 		</div>
+		<div>
+			<label for="lecturerName">Loengu pidaja</label><input id="lecturerName" type="text" name="lecturerName" value.bind="userData.lecturer_name">
+		</div>
+		<input type="submit" name="Lisa Aine">
 	</form>
 </template>

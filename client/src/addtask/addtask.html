@@ -1,0 +1,14 @@
+<template>
+<form id="addTask" submit.delegate="addTask()">
+		<div>
+			<label for="subjectID">Aine ID</label><input id="subjectID" type="text" name="subjectID" value.bind="userData.subject_id">
+		</div> 
+		<div>
+			<label for="description">Ülesande kirjeldus</label><input id="description" type="text" name="description" value.bind="userData.description">
+		</div>
+		<div>
+			<label for="deadline">Tähtaeg(yyyy-mm-dd)</label><input id="deadline" type="text" name="deadline" value.bind="userData.deadline">
+		</div>
+		<input type="submit" name="Lisa Aine">
+	</form>
+</template>
