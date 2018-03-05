@@ -1,7 +1,37 @@
 <template bindable="router">
+	<style>
+#navBar {
+    list-style-type: none;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    background-color: #119311;
+}
+#navBar li {
+    float: left;
+}
+
+
+#navBar li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 10px 10px;
+    text-decoration: none;
+}
+
+#navBar li a:hover {
+    background-color: #14AA14;
+}
+	</style>
+
 
 	<p>
-		<a repeat.for="item of router.navigation" href.bind="item.href" style="margin: 3px">${item.title}</a>
+		<ul id="navBar">
+			<li>
+				<a repeat.for="item of router.navigation" href.bind="item.href" style="margin: 10px">${item.title}</a>
+			</li>
+		</ul>
 	</p>
 
 </template>
