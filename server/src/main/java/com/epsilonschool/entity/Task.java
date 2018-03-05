@@ -17,7 +17,7 @@ public class Task {
     @JsonProperty(value = "id")
     private String id;
     @JsonProperty(value = "subject_id")
-    private int subjectId;
+    private String subjectId;
     @JsonProperty(value = "description")
     private String description;
     @JsonProperty(value = "deadline")
@@ -25,13 +25,13 @@ public class Task {
 
     public Task(){}
 
-    public Task(int subjectId, String taskDescription, Date taskDeadline) {
+    public Task(String subjectId, String taskDescription, Date taskDeadline) {
         this.subjectId = subjectId;
         this.description = taskDescription;
         this.deadline = taskDeadline;
     }
 
-    public void setSubjectId(int subjectId) {
+    public void setSubjectId(String subjectId) {
         this.subjectId = subjectId;
     }
 
@@ -43,7 +43,7 @@ public class Task {
         this.description = taskDescription;
     }
 
-    public int getSubjectId() {
+    public String getSubjectId() {
         return subjectId;
     }
 

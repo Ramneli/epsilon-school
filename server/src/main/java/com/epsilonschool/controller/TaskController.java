@@ -4,6 +4,8 @@ import com.epsilonschool.dao.service.TaskService;
 import com.epsilonschool.entity.Task;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class TaskController {
     private TaskService taskService;
@@ -13,9 +15,9 @@ public class TaskController {
     }
 
     @CrossOrigin(origins = "http://localhost:9000")
-    @RequestMapping(value = "/task/get/{taskId}", method = RequestMethod.POST)
-    public Task getTask(@PathVariable String taskId) {
-        return taskService.getTask(taskId);
+    @RequestMapping(value = "/task/get/{subjectId}", method = RequestMethod.POST)
+    public List<Task> getTask(@PathVariable String subjectId) {
+        return taskService.getTask(subjectId);
     }
 
     @RequestMapping(value = "/task/add", method = RequestMethod.POST)

@@ -4,6 +4,9 @@ import com.epsilonschool.dao.repository.TaskRepository;
 import com.epsilonschool.entity.Task;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class TaskService {
     private TaskRepository taskRepository;
@@ -12,8 +15,9 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
-    public Task getTask(String taskId) {
-        return taskRepository.findOne(taskId);
+    public List<Task> getTask(String subjectId) {
+        return taskRepository.findAll().stream()
+                .filter(task -> task.getSubjectId().equals(subjectId)).collect(Collectors.toList());
     }
 
     public void addTask(Task task) {
