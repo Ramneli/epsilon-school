@@ -6,7 +6,7 @@ export class AddSubject {
 
 	addSubject() {
 		let client = new HttpClient();
-		let url = 'http://localhost:8080/subject/get/mata';
+		let url = 'http://localhost:8080/subject/subject/add';
 
 		console.log("Serverile saadetakse: " + JSON.stringify(this.userData));
 	    client.fetch(url, {
