@@ -1,12 +1,11 @@
 import {HttpClient, json} from 'aurelia-fetch-client'
 
-export class AddSubject {
-
+export class AddTask {
 	userData = {};
 
-	addSubject() {
+	addTask() {
 		let client = new HttpClient();
-		let url = 'http://localhost:8080/subject/get/mata';
+		let url = 'http://localhost:8080/subject/task/add';
 
 		console.log("Serverile saadetakse: " + JSON.stringify(this.userData));
 	    client.fetch(url, {
@@ -18,6 +17,6 @@ export class AddSubject {
 				
 	        	console.log("Server saatis: " + JSON.stringify(data));
 	    });
-			console.log("addSubject method executed!");
+			console.log("addTask method executed!");
 	}
 }
