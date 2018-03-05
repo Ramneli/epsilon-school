@@ -13,11 +13,13 @@ export class AddSubject {
 	    	'method': "POST",
 	    	'body': json(this.userData)
 	    })
-	        .then(response => response.json())
-	        .then(data => {
-				
-	        	console.log("Server saatis: " + data);
-	    });
-			console.log("addSubject method executed!");
+	        .then(response => {
+				if (!response.ok) {
+					alert("Palun kontrolli sisendit.");
+				} else {
+					alert("Aine edukalt lisatud.");
+				}
+				response.json()
+			});
 	}
 }

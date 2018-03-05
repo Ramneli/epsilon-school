@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5fa017b6-fceb-47d3-823b-5138f43c9e48" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../client/src/homework/homework.js" afterPath="$PROJECT_DIR$/../client/src/homework/homework.js" />
+      <change beforePath="$PROJECT_DIR$/../client/src/addnewsubject/addnewsubject.js" afterPath="$PROJECT_DIR$/../client/src/addnewsubject/addnewsubject.js" />
+      <change beforePath="$PROJECT_DIR$/../client/src/addtask/addtask.js" afterPath="$PROJECT_DIR$/../client/src/addtask/addtask.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -616,7 +617,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="99" />
     <option name="y" value="141" />
     <option name="width" value="1010" />
@@ -995,7 +996,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="51" y="25" width="1549" height="875" extended-state="6" />
+    <frame x="51" y="25" width="1549" height="875" extended-state="7" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21505377" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
