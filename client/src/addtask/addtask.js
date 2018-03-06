@@ -3,6 +3,11 @@ import {HttpClient, json} from 'aurelia-fetch-client'
 export class AddTask {
 	userData = {};
 
+	constructor() {
+		this.myOptions = this.getAllSubjects();
+		this.myOptionsId = [];
+	}
+
 	addTask() {
 		let client = new HttpClient();
 		let url = 'http://localhost:8080/task/add';
@@ -20,5 +25,25 @@ export class AddTask {
 				}
 				response.json();
 			})
+	}
+
+	getAllSubjects() {
+		var allSubjects = [];
+		let client = new HttpClient();
+		let url = 'http://localhost:8080/subjects';
+
+	    client.fetch(url, {
+	    	'method': "POST"
+	    })
+	        .then(response => response.json())
+	        .then(data => {
+				console.log("Server saatis: " + JSON.stringify(data));
+				for (var i = 0; i < data.length; i++) {
+					allSubjects.push(data[i].name);
+					this.myOptionsId.push(data[i].id);
+				}
+	    });
+		console.log("getSubjectDetails method executed!");
+		return allSubjects;
 	}
 }

@@ -35,12 +35,21 @@
 		background-color: #04a3d8;
 	}
 
+	select {
+		width: 100%;
+		margin-bottom: 7px;
+		margin-top: 5px;
+	}
+
 	</style>
 	<div style="width: 100%;">
 		<div style="width:405px; margin: 0 auto;";>
 			<form id="addTask" submit.delegate="addTask()">
-				<label for="subjectID">Aine ID</label><br>
-				<input id="subjectID" type="text" name="subjectID" value.bind="userData.subject_id"><br>
+				<label for="subjectID">Vali aine</label><br>
+				<!--<input id="subjectID" type="text" name="subjectID" value.bind="userData.subject_id"><br>-->
+				<select id="subjectID" value.bind="userData.subject_id">
+					<option repeat.for="option of myOptions" id=${myOptionsId[myOptions.indexOf(option)]} value.bind="myOptionsId[myOptions.indexOf(option)]">${option}</option>
+				</select>
 
 				<label for="description">Ülesande kirjeldus</label><br>
 				<textarea rows="6" id="description" type="text" name="description" value.bind="userData.description"></textarea><br>
