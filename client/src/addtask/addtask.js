@@ -30,7 +30,7 @@ export class AddTask {
 	getAllSubjects() {
 		var allSubjects = [];
 		let client = new HttpClient();
-		let url = 'http://localhost:8080/subjects';
+		let url = 'http://localhost:8080/timetable/get/root';
 
 	    client.fetch(url, {
 	    	'method': "POST"
