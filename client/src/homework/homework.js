@@ -119,7 +119,7 @@ export class Homework {
 			var tableHeader = document.createElement("tr");
 			var cell_message = document.createElement("th");
 			var tableRow = document.createElement("tr");
-			var cell_message_content = document.createElement("th");
+			var cell_message_content = document.createElement("tr");
 
 			cell_message.textContent = "Teade";
 			cell_message_content.textContent = "Ülesandeid ei ole.";
