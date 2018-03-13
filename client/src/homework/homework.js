@@ -9,7 +9,7 @@ export class Homework {
 	getSubjectDetails(subjectId) {
 		for (var i = 1; i <= 1; i++) {
 			let client = new HttpClient();
-			let homeWorkTableData = new Object();
+			let tableData = new Object();
 			let url = 'http://localhost:8080/subject/get/' + subjectId;
 
 			client.fetch(url, {
@@ -18,11 +18,12 @@ export class Homework {
 			})
 				.then(response => response.json())
 				.then(data => {
-					homeWorkTableData.aine = data.name;
-					homeWorkTableData.opnimi = data.lecturer_name;
-					homeWorkTableData.ainekood = data.code;
-					homeWorkTableData.aineID = data.id;
-					this.getHomeworks(homeWorkTableData);
+					tableData.name = data.name;
+					tableData.lecturer_name = data.lecturer_name;
+					tableData.subject_code = data.code;
+					tableData.subject_id = data.id;
+					tableData.type = data.type;
+					this.getHomeworks(tableData);
 			});
 		}
 	}
@@ -30,18 +31,17 @@ export class Homework {
 	getHomeworks(tableData) {
 		let client = new HttpClient();
 		let parsedData = "";
-	    client.fetch('http://localhost:8080/task/get/' + tableData.aineID, {
+	    client.fetch('http://localhost:8080/task/get/' + tableData.subject_id, {
 	    	'method': "POST",
 	    	'body': json(this.userData)
 	    })
 	        .then(response => response.json())
 	        .then(data => {
-				console.log("Server saatis kodutöö: " + JSON.stringify(data));
+				console.log("DATA: " + data);
 				if (data.length != 0) {
 					this.deleteTable();
 					for (var i = 0; i < data.length; i++) {
-						console.log("aine " + tableData.aine);
-						tableData.exercise = data[i].description;
+						tableData.task = data[i].description;
 						tableData.deadline = data[i].deadline;
 						this.createTable(tableData);
 					}
@@ -55,12 +55,14 @@ export class Homework {
 	createTable(tableData) {
 		let table = document.getElementById("homeworkTable");
 		if (!table) {
-			var headers = ["Aine", "Ülesanne", "Õppejõud", "Tähtaeg"];
+			var headers = ["Aine", "Aine tüüp", "Ülesanne", "Õppejõud", "Tähtaeg"];
+			var listWidth = ["standardColWidth", "standardColWidth", "taskColWidth", "standardColWidth", "standardColWidth"];
 			table = document.createElement("Table");
 			table.setAttribute("id", "homeworkTable");
 			var tableHeader = document.createElement("tr");
-			for (var i = 0; i < 4; i++) {
+			for (var i = 0; i < headers.length; i++) {
 				var cell = document.createElement("th");
+				cell.setAttribute("id", listWidth[i]);
 				cell.textContent = headers[i];
 				tableHeader.appendChild(cell);
 			}
@@ -68,15 +70,18 @@ export class Homework {
 		}
 
 		var tr = table.insertRow();
-		var td1 = tr.insertCell();
-		var td2 = tr.insertCell();
-		var td3 = tr.insertCell();
-		var td4 = tr.insertCell();
 
-		td1.appendChild(document.createTextNode(tableData.aine));
-		td2.appendChild(document.createTextNode(tableData.exercise));
-		td3.appendChild(document.createTextNode(tableData.opnimi));
-		td4.appendChild(document.createTextNode(tableData.deadline));
+		var header_name = tr.insertCell();
+		var header_type = tr.insertCell();
+		var header_task = tr.insertCell();
+		var header_lecturer_name = tr.insertCell();
+		var header_deadline = tr.insertCell();
+
+		header_name.appendChild(document.createTextNode(tableData.name));
+		header_type.appendChild(document.createTextNode(tableData.type));
+		header_task.appendChild(document.createTextNode(tableData.task));
+		header_lecturer_name.appendChild(document.createTextNode(tableData.lecturer_name));
+		header_deadline.appendChild(document.createTextNode(tableData.deadline));
 	    document.getElementById("tableDiv").appendChild(table);
 	}
 
@@ -97,30 +102,30 @@ export class Homework {
 	    })
 	        .then(response => response.json())
 	        .then(data => {
-				console.log("Server saatis: " + JSON.stringify(data));
 				for (var i = 0; i < data.length; i++) {
 					allSubjects.push(data[i].name);
 					this.mySubjectsId.push(data[i].id);
 				}
 	    });
-		console.log("getSubjectDetails method executed!");
 		return allSubjects;
 	}
 
 	createTableWithNotification() {
 		let table = document.getElementById("homeworkTable");
 		if (!table) {
-			var headers = ["Aine", "Ülesanne", "Õppejõud", "Tähtaeg"];
 			table = document.createElement("Table");
 			table.setAttribute("id", "homeworkTable");
+
 			var tableHeader = document.createElement("tr");
-				var cell = document.createElement("th");
-				cell.textContent = "Teade";
-				tableHeader.appendChild(cell);
+			var cell_message = document.createElement("th");
 			var tableRow = document.createElement("tr");
-			var cell2 = document.createElement("th");
-			cell2.textContent = "Ülesandeid ei ole.";
-			tableRow.appendChild(cell2);
+			var cell_message_content = document.createElement("th");
+
+			cell_message.textContent = "Teade";
+			cell_message_content.textContent = "Ülesandeid ei ole.";
+			
+			tableHeader.appendChild(cell_message);
+			tableRow.appendChild(cell_message_content);
 			table.appendChild(tableHeader);
 			table.appendChild(tableRow);
 			document.getElementById("tableDiv").appendChild(table);
