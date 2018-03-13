@@ -25,7 +25,6 @@ export class AddSubject {
 				} else {
 					alert("Aine edukalt lisatud.");
 				}
-				response.json()
 			});
 	}
 

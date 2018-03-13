@@ -23,7 +23,6 @@ export class AddTask {
 				} else {
 					alert("Ülesanne edukalt lisatud.");
 				}
-				response.json();
 			})
 	}
 

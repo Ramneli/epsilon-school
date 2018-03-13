@@ -34,6 +34,10 @@
 	button:hover {
 		background-color: #04a3d8;
 	}
+	select {
+		width: 100%;
+		padding: 3px;
+	}
 
 	</style>
 	<form id="addSubject" submit.delegate="addSubject()">
@@ -47,6 +51,10 @@
 
 				<label for="lecturerName">Õppejõud</label><br>
 				<input id="lecturerName" type="text" name="lecturerName" value.bind="userData.lecturer_name"><br>
+
+				<select id="subjectID" value.bind="userData.type">
+					<option repeat.for="option of myOptions" id=${myOptions.indexOf(option)}>${option}</option>
+				</select>
 
 				<button type="submit" name="Lisa Aine">Loo uus aine</button>
 		</div>

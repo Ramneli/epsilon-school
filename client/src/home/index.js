@@ -3,6 +3,10 @@ import {HttpClient, json} from 'aurelia-fetch-client'
 export class Home {
 	userData = {};
 
+	constructor() {
+		this.myOptions = ["Loeng", "Harjutus", "Praktikum", "Loeng + Harjutus", "Harjutus + Praktikum", "Loeng + Harjutus + Praktikum"];
+	}
+
 	addSubject() {
 		let client = new HttpClient();
 		let url = 'http://localhost:8080/subject/add';
