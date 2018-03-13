@@ -12,11 +12,9 @@ public class UserController {
         this.userService = userService;
     }
 
-
     @CrossOrigin(origins = "http://localhost:9000")
     @RequestMapping(value="user/adduser", method = RequestMethod.GET)
-    public boolean addUser(@RequestParam("username") String username) {
+    public void addUser(@RequestParam("username") String username) {
         userService.addUser(new User(username));
-        return true;
     }
 }

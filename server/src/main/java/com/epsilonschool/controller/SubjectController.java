@@ -28,9 +28,7 @@ public class SubjectController {
 
     @CrossOrigin(origins = "http://localhost:9000")
     @RequestMapping(value = "/subject/add", method = RequestMethod.POST)
-    public boolean addSubject(@RequestBody Subject subject) {
+    public void addSubject(@RequestBody Subject subject) {
         subjectService.addSubject(subject);
-        return true;
     }
-
 }

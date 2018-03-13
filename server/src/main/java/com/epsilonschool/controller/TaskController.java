@@ -22,8 +22,7 @@ public class TaskController {
 
     @CrossOrigin(origins = "http://localhost:9000")
     @RequestMapping(value = "/task/add", method = RequestMethod.POST)
-    public boolean addTask(@RequestBody Task task) {
+    public void addTask(@RequestBody Task task) {
         taskService.addTask(task);
-        return true;
     }
 }

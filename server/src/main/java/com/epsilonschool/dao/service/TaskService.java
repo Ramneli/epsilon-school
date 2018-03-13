@@ -16,6 +16,10 @@ public class TaskService {
     }
 
     public List<Task> getTask(String subjectId) {
+        return getAllTasksOfSubject(subjectId);
+    }
+
+    private List<Task> getAllTasksOfSubject(String subjectId) {
         return taskRepository.findAll().stream()
                 .filter(task -> task.getSubjectId().equals(subjectId)).collect(Collectors.toList());
     }

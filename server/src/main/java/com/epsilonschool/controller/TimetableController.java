@@ -20,17 +20,19 @@ public class TimetableController {
 
     @CrossOrigin(origins = "http://localhost:9000")
     @RequestMapping(value = "/timetable/addTo", method = RequestMethod.POST)
-    public boolean addToTimetable(@RequestBody Timetable timetable) {
-        String userId = userService.getUserByName(timetable.getUsername()).getId();
-        timetable.setUserId(userId);
+    public void addToTimetable(@RequestBody Timetable timetable) {
+        timetable.setUserId(getUserIdByUsername(timetable.getUsername()));
         timetableService.addToTimeTable(timetable);
-        return true;
+    }
+
+    private String getUserIdByUsername(String username) {
+        return userService.getUserByName(username).getId();
     }
 
     @CrossOrigin(origins = "http://localhost:9000")
     @RequestMapping(value = "/timetable/get/{username}", method = RequestMethod.POST)
     public List<Subject> getSubjectsFromTimetable(@PathVariable String username) {
-        String user = userService.getUserByName(username).getId();
+        String user = getUserIdByUsername(username);
         return timetableService.getSubjects(user);
     }
 }
