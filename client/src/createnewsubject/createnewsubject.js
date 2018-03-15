@@ -7,7 +7,7 @@ export class Home {
 		this.myOptions = ["Loeng", "Harjutus", "Praktikum", "Loeng + Harjutus", "Harjutus + Praktikum", "Loeng + Harjutus + Praktikum"];
 	}
 
-	addSubject() {
+	addSubjectToDatabase() {
 		let client = new HttpClient();
 		let url = 'http://localhost:8080/subject/add';
 
@@ -24,6 +24,6 @@ export class Home {
 				}
 				response.json()
 		});
-			console.log("addSubject method executed!");
+			console.log("addSubjectToDatabase method executed!");
 	}
 }

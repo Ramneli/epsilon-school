@@ -7,25 +7,23 @@ export class Homework {
 	}
 
 	getSubjectDetails(subjectId) {
-		for (var i = 1; i <= 1; i++) {
-			let client = new HttpClient();
-			let tableData = new Object();
-			let url = 'http://localhost:8080/subject/get/' + subjectId;
+		let client = new HttpClient();
+		let tableData = new Object();
+		let url = 'http://localhost:8080/subject/get/' + subjectId;
 
-			client.fetch(url, {
-				'method': "POST",
-				'body': json(this.userData)
-			})
-				.then(response => response.json())
-				.then(data => {
-					tableData.name = data.name;
-					tableData.lecturer_name = data.lecturer_name;
-					tableData.subject_code = data.code;
-					tableData.subject_id = data.id;
-					tableData.type = data.type;
-					this.getHomeworks(tableData);
+		client.fetch(url, {
+			'method': "POST",
+			'body': json(this.userData)
+		})
+			.then(response => response.json())
+			.then(data => {
+				tableData.name = data.name;
+				tableData.lecturer_name = data.lecturer_name;
+				tableData.subject_code = data.code;
+				tableData.subject_id = data.id;
+				tableData.type = data.type;
+				this.getHomeworks(tableData);
 			});
-		}
 	}
 
 	getHomeworks(tableData) {
@@ -47,9 +45,9 @@ export class Homework {
 					}
 				} else {
 					this.deleteTable();
-					this.createTableWithNotification();
+					this.createTableWithNoHomeworks();
 				}
-	    });
+	    	});
 	}
 
 	createTable(tableData) {
@@ -110,7 +108,7 @@ export class Homework {
 		return allSubjects;
 	}
 
-	createTableWithNotification() {
+	createTableWithNoHomeworks() {
 		let table = document.getElementById("homeworkTable");
 		if (!table) {
 			table = document.createElement("Table");

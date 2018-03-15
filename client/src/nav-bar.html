@@ -1,32 +1,5 @@
 <template bindable="router">
-	<style>
-#navBar {
-    list-style-type: none;
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
-    background-color: #119311;
-}
-#navBar li {
-    float: left;
-}
-
-
-#navBar li a {
-    display: inline-block;
-    color: white;
-    text-align: center;
-    padding: 10px 10px;
-    text-decoration: none;
-    font-family: Helvetica;
-    font-size: 12px;
-}
-
-#navBar li a:hover {
-    background-color: #14AA14;
-}
-	</style>
-
+    <require from="css/style.css"></require>
     <p style="float:right; margin-top:-50px; font-size:22px;">Tere, root.</p>
 	<p>
 		<ul id="navBar">
@@ -36,4 +9,12 @@
 		</ul>
 	</p>
 
+	<!--<ul class="nav navbar-nav pull-right">
+	  	<li click.delegate="auth.login()" if.bind="!authenticated">
+	    	<a>Log In</a>
+	  	</li>
+	  	<li click.delegate="auth.logout()" if.bind="authenticated">
+	    	<a>Log Out</a>
+	  	</li>
+	</ul>-->
 </template>
