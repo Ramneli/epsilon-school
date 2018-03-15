@@ -1,45 +1,5 @@
 <template>
-	<style>
-	textarea {
-		width: 398px;
-		resize: none;
-		margin-top: 5px;
-	}
-	input {
-		margin-top: 5px;
-		margin-bottom: 10px;
-		width: 400px;
-	}
-	label {
-		margin-top: 5px;
-	}
-	button {
-
-    background-color: #008CBA; /* Green */
-    border: none;
-    color: white;
-    padding: 0px 0px;
-    width:100%;
-    word-break: break-word;
-    height:50px;
-    margin: 0 auto;
-    margin-top: 5px;
-    margin-bottom:5px;
-    text-align: center;
-    text-decoration: none;
-    display: block;
-    font-size: 14px;
-    text-align: center;
-	}
-	button:hover {
-		background-color: #04a3d8;
-	}
-
-	select {
-		width: 100%;
-	}
-
-	</style>
+	<require from="css/addnewsubject.css"></require>
 
 	<form id="addSubject" submit.delegate="addSubjectToTimetable()">
 		<div style="width: 100%;">
@@ -50,6 +10,5 @@
 				<button type="submit" name="Lisa Aine">Lisa aine tunniplaani</button>
 			</div>
 		</div>
-		
 	</form>
 </template>
