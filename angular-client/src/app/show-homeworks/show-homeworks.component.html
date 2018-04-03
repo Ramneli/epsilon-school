@@ -1,0 +1,34 @@
+<div style="width: 100%; height: 1000px" ng-app="myApp" ng-controller="myCtrl">
+	<div id="tableDiv">
+		<table id="homeworkTable" style="text-align: left;">
+		  	<tr>
+			    <th id="standardColWidth">Aine</th>
+			    <th id="standardColWidth">Aine tüüp</th>
+			    <th id="taskColWidth">Ülesanne</th> 
+			    <th id="standardColWidth">Õppejõud</th>
+			    <th id="standardColWidth">Tähtaeg</th>
+		 	</tr>
+		</table>
+	</div>
+
+	<div style="width: 20%; float: right;">
+		<div id="wrapper">
+			<table>
+				<tr>
+					<th>
+						Minu ained
+					</th>
+				</tr>
+				<tr>
+					<ul class="hwks">
+					  <li *ngFor="let homework of homeworks">
+					    <button>{{homework}}</button>
+					  </li>
+					</ul><!--
+					<td><button
+					type="submit">{{mySubjects[0]}}</button></td>-->
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>-->
