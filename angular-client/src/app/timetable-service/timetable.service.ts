@@ -4,19 +4,21 @@ import { of } from 'rxjs/observable/of';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { MessageService } from './message.service';
+import { MessageService } from '../message-service/message.service';
 
 @Injectable()
-export class TaskService {
+export class TimetableService {
 
- 	constructor(private messageService: MessageService,
+  constructor(private messageService: MessageService,
  				private http: HttpClient) { }
 
-	getHomeworks(id: number) {
-		const url = `${this.homeworksUrl}/${id}`;
+ 	private timetableUrl = 'http://localhost:8080/timetable/addTo';
+
+
+	addSubjectToTimetable(json) {;
 		const headers = new Headers();
 		headers.append('Content-Type', 'application/json; charset=utf-8');
-		return this.http.post(url, "");
+		return this.http.post(this.timetableUrl, json);
 	
 	}
 
@@ -32,10 +34,8 @@ export class TaskService {
 	    return of(result as T);
 	  };
 	}
-
 	private log(message: string) {
-		this.messageService.add('HeroService: ' + message + '.');
+		this.messageService.add('Asd: ' + message + '.');
 	}
 
-	private homeworksUrl = 'http://localhost:8080/timetable/get';
 }

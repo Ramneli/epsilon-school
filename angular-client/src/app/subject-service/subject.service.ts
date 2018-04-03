@@ -4,22 +4,26 @@ import { of } from 'rxjs/observable/of';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { MessageService } from './message.service';
+import { MessageService } from '../message-service/message.service';
 
 @Injectable()
-export class TimetableService {
+export class SubjectService {
 
-  constructor(private messageService: MessageService,
+ 	constructor(private messageService: MessageService,
  				private http: HttpClient) { }
 
- 	private timetableUrl = 'http://localhost:8080/timetable/addTo';
-
-
-	addSubjectToTimetable(json) {;
+	getAllSubjects() {
+		const subjectsUrl = 'http://localhost:8080/subjects';
 		const headers = new Headers();
 		headers.append('Content-Type', 'application/json; charset=utf-8');
-		return this.http.post(this.timetableUrl, json);
-	
+		return this.http.post(subjectsUrl, "");
+	}
+
+	createNewSubject(json) {
+		const subjectsUrl = 'http://localhost:8080/subject/add';
+		const headers = new Headers();
+		headers.append('Content-Type', 'application/json; charset=utf-8');
+		return this.http.post(subjectsUrl, json);
 	}
 
 	/**

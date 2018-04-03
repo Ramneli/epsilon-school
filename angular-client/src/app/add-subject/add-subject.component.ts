@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { SubjectService } from '../subject.service';
-import { TimetableService } from '../timetable.service';
+import { SubjectService } from '../subject-service/subject.service';
+import { TimetableService } from '../timetable-service/timetable.service';
 
 @Component({
   selector: 'app-add-subject',
@@ -29,8 +29,7 @@ export class AddSubjectComponent implements OnInit {
   }
 
   addSubjectToTimetable(id) {
-    this.timetableService.addSubjectToTimetable(this.userData)
-    .subscribe();
+    this.timetableService.addSubjectToTimetable(this.userData).subscribe();
   }
 
   displayAllSubjects(data) {

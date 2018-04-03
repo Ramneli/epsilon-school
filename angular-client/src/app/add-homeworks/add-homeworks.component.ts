@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { TaskService } from '../task.service';
+import { TaskService } from '../task-service/task.service';
 
 
 @Component({
@@ -12,7 +12,8 @@ export class AddHomeworksComponent implements OnInit {
 
   	constructor(private taskService: TaskService) { }
 
-  	homeworks = [];
+    allSubjectNames = [];
+    allSubjectIds = [];
 
 	getHomeworks() {
     this.taskService.getHomeworks(1)
@@ -24,14 +25,24 @@ export class AddHomeworksComponent implements OnInit {
   displayHomeworks(homeworks) {
     console.log(homeworks)
     for (let i = 0; i < homeworks.length; i++) {
-      this.homeworks.push(homeworks[i].name);
+      this.allSubjectNames.push(homeworks[i].name);
+      this.allSubjectIds.push(homeworks[i].id);
       
     }
   }
 
+  addHomework(userChoice, userDescription, userDeadline) {
+    let userData = {
+      subject_id: userChoice,
+      description: userDescription,
+      deadline: userDeadline
+    }
+    this.taskService.addHomework(userData).subscribe();
+
+  }
+
   ngOnInit() {
   	this.getHomeworks();
-
   }
 
 }

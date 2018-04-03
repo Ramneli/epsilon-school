@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { TaskService } from '../task.service';
+import { TaskService } from '../task-service/task.service';
 
 @Component({
  	 selector: 'app-show-homeworks',
