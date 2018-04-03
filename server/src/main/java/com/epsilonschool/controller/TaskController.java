@@ -14,13 +14,13 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @CrossOrigin(origins = "http://localhost:9000")
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/task/get/{subjectId}", method = RequestMethod.POST)
     public List<Task> getTask(@PathVariable String subjectId) {
         return taskService.getTask(subjectId);
     }
 
-    @CrossOrigin(origins = "http://localhost:9000")
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/task/add", method = RequestMethod.POST)
     public void addTask(@RequestBody Task task) {
         taskService.addTask(task);

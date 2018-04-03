@@ -15,7 +15,7 @@ public class SubjectController {
         this.subjectService = subjectService;
     }
 
-    @CrossOrigin(origins = "http://localhost:9000")
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/subject/get/{subjectId}", method = RequestMethod.POST)
     public Subject getSubject(@PathVariable String subjectId) {
         return subjectService.getById(subjectId);
@@ -26,7 +26,7 @@ public class SubjectController {
         return subjectService.getSubjects();
     }
 
-    @CrossOrigin(origins = "http://localhost:9000")
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/subject/add", method = RequestMethod.POST)
     public void addSubject(@RequestBody Subject subject) {
         subjectService.addSubject(subject);

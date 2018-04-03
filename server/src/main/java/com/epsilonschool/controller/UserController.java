@@ -12,7 +12,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @CrossOrigin(origins = "http://localhost:9000")
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value="user/adduser", method = RequestMethod.GET)
     public void addUser(@RequestParam("username") String username) {
         userService.addUser(new User(username));
