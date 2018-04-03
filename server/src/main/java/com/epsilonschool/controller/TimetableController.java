@@ -21,7 +21,6 @@ public class TimetableController {
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/timetable/addTo", method = RequestMethod.POST)
     public void addToTimetable(@RequestBody Timetable timetable) {
-        timetable.setUserId(getUserIdByUsername(timetable.getUsername()));
         timetableService.addToTimeTable(timetable);
     }
 
