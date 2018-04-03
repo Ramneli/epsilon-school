@@ -30,9 +30,8 @@ public class TimetableController {
     }
 
     @CrossOrigin(origins = "http://localhost:9000")
-    @RequestMapping(value = "/timetable/get/{username}", method = RequestMethod.POST)
-    public List<Subject> getSubjectsFromTimetable(@PathVariable String username) {
-        String user = getUserIdByUsername(username);
-        return timetableService.getSubjects(user);
+    @RequestMapping(value = "/timetable/get/{user_id}", method = RequestMethod.POST)
+    public List<Subject> getSubjectsFromTimetable(@PathVariable String user_id) {
+        return timetableService.getSubjects(user_id);
     }
 }

@@ -36,3 +36,26 @@ dependencies {
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
+
+task deleteOldBuilds(type: Delete) {
+    delete fileTree("jar/")
+    delete fileTree("build/libs/")
+}
+
+task makeJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Server jar',
+            'Implementation-Version': version,
+            'Main-Class': 'com.epsilonschool.app.Application'
+    }
+    baseName = project.name + '-all'
+    with jar
+}
+
+task copyJar(type: Copy) {
+    from("build/libs/")
+    into("jar/")
+}
+
+copyJar.dependsOn makeJar
+makeJar.dependsOn deleteOldBuilds
