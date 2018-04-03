@@ -9,9 +9,13 @@ import { AppRoutingModule } from './/app-routing.module';
 import { AddHomeworksComponent } from './add-homeworks/add-homeworks.component';
 import { AddSubjectComponent } from './add-subject/add-subject.component';
 import { CreateSubjectComponent } from './create-subject/create-subject.component';
-import { DisplayHomeworksService } from './display-homeworks.service';
 import { MessagesComponent } from './messages/messages.component';
+
+import { TaskService } from './task.service';
 import { MessageService } from './message.service';
+import { SubjectService } from './subject.service';
+import { TimetableService } from './timetable.service';
+import { UserService } from './user.service';
 
 @NgModule
 ({
@@ -29,7 +33,7 @@ import { MessageService } from './message.service';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [ DisplayHomeworksService, MessageService ],
+  providers: [ TaskService, MessageService, SubjectService, TimetableService, UserService ],
   bootstrap: [AppComponent]
 })
 

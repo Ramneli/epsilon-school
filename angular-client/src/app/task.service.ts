@@ -4,55 +4,21 @@ import { of } from 'rxjs/observable/of';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Homework } from './homework';
-import { HOMEWORKS } from './homeworks';
 import { MessageService } from './message.service';
 
 @Injectable()
-export class DisplayHomeworksService {
+export class TaskService {
 
  	constructor(private messageService: MessageService,
  				private http: HttpClient) { }
-
- 	dummy = {};
 
 	getHomeworks(id: number) {
 		const url = `${this.homeworksUrl}/${id}`;
 		const headers = new Headers();
 		headers.append('Content-Type', 'application/json; charset=utf-8');
-		/*let observable = Observable.create(observer => {
-            let users = [
-	            {
-	            	id: "1",
-	            	name: "Programmeerimine",
-	            	code: "IDK0102",
-	            	lecturer_name: "Martin Rebane"
-	            },
-	            {
-	                id: "2",
-	            	name: "Matemaatiline Analüüs I",
-	            	code: "YML0053",
-	            	lecturer_name: "Liivi Kluge"
-	            }];
-            observer.next(users);
-            console.log("am done");
-            observer.complete();
-       	});*/
-
-		
-
-    		/*observable.subscripe((data)=>{
-    			console.log(data); // users array display
-    		});*/
-    		return this.http.post(url, JSON.stringify(this.dummy), headers);
-			/*.pipe(
-			tap(_ => this.log(`fetched homeworks id=${id}`)),
-			catchError(this.handleError('getHomeworks', []))
-			);*/
-		//return observable;
-		
-	}
+		return this.http.post(url, "");
 	
+	}
 
 	/**
 	 * @param result - optional value to return as the observable result
@@ -71,5 +37,5 @@ export class DisplayHomeworksService {
 		this.messageService.add('HeroService: ' + message + '.');
 	}
 
-	private homeworksUrl = 'http://localhost:8080/subject/get';
+	private homeworksUrl = 'http://localhost:8080/timetable/get';
 }

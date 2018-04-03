@@ -3,16 +3,26 @@
 		<div style="width: 100%;">
 			<div style="width:405px; margin: 0 auto;">
 					<label for="subjectName">Aine nimi</label><br>
-					<input id="subjectName" type="text" name="subjectName"><br>
+					<input #userSubjectName id="subjectName" type="text" name="subjectName"><br>
+					
 					<label for="subjectCode">Ainekood</label><br>
-					<input id="subjectCode" type="text" name="subjectCode"><br>
+					<input #userSubjectCode id="subjectCode" type="text" name="subjectCode"><br>
+					
 					<label for="lecturerName">Õppejõud</label><br>
-					<input id="lecturerName" type="text" name="lecturerName" ><br>
-					<select id="subjectID">
-						<option></option>
+					<input #userLecturerName id="lecturerName" type="text" name="lecturerName" ><br>
+					
+					<label for="subjectID">Tunni Tüüp</label><br>
+					<select #userChoice id="subjectID">
+						<option>Loeng</option>
+						<option>Harjutus</option>
+						<option>Praktikum</option>
+						<option>Loeng + Harjutus</option>
+						<option>Harjutus + Praktikum</option>
+						<option>Loeng + Harjutus + Praktikum</option>
 					</select>
 
-					<button type="submit" name="Lisa Aine">Loo uus aine</button>
+					<button type="submit" (click)="addSubjectToTimetable
+					(userSubjectName, userSubjectCode, userLecturerName, userChoice)" name="Loo Aine">Loo Uus Aine</button>
 			</div>
 		</div>
 	</form>

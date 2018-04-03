@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Homework } from '../homework';
-import { DisplayHomeworksService } from '../display-homeworks.service';
+import { TaskService } from '../task.service';
 
 @Component({
  	 selector: 'app-show-homeworks',
@@ -12,23 +11,22 @@ import { DisplayHomeworksService } from '../display-homeworks.service';
 export class ShowHomeworksComponent implements OnInit {
 	
 
-	constructor(private displayHomeworksService: DisplayHomeworksService) { }
+	constructor(private taskService: TaskService) { }
 
   homeworks = [];
 
   getHomeworks(){
-    this.displayHomeworksService.getHomeworks(5)
+    this.taskService.getHomeworks(1)
       .subscribe(data => {
           this.displayHomeworks(data);
-          //console.log(data);
       });
   }
 
   displayHomeworks(homeworks) {
-    console.log(JSON.stringify(homeworks));
+    console.log(this.homeworks);
     for (let i = 0; i < homeworks.length; i++) {
       this.homeworks.push(homeworks[i].name);
-      console.log(this.homeworks);
+      
     }
   }
 

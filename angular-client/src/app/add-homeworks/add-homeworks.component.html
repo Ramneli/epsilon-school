@@ -3,7 +3,7 @@
 		<form id="addTask">
 			<label for="subjectID">Vali aine</label><br>
 			<select id="subjectID">
-				<option></option>
+				<option *ngFor="let homework of homeworks">{{homework}}</option>
 			</select>
 			<label for="description">Ülesande kirjeldus</label><br>
 			<textarea rows="6" id="description" type="text" name="description"></textarea><br>
