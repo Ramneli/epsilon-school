@@ -17,7 +17,7 @@ export class ShowHomeworksComponent implements OnInit {
   homeworks = [];
 
   getHomeworks(){
-    this.displayHomeworksService.getHomeworks(1)
+    this.displayHomeworksService.getHomeworks(5)
       .subscribe(data => {
           this.displayHomeworks(data);
           //console.log(data);
