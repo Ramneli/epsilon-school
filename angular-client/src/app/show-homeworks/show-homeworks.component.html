@@ -20,11 +20,13 @@
 					</th>
 				</tr>
 				<tr>
-					<ul class="hwks">
-					  <li *ngFor="let homework of homeworks">
-					    <button>{{homework}}</button>
-					  </li>
-					</ul><!--
+					<td>
+					    <button *ngFor="let subject of subjects" class="subjectButton"
+					    id="{{subjectIDs[subjects.indexOf(subject)]}}"
+					    (click)="getSubjectHomeworksDetails(subjectIDs[subjects.indexOf(subject)])"
+					    type="submit">{{subject}}</button>
+					</td>
+					<!--
 					<td><button
 					type="submit">{{mySubjects[0]}}</button></td>-->
 				</tr>

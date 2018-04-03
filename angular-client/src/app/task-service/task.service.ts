@@ -12,19 +12,27 @@ export class TaskService {
  	constructor(private messageService: MessageService,
  				private http: HttpClient) { }
 
-	getHomeworks(id: number) {
-		const getHomeworksUrl = 'http://localhost:8080/timetable/get';
-		const url = `${getHomeworksUrl}/${id}`;
-		const headers = new Headers();
-		headers.append('Content-Type', 'application/json; charset=utf-8');
+	getSubjects(id) {
+		const getSubjectsUrl = 'http://localhost:8080/timetable/get';
+		const url = `${getSubjectsUrl}/${id}`;
 		return this.http.post(url, "");
 	}
 
 	addHomework(json) {
 		const addHomeworkUrl = 'http://localhost:8080/task/add';
-		const headers = new Headers();
-		headers.append('Content-Type', 'application/json; charset=utf-8');
 		return this.http.post(addHomeworkUrl, json);
+	}
+
+	getSubjectDetails(subjectId) {
+		const getHomeworksUrl = 'http://localhost:8080/subject/get';
+		const url = `${getHomeworksUrl}/${subjectId}`;
+		return this.http.post(url, "");
+	}
+
+	getHomeworks(subjectId) {
+		const getHomeworksUrl = 'http://localhost:8080/task/get';
+		const url = `${getHomeworksUrl}/${subjectId}`;
+		return this.http.post(url, "");
 	}
 
 	/**

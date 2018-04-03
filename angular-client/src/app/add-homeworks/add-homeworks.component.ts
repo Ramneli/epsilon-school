@@ -15,8 +15,8 @@ export class AddHomeworksComponent implements OnInit {
     allSubjectNames = [];
     allSubjectIds = [];
 
-	getHomeworks() {
-    this.taskService.getHomeworks(1)
+	getSubjects() {
+    this.taskService.getSubjects(1)
       .subscribe(data => {
           this.displayHomeworks(data);
       });
@@ -42,7 +42,7 @@ export class AddHomeworksComponent implements OnInit {
   }
 
   ngOnInit() {
-  	this.getHomeworks();
+  	this.getSubjects();
   }
 
 }

@@ -17,8 +17,8 @@ export class AddSubjectComponent implements OnInit {
   allSubjectIds = [];
 
   userData = {
-    user_id: "2",
-    subject_id: "9"
+    user_id: "1",
+    subject_id: "11"
   };
 
   getAllSubjects() {
