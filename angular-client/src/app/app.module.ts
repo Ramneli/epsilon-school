@@ -19,6 +19,20 @@ import { MessageService } from './message-service/message.service';
 import { SubjectService } from './subject-service/subject.service';
 import { UserService } from './user-service/user.service';
 
+import { AuthService } from './auth-service/auth.service';
+import { AuthGuardService } from './auth-guard/auth-guard.service';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireModule } from 'angularfire2';
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyD98RBDQEBAKyyxGv2oZ1-oKECwBU5NUew",
+  authDomain: "ngfbauth-594bd.firebaseapp.com",
+  databaseURL: "https://ngfbauth-594bd.firebaseio.com",
+  projectId: "ngfbauth-594bd",
+  storageBucket: "ngfbauth-594bd.appspot.com",
+  messagingSenderId: "1017467839160"
+}
+
 @NgModule
 ({
   declarations: [
@@ -38,7 +52,8 @@ import { UserService } from './user-service/user.service';
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   providers: [
     TaskService,
@@ -46,7 +61,10 @@ import { UserService } from './user-service/user.service';
     SubjectService,
     UserService,
     Title,
-    DatePipe
+    DatePipe,
+    AuthService,
+    AngularFireAuth,
+    AuthGuardService
     ],
   bootstrap: [AppComponent]
 })

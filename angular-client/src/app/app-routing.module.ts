@@ -6,12 +6,14 @@ import { CreateSubjectComponent } from './create-subject/create-subject.componen
 import { AddSubjectComponent } from './add-subject/add-subject.component';
 import { AddHomeworksComponent } from './add-homeworks/add-homeworks.component';
 
+import { AuthGuardService } from './auth-guard/auth-guard.service';
+
 const routes: Routes = [
 	{ path: '', component: ShowHomeworksComponent },
 	{ path: 'homeworks', component: ShowHomeworksComponent },
-	{ path: 'addhomeworks', component: AddHomeworksComponent },
-	{ path: 'createsubject', component: CreateSubjectComponent },
-	{ path: 'addsubject', component: AddSubjectComponent }
+	{ path: 'addhomeworks', component: AddHomeworksComponent, canActivate: [AuthGuardService] },
+	{ path: 'createsubject', component: CreateSubjectComponent, canActivate: [AuthGuardService] },
+	{ path: 'addsubject', component: AddSubjectComponent, canActivate: [AuthGuardService] }
 ];
 
 @NgModule({
@@ -20,4 +22,3 @@ const routes: Routes = [
 })
 
 export class AppRoutingModule { }
-

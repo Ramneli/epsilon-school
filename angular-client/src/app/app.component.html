@@ -5,9 +5,14 @@
 </div>
 <nav id="navBar">
     <a id="navBar" routerLink="/homeworks" (click)="setTitle('epsilon-school')">Ülesanded</a>
-    <a id="navBar" routerLink="/addhomeworks" (click)="setTitle('epsilon-school')">Lisa Ülesanne</a>
-    <a id="navBar" routerLink="/createsubject" (click)="setTitle('epsilon-school')">Loo Uus Aine</a>
-    <a id="navBar" routerLink="/addsubject" (click)="setTitle('epsilon-school')">Lisa Aine Tunniplaani</a>
+    <a *ngIf="isLoggedIn" id="navBar" routerLink="/addhomeworks" (click)="setTitle('epsilon-school')">Lisa Ülesanne</a>
+    <a *ngIf="isLoggedIn" id="navBar" routerLink="/createsubject" (click)="setTitle('epsilon-school')">Loo Uus Aine</a>
+    <a *ngIf="isLoggedIn" id="navBar" routerLink="/addsubject" (click)="setTitle('epsilon-school')">Lisa Aine Tunniplaani</a>
+    <a *ngIf="!isLoggedIn"  id="navBar" style="float:right;" (click)="login()"> Logi sisse </a>
+    <a *ngIf="isLoggedIn" id="navBar" style="float:right;" (click)="logout()"> Logi välja </a>
+    <a *ngIf="isLoggedIn" style="float:right;"> Tere, {{ user_displayName }} </a>
+    <a *ngIf="!isLoggedIn" style="float:right;"> Tere, kasutaja </a>
 </nav>
+
 <router-outlet></router-outlet>
 <app-messages></app-messages>

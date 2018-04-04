@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { SubjectService } from '../subject-service/subject.service';
+import { AuthService } from '../auth-service/auth.service';
 
 @Component({
   selector: 'app-create-subject',
@@ -9,7 +10,7 @@ import { SubjectService } from '../subject-service/subject.service';
 })
 export class CreateSubjectComponent implements OnInit {
 
-  	constructor(private subjectService: SubjectService) { }
+  	constructor(private subjectService: SubjectService, private authService : AuthService) { }
 
 	addSubjectToTimetable(userSubjectName, userSubjectCode, userLecturerName, userChoice) {
 		let userData = {
@@ -31,7 +32,8 @@ export class CreateSubjectComponent implements OnInit {
 			this.subjectService.createNewSubject(userData).subscribe();
 		}
 	}
-	
+
 	ngOnInit() {
+    console.log(this.authService.getUserId());
 	}
 }

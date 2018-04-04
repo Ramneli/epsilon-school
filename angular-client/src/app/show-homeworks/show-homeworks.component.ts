@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { TaskService } from '../task-service/task.service';
+import { AuthService } from '../auth-service/auth.service';
 
 @Component({
  	selector: 'app-show-homeworks',
@@ -9,9 +10,9 @@ import { TaskService } from '../task-service/task.service';
 })
 
 export class ShowHomeworksComponent implements OnInit {
-	
 
-	constructor(private taskService: TaskService) { }
+
+	constructor(private taskService: TaskService, private authService : AuthService) { }
 
   	subjects = [];
   	subjectIDs = [];
@@ -21,7 +22,11 @@ export class ShowHomeworksComponent implements OnInit {
   		kui user siia lehele tuleb.
   	*/
   	userId = "1";
-  	
+
+  isAuthenticated() {
+    return this.authService.getAuth();
+  }
+
 	getSubjects() {
 	    this.taskService.getSubjects(this.userId)
 	        .subscribe(subjects => {
@@ -68,7 +73,7 @@ export class ShowHomeworksComponent implements OnInit {
 
 			})
 	}
-	
+
     getHomeworkNamesAndIDs(subjects) {
 	    for (let i = 0; i < subjects.length; i++) {
 	        this.subjects.push(subjects[i].name);
@@ -126,7 +131,7 @@ export class ShowHomeworksComponent implements OnInit {
 
 		    cell_message.textContent = "Teade";
 		    cell_message_content.textContent = "Ülesandeid ei ole.";
-		      
+
 		    tableHeader.appendChild(cell_message);
 		    tableRow.appendChild(cell_message_content);
 		    table.appendChild(tableHeader);

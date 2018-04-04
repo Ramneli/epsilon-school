@@ -4,14 +4,14 @@
 		  	<tr>
 			    <th id="standardColWidth">Aine</th>
 			    <th id="standardColWidth">Aine tüüp</th>
-			    <th id="taskColWidth">Ülesanne</th> 
+			    <th id="taskColWidth">Ülesanne</th>
 			    <th id="standardColWidth">Õppejõud</th>
 			    <th id="standardColWidth">Tähtaeg</th>
 		 	</tr>
 		</table>
 	</div>
 
-	<div style="width: 20%; float: right;">
+	<div *ngIf="isAuthenticated()" style="width: 20%; float: right;">
 		<div id="wrapper">
 			<table>
 				<tr>

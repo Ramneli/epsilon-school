@@ -42,7 +42,7 @@ export class AddHomeworksComponent implements OnInit {
         for (let i = 0; i < homeworks.length; i++) {
             this.allSubjectNames.push(homeworks[i].name);
             this.allSubjectIds.push(homeworks[i].id);
-          
+
         }
     }
 
@@ -54,8 +54,8 @@ export class AddHomeworksComponent implements OnInit {
         let userData = {
             subject_id: userSubjectID,
             description: userDescription,
-            deadline: this.userDeadline;
-        } 
+            deadline: this.userDeadline
+        }
 
     this.taskService.addHomework(userData)
     	.subscribe(queryResult => {
