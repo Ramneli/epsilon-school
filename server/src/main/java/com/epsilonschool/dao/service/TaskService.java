@@ -4,6 +4,7 @@ import com.epsilonschool.dao.repository.TaskRepository;
 import com.epsilonschool.entity.Task;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,7 +25,12 @@ public class TaskService {
                 .filter(task -> task.getSubjectId().equals(subjectId)).collect(Collectors.toList());
     }
 
-    public void addTask(Task task) {
-        taskRepository.save(task);
+    public boolean addTask(Task task) {
+        try {
+            taskRepository.save(task);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 }
