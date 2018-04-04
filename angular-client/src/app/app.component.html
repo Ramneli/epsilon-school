@@ -4,10 +4,10 @@
     </h1>
 </div>
 <nav id="navBar">
-    <a id="navBar" routerLink="/homeworks">Ülesanded</a>
-    <a id="navBar" routerLink="/addhomeworks">Lisa Ülesanne</a>
-    <a id="navBar" routerLink="/createsubject">Loo Uus Aine</a>
-    <a id="navBar" routerLink="/addsubject">Lisa Aine Tunniplaani</a>
+    <a id="navBar" routerLink="/homeworks" (click)="setTitle('epsilon-school')">Ülesanded</a>
+    <a id="navBar" routerLink="/addhomeworks" (click)="setTitle('epsilon-school')">Lisa Ülesanne</a>
+    <a id="navBar" routerLink="/createsubject" (click)="setTitle('epsilon-school')">Loo Uus Aine</a>
+    <a id="navBar" routerLink="/addsubject" (click)="setTitle('epsilon-school')">Lisa Aine Tunniplaani</a>
 </nav>
 <router-outlet></router-outlet>
 <app-messages></app-messages>

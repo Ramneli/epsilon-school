@@ -16,75 +16,59 @@ export class ShowHomeworksComponent implements OnInit {
   	subjects = [];
   	subjectIDs = [];
 
+  	/**
+  		"1" asemele peaks tulema (userid). Seda tuleks käivitada niipea,
+  		kui user siia lehele tuleb.
+  	*/
+  	userId = "1";
+  	
 	getSubjects() {
-	    this.taskService.getSubjects(1)
-	        .subscribe(data => {
-	        	console.log(data);
-	        this.getHomeworkNamesAndIDs(data);
+	    this.taskService.getSubjects(this.userId)
+	        .subscribe(subjects => {
+	        	console.log(subjects);
+	        this.getHomeworkNamesAndIDs(subjects);
 	    });
 	}
 
   	getSubjectHomeworksDetails(subjectId) {
 		this.taskService.getSubjectDetails(subjectId)
-	        .subscribe(data => {
-	        	this.parseData(data);
+	        .subscribe(subjectDetails => {
+	        	this.showHomeworks(subjectDetails);
 	    });
 	}
 
-	parseData(subjectDetails) {
+	showHomeworks(subjectDetails) {
 		console.log(subjectDetails);
 		let tableData = {
-			name: subjectDetails.name,
-			lecturer_name: subjectDetails.lecturer_name,
-			subject_code: subjectDetails.code,
-			subject_id: subjectDetails.id,
-			type: subjectDetails.type
+			name: subjectDetails['name'],
+			lecturer_name: subjectDetails['lecturer_name'],
+			subject_code: subjectDetails['code'],
+			subject_id: subjectDetails['id'],
+			type: subjectDetails['type'],
+			task: "",
+			deadline: ""
 		};
+
 		this.taskService.getHomeworks(tableData.subject_id)
-			.subscribe(data => {
-				if (data.length != 0) {
+			.subscribe((homeworks : JSON) =>  {
+				var dataLength = Object.keys(homeworks).length;
+				if (dataLength != 0) {
 					this.deleteTable();
-					for (var i = 0; i < data.length; i++) {
-						tableData.task = data[i].description;
-						tableData.deadline = data[i].deadline;
+
+					for (var i = 0; i < dataLength; i++) {
+						tableData.task = homeworks[i].description;
+						tableData.deadline = homeworks[i].deadline;
 						this.createTable(tableData);
 					}
+
 				} else {
 					this.deleteTable();
 					this.createTableWithNoHomeworks();
 				}
-				console.log(data.length);
+
 			})
 	}
-	/*asd(data) {
-		console.log(data.length);
-	}*/
-
-	/*getaHomeworks(tableData) {
-		let client = new HttpClient();
-		let parsedData = "";
-	    client.fetch('http://localhost:8080/task/get/' + tableData.subject_id, {
-	    	'method': "POST",
-	    	'body': json(this.userData)
-	    })
-	        .then(response => response.json())
-	        .then(data => {
-				console.log("DATA: " + data);
-				if (data.length != 0) {
-					this.deleteTable();
-					for (var i = 0; i < data.length; i++) {
-						tableData.task = data[i].description;
-						tableData.deadline = data[i].deadline;
-						this.createTable(tableData);
-					}
-				} else {
-					this.deleteTable();
-					this.createTableWithNoHomeworks();
-				}
-	    	});
-	}*/
-
-
+	
     getHomeworkNamesAndIDs(subjects) {
 	    for (let i = 0; i < subjects.length; i++) {
 	        this.subjects.push(subjects[i].name);
@@ -100,14 +84,17 @@ export class ShowHomeworksComponent implements OnInit {
 	        var table: HTMLTableElement = <HTMLTableElement> document.createElement("Table");
 	        table.setAttribute("id", "homeworkTable");
 	        var tableHeader = document.createElement("tr");
+
 	        for (var i = 0; i < headers.length; i++) {
 		        var cell = document.createElement("th");
 		        cell.setAttribute("id", listWidth[i]);
 		        cell.textContent = headers[i];
 		        tableHeader.appendChild(cell);
 		    }
+
 	        table.appendChild(tableHeader);
 	    }
+
 	    var tr = table.insertRow();
 
 	    var header_name = tr.insertCell();
@@ -121,13 +108,13 @@ export class ShowHomeworksComponent implements OnInit {
 	    header_task.appendChild(document.createTextNode(tableData.task));
 	    header_lecturer_name.appendChild(document.createTextNode(tableData.lecturer_name));
 	    header_deadline.appendChild(document.createTextNode(tableData.deadline));
-	    document.getElementById("tableDiv").appendChild(table);
-  }
 
-  
+	    document.getElementById("tableDiv").appendChild(table);
+    }
 
 	createTableWithNoHomeworks() {
 	    let table = document.getElementById("homeworkTable");
+
 	    if (!table) {
 		    table = document.createElement("Table");
 		    table.setAttribute("id", "homeworkTable");
@@ -150,15 +137,13 @@ export class ShowHomeworksComponent implements OnInit {
 
 	deleteTable() {
 	    var table = document.getElementById("homeworkTable");
+
 	    if (table) {
 	        table.parentNode.removeChild(table);
 	    }
     }
 
-
   	ngOnInit() {
         this.getSubjects();
   	}
-
-  
 }

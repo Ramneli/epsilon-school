@@ -7,6 +7,7 @@ import { AddSubjectComponent } from './add-subject/add-subject.component';
 import { AddHomeworksComponent } from './add-homeworks/add-homeworks.component';
 
 const routes: Routes = [
+	{ path: '', component: ShowHomeworksComponent },
 	{ path: 'homeworks', component: ShowHomeworksComponent },
 	{ path: 'addhomeworks', component: AddHomeworksComponent },
 	{ path: 'createsubject', component: CreateSubjectComponent },

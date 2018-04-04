@@ -9,20 +9,24 @@ import { MessageService } from '../message-service/message.service';
 @Injectable()
 export class SubjectService {
 
+
  	constructor(private messageService: MessageService,
  				private http: HttpClient) { }
 
+
+	addSubjectToTimetable(json) {;
+		const timetableUrl = 'http://localhost:8080/timetable/addTo';
+		return this.http.post(timetableUrl, json);
+	
+	}
+
 	getAllSubjects() {
 		const subjectsUrl = 'http://localhost:8080/subjects';
-		const headers = new Headers();
-		headers.append('Content-Type', 'application/json; charset=utf-8');
 		return this.http.post(subjectsUrl, "");
 	}
 
 	createNewSubject(json) {
 		const subjectsUrl = 'http://localhost:8080/subject/add';
-		const headers = new Headers();
-		headers.append('Content-Type', 'application/json; charset=utf-8');
 		return this.http.post(subjectsUrl, json);
 	}
 

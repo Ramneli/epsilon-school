@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { SubjectService } from '../subject-service/subject.service';
-import { TimetableService } from '../timetable-service/timetable.service';
+import { TaskService } from '../task-service/task.service';
+
 
 @Component({
   selector: 'app-add-subject',
@@ -11,38 +12,43 @@ import { TimetableService } from '../timetable-service/timetable.service';
 export class AddSubjectComponent implements OnInit {
 
   constructor(private subjectService: SubjectService,
-              private timetableService: TimetableService) { }
+              private taskService: TaskService) { }
 
   allSubjectNames = [];
   allSubjectIds = [];
 
-  userData = {
-    user_id: "1",
-    subject_id: "11"
-  };
+  /**
+    Sisselogimisel on siia "2" asemele userid saada.
+  */
+  
+  userId = "1";
 
   getAllSubjects() {
     this.subjectService.getAllSubjects()
-      .subscribe(data => {
-          this.displayAllSubjects(data);
+      .subscribe(allSubjects => {
+          this.pushAllSubjectsToLists(allSubjects);
       });
+  	}
+
+  
+  addSubjectToTimetable(subjectId) {
+    const userData = {
+      user_id: this.userId,
+      subject_id: subjectId
+    };
+    this.subjectService.addSubjectToTimetable(userData).subscribe();
   }
 
-  addSubjectToTimetable(id) {
-    this.timetableService.addSubjectToTimetable(this.userData).subscribe();
-  }
-
-  displayAllSubjects(data) {
-    console.log(data);
-    for (let i = 0; i < data.length; i++) {
-      this.allSubjectNames.push(data[i].name);
-      this.allSubjectIds.push(data[i].id);
-      
+  	pushAllSubjectsToLists(allSubjects) {
+    	console.log(allSubjects);
+    for (let i = 0; i < allSubjects.length; i++) {
+	      	this.allSubjectNames.push(allSubjects[i].name);
+	     	this.allSubjectIds.push(allSubjects[i].id);
     }
   }
 
-  ngOnInit() {
-  	this.getAllSubjects();
-  }
+  	ngOnInit() {
+	    this.getAllSubjects();
+	}
 
 }

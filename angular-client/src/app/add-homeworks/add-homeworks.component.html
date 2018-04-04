@@ -1,17 +1,19 @@
 <div style="width: 100%;">
-	<div style="width:405px; margin: 0 auto;">
+	<div style="width:405px; margin: 0px auto;">
 		<form id="addTask">
 			<label for="subjectID">Vali aine</label><br>
-			<select #userChoice id="subjectID">
+			<select #userSubjectID id="subjectID">
 				<option *ngFor="let subjectName of allSubjectNames" id={{allSubjectIds[allSubjectNames.indexOf(subjectName)]}}>{{subjectName}}</option>
 			</select>
+			<mat-form-field>
+			    <input matInput [matDatepicker]="userDeadline" placeholder="Vali Tähtaeg" disabled
+			    (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+			    <mat-datepicker-toggle matSuffix [for]="userDeadline"></mat-datepicker-toggle>
+			    <mat-datepicker #userDeadline disabled="false"></mat-datepicker>
+			</mat-form-field><br>
 			<label for="description">Ülesande kirjeldus</label><br>
 			<textarea #userDescription rows="6" id="description" type="text" name="description"></textarea><br>
-
-			<label for="deadline">Tähtaeg (yyyy-mm-dd)</label><br>
-			<input #userDeadline id="deadline" type="text" name="deadline"><br>
-
-			<button type="submit" (click)="addHomework(userChoice[userChoice.selectedIndex].id, userDescription.value, userDeadline.value)" name="Lisa Aine">Lisa aine</button>
+			<button type="submit" (click)="addHomework(userSubjectID[userSubjectID.selectedIndex].id, userDescription.value, userDeadline.value)">Lisa Kodune Ülesanne</button>
 		</form>
 	</div>
 </div>

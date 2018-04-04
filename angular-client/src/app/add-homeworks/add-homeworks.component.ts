@@ -1,12 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDatepickerModule, MatNativeDateModule, MatFormFieldModule, MatInputModule, MatFormFieldControl } from '@angular/material';
+import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+
 
 import { TaskService } from '../task-service/task.service';
 
 
 @Component({
-  selector: 'app-add-homeworks',
-  templateUrl: './add-homeworks.component.html',
-  styleUrls: ['./add-homeworks.component.css']
+    selector: 'app-add-homeworks',
+    templateUrl: './add-homeworks.component.html',
+    styleUrls: ['./add-homeworks.component.css'],
+    providers: [
+        { provide: MAT_DATE_LOCALE, useValue: 'et'},
+        { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+        { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS }
+  ],
 })
 export class AddHomeworksComponent implements OnInit {
 
@@ -14,35 +24,49 @@ export class AddHomeworksComponent implements OnInit {
 
     allSubjectNames = [];
     allSubjectIds = [];
+    userDeadline;
 
+    /**
+          (1) asemele peaks tulema (userid). Seda tuleks käivitada niipea,
+          kui user siia lehele tuleb.
+    */
 	getSubjects() {
-    this.taskService.getSubjects(1)
-      .subscribe(data => {
-          this.displayHomeworks(data);
-      });
-  }
-
-  displayHomeworks(homeworks) {
-    console.log(homeworks)
-    for (let i = 0; i < homeworks.length; i++) {
-      this.allSubjectNames.push(homeworks[i].name);
-      this.allSubjectIds.push(homeworks[i].id);
-      
+        this.taskService.getSubjects(1)
+            .subscribe(data => {
+                this.displayHomeworks(data);
+        });
     }
-  }
 
-  addHomework(userChoice, userDescription, userDeadline) {
-    let userData = {
-      subject_id: userChoice,
-      description: userDescription,
-      deadline: userDeadline
+    displayHomeworks(homeworks) {
+        console.log(homeworks)
+        for (let i = 0; i < homeworks.length; i++) {
+            this.allSubjectNames.push(homeworks[i].name);
+            this.allSubjectIds.push(homeworks[i].id);
+          
+        }
     }
-    this.taskService.addHomework(userData).subscribe();
 
-  }
+    addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+        this.userDeadline = `${event.value}`;
+    }
 
-  ngOnInit() {
-  	this.getSubjects();
-  }
+    addHomework(userSubjectID, userDescription) {
+        let userData = {
+            subject_id: userSubjectID,
+            description: userDescription,
+            deadline: this.userDeadline;
+        } 
 
+    this.taskService.addHomework(userData)
+    	.subscribe(queryResult => {
+        if (!queryResult) {
+        	alert('Please check your inputs!');
+        }
+    });
+
+    }
+
+    ngOnInit() {
+  		this.getSubjects();
+    }
 }

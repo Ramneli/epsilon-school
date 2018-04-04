@@ -5,7 +5,7 @@
 				<select #userChoice id="subjectID">
 					<option *ngFor="let subject of allSubjectNames" id={{allSubjectIds[allSubjectNames.indexOf(subject)]}}>{{subject}}</option>
 				</select>
-				<button type="submit" (click)="addSubjectToTimetable(userChoice[userChoice.selectedIndex].id)" name="Lisa Aine">Lisa Aine Tunniplaani</button>
+				<button type="submit" (click)="addSubjectToTimetable(userChoice[userChoice.selectedIndex].id, userId)" name="Lisa Aine">Lisa Aine Tunniplaani</button>
 			</div>
 		</div>
 	</form>
