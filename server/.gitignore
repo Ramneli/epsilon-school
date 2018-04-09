@@ -25,7 +25,7 @@ node_modules
 
 # Compiled files
 scripts
-out
-build
-.gradle
-jar
+out/
+build/
+.gradle/
+jar/
