@@ -20,7 +20,7 @@ export class AppComponent {
 		this.authService.af.auth.onAuthStateChanged(
       (auth) => {
         if (auth == null) {
-					this.router.navigate(['/homeworks']);
+					this.router.navigate(['/']);
           this.authService.setLoginStatus(false);
 					this.authService.setUserId("");
           this.isLoggedIn = false;
@@ -51,7 +51,7 @@ export class AppComponent {
     });
   }
   logout() {
-		this.router.navigate(['/homeworks']);
+		this.router.navigate(['/']);
     this.authService.logout();
   }
 }

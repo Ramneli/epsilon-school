@@ -1,18 +1,38 @@
-<div style="text-align:center">
-    <h1>
-    	{{ title }}
-    </h1>
-</div>
-<nav id="navBar">
-    <a id="navBar" routerLink="/homeworks" (click)="setTitle('epsilon-school')">Ülesanded</a>
-    <a *ngIf="isLoggedIn" id="navBar" routerLink="/addhomeworks" (click)="setTitle('epsilon-school')">Lisa Ülesanne</a>
-    <a *ngIf="isLoggedIn" id="navBar" routerLink="/createsubject" (click)="setTitle('epsilon-school')">Loo Uus Aine</a>
-    <a *ngIf="isLoggedIn" id="navBar" routerLink="/addsubject" (click)="setTitle('epsilon-school')">Lisa Aine Tunniplaani</a>
-    <a *ngIf="!isLoggedIn"  id="navBar" style="float:right;" (click)="login()"> Logi sisse </a>
-    <a *ngIf="isLoggedIn" id="navBar" style="float:right;" (click)="logout()"> Logi välja </a>
-    <a *ngIf="isLoggedIn" style="float:right;"> Tere, {{ user_displayName }} </a>
-    <a *ngIf="!isLoggedIn" style="float:right;"> Tere, kasutaja </a>
-</nav>
 
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #119311;">
+  <a class="navbar-brand" routerLink="/" style="color:white">Epsilon-School</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" style="color:white" routerLink="/homeworks">Ülesanded <span class="sr-only">(current)</span></a>
+      </li>
+
+      <li *ngIf="isLoggedIn" class="nav-item active">
+        <a class="nav-link" style="color:white" routerLink="/addhomeworks">Lisa ülesanne <span class="sr-only">(current)</span></a>
+      </li>
+
+      <li *ngIf="isLoggedIn" class="nav-item active">
+        <a class="nav-link" style="color:white" routerLink="/createsubject">Lisa uus aine <span class="sr-only">(current)</span></a>
+      </li>
+
+      <li *ngIf="isLoggedIn" class="nav-item active">
+        <a class="nav-link" style="color:white" routerLink="/addsubject">Lisa aine tunniplaani <span class="sr-only">(current)</span></a>
+      </li>
+
+    </ul>
+
+  </div>
+  <a *ngIf="!isLoggedIn" class="nav-link" style="color:white">Tere, kasutaja <span class="sr-only">(current)</span></a>
+  <a *ngIf="isLoggedIn" class="nav-link" style="color:white">Tere, {{ user_displayName }} <span class="sr-only">(current)</span></a>
+
+  <button *ngIf="!isLoggedIn" style="width:120px" class="btn btn-success my-2 my-sm-0" (click)="login()">Logi sisse</button>
+  <button *ngIf="isLoggedIn" style="width:120px" class="btn btn-danger my-2 my-sm-0" (click)="logout()">Logi välja</button>
+
+</nav>
+<div style="height:5px"></div>
 <router-outlet></router-outlet>
 <app-messages></app-messages>

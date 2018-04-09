@@ -23,6 +23,7 @@ import { AuthService } from './auth-service/auth.service';
 import { AuthGuardService } from './auth-guard/auth-guard.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
+import { HomeComponent } from './home/home.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyD98RBDQEBAKyyxGv2oZ1-oKECwBU5NUew",
@@ -41,7 +42,8 @@ export const firebaseConfig = {
     AddHomeworksComponent,
     AddSubjectComponent,
     CreateSubjectComponent,
-    MessagesComponent
+    MessagesComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

@@ -82,7 +82,7 @@
 	font-family: arial, sans-serif;
 	border-collapse: collapse;
 	width: 79%;
-	table-layout: fixed;
+	/*table-layout: fixed;*/
 	float:left;
 }
 
@@ -99,7 +99,7 @@
 #notification {
 	text-align: center;
 	vertical-align: middle;
-	line-height: 37px; 
+	line-height: 37px;
 }
 
 .subjectButton {
@@ -186,7 +186,7 @@ button {
 }
 
 button:hover {
-	background-color: #04a3d8; 
+	background-color: #04a3d8;
 }
 
 select {
@@ -198,7 +198,7 @@ select {
 
 #wrapper table {
 	width: 100%;
-	border: 1px solid #119311;	
+	border: 1px solid #119311;
 }
 
 #wrapper th {

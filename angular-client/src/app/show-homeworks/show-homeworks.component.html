@@ -1,6 +1,16 @@
 <div style="width: 100%; height: 1000px" ng-app="myApp" ng-controller="myCtrl">
-	<div id="tableDiv">
-		<table id="homeworkTable" style="text-align: left;">
+	<div>
+		<table *ngIf="isAuthenticated()" id="homeworkTable" style="text-align: left; border-collapse: collapse;">
+		  	<tr>
+			    <th id="standardColWidth">Aine</th>
+			    <th id="standardColWidth">Aine tüüp</th>
+			    <th id="taskColWidth">Ülesanne</th>
+			    <th id="standardColWidth">Õppejõud</th>
+			    <th id="standardColWidth">Tähtaeg</th>
+		 	</tr>
+		</table>
+
+		<table *ngIf="!isAuthenticated()" id="homeworkTable" style="text-align: left; width: 100%;">
 		  	<tr>
 			    <th id="standardColWidth">Aine</th>
 			    <th id="standardColWidth">Aine tüüp</th>
@@ -13,7 +23,20 @@
 
 	<div *ngIf="isAuthenticated()" style="width: 20%; float: right;">
 		<div id="wrapper">
-			<table>
+			<div style="width:100%" class="list-group">
+				<button type="button"
+								style="background-color: #000099; border-top-right-radius: 9px; border-top-left-radius: 9px"
+								disabled>
+					Minu ained
+				</button>
+				<button class="list-group-item list-group-item-action"
+								*ngFor="let subject of subjects"
+								style="text-align: center;"
+								id="{{subjectIDs[subjects.indexOf(subject)]}}"
+								(click)="getSubjectHomeworksDetails(subjectIDs[subjects.indexOf(subject)])"
+								type="button">{{ subject }} </button>
+			</div>
+			<!--<table>
 				<tr>
 					<th>
 						Minu ained
@@ -27,7 +50,7 @@
 					    type="submit">{{subject}}</button>
 					</td>
 				</tr>
-			</table>
+			</table>-->
 		</div>
 	</div>
-</div>-->
+</div>
