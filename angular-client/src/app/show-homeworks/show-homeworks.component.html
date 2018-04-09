@@ -1,5 +1,5 @@
 <div style="width: 100%; height: 1000px" ng-app="myApp" ng-controller="myCtrl">
-	<div>
+	<div id="tableDiv">
 		<table *ngIf="isAuthenticated()" id="homeworkTable" style="text-align: left; border-collapse: collapse;">
 		  	<tr>
 			    <th id="standardColWidth">Aine</th>
@@ -52,5 +52,8 @@
 				</tr>
 			</table>-->
 		</div>
+	</div>
+	<div style="width: 79%">
+		<button *ngIf="displayTasksControlButton()" class="btn btn-warning btn-xs"(click)="setOldTasks();">{{ tasksButtonText }}</button>
 	</div>
 </div>

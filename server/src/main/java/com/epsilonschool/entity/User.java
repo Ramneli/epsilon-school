@@ -1,7 +1,5 @@
 package com.epsilonschool.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,20 +10,20 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
-    private String name;
+    private String uid;
 
     public User() {}
 
-    public User(String name) {
-        this.name = name;
+    public User(String uid) {
+        this.uid = uid;
     }
 
-    public void setUsername(String name) {
-        this.name = name;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
-    public String getUsername() {
-        return name;
+    public String getUid() {
+        return uid;
     }
 
     public String getId() {
