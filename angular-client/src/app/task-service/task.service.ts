@@ -35,6 +35,12 @@ export class TaskService {
 		return this.http.post(url, "");
 	}
 
+	getAllTasks() {
+		const getHomeworksUrl = 'http://localhost:8080/task/getAll';
+		const url = `${getHomeworksUrl}`;
+		return this.http.post(url, "");
+	}
+
 	/**
 	 * @param result - optional value to return as the observable result
 	 */

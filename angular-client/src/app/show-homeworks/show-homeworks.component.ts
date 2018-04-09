@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { TaskService } from '../task-service/task.service';
 import { AuthService } from '../auth-service/auth.service';
+import { SubjectService } from '../subject-service/subject.service';
 
 @Component({
  	selector: 'app-show-homeworks',
@@ -12,7 +13,8 @@ import { AuthService } from '../auth-service/auth.service';
 export class ShowHomeworksComponent implements OnInit {
 
 
-	constructor(private taskService: TaskService, private authService : AuthService) { }
+	constructor(private taskService: TaskService, private authService : AuthService, 
+	private subjectService: SubjectService) { }
 
   	subjects = [];
 	subjectIDs = [];
@@ -24,7 +26,7 @@ export class ShowHomeworksComponent implements OnInit {
   		"1" asemele peaks tulema (userid). Seda tuleks käivitada niipea,
   		kui user siia lehele tuleb.
   	*/
-  	userId = "1";
+  	userId = "coolandgood";
 
   isAuthenticated() {
     return this.authService.getAuth();
@@ -183,6 +185,8 @@ export class ShowHomeworksComponent implements OnInit {
 	}
 
   	ngOnInit() {
-        this.getSubjects();
+		if (this.isAuthenticated()) {
+			this.getSubjects();
+		}
   	}
 }

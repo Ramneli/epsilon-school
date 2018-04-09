@@ -22,6 +22,7 @@ export class AddHomeworksComponent implements OnInit {
 
   	constructor(private taskService: TaskService) { }
 
+    taskTypes = ["Kontrolltöö", "Ülesanne"];
     allSubjectNames = [];
     allSubjectIds = [];
     userDeadline;
@@ -31,7 +32,7 @@ export class AddHomeworksComponent implements OnInit {
           kui user siia lehele tuleb.
     */
 	getSubjects() {
-        this.taskService.getSubjects(1)
+        this.taskService.getSubjects("coolandgood")
             .subscribe(data => {
                 this.displayHomeworks(data);
         });
@@ -50,12 +51,16 @@ export class AddHomeworksComponent implements OnInit {
         this.userDeadline = `${event.value}`;
     }
 
-    addHomework(userSubjectID, userDescription) {
+    addHomework(userSubjectID, userDescription, none, taskType) {
         let userData = {
             subject_id: userSubjectID,
             description: userDescription,
-            deadline: this.userDeadline
+            deadline: this.userDeadline,
+            type: taskType
         }
+        console.log("SIIN ON TASK TYPE:");
+        console.log(taskType);
+        console.log(none);
 
     this.taskService.addHomework(userData)
     	.subscribe(queryResult => {

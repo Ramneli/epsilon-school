@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
 @media only screen and (max-width: 1366px) {
+
 	.subjectButton {
 	font-size: 12px;
 	}

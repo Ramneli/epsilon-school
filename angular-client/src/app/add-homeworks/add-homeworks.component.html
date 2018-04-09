@@ -11,9 +11,16 @@
 			    <mat-datepicker-toggle matSuffix [for]="userDeadline"></mat-datepicker-toggle>
 			    <mat-datepicker #userDeadline disabled="false"></mat-datepicker>
 			</mat-form-field><br>
+
 			<label for="description">Ülesande kirjeldus</label><br>
 			<textarea style="width:405px" #userDescription rows="6" id="description" type="text" name="description"></textarea><br>
-			<button class="btn btn-primary" type="submit" (click)="addHomework(userSubjectID[userSubjectID.selectedIndex].id, userDescription.value, userDeadline.value)">Lisa Kodune Ülesanne</button>
+
+			<label for="taskID">Ülesande tüüp</label><br>
+			<select #taskTypeChoice id="taskID">
+				<option *ngFor="let taskType of taskTypes">{{ taskType }}</option>
+			</select>
+
+			<button class="btn btn-primary" type="submit" (click)="addHomework(userSubjectID[userSubjectID.selectedIndex].id, userDescription.value, userDeadline.value, taskTypeChoice.value)">Lisa Kodune Ülesanne</button>
 		</form>
 	</div>
 </div>

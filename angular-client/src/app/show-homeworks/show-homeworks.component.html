@@ -1,5 +1,8 @@
 
 	<div class="container-fluid">
+		<div *ngIf="!isAuthenticated()" id="notSignedIn">
+			<h1>Ülesannete nägemiseks peate sisse logima.</h1>
+		</div>
 		<div class="row">
 			<div class="col-md-2" *ngIf="isAuthenticated()">
 				<div id="wrapper">
@@ -12,7 +15,7 @@
 
 						<button class="list-group-item list-group-item-action"
 								*ngFor="let subject of subjects"
-								style="text-align: center;"
+								style="text-align: center; height: 75px;"
 								id="{{subjectIDs[subjects.indexOf(subject)]}}"
 								(click)="getSubjectHomeworksDetails(subjectIDs[subjects.indexOf(subject)])"
 								type="button">{{ subject }} </button>
@@ -32,20 +35,7 @@
 						</tr>
 					</table>
 				</div>
-
+				<button *ngIf="displayTasksControlButton()" class="btn btn-warning btn-xs"(click)="setOldTasks();">{{ tasksButtonText }}</button>
 			</div>
-			
-			<table *ngIf="!isAuthenticated()" id="homeworkTable" style="width:100%; text-align: left; border-collapse: collapse;">
-				<tr>
-					<th id="standardColWidth">Aine</th>
-					<th id="standardColWidth">Aine tüüp</th>
-					<th id="taskColWidth">Ülesanne</th>
-					<th id="standardColWidth">Õppejõud</th>
-					<th id="standardColWidth">Tähtaeg</th>
-				</tr>
-			</table>
-	</div>
-	<div style="width: 79%">
-		<button *ngIf="displayTasksControlButton()" class="btn btn-warning btn-xs"(click)="setOldTasks();">{{ tasksButtonText }}</button>
 	</div>
 </div>

@@ -21,6 +21,12 @@ public class TaskController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/task/getAll", method = RequestMethod.POST)
+    public List<Task> getAllTasks() {
+        return taskService.getAllTasks();
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/task/add", method = RequestMethod.POST)
     public boolean addTask(@RequestBody Task task) {
         return taskService.addTask(task);
