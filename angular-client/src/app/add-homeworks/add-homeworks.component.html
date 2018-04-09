@@ -13,7 +13,7 @@
 			</mat-form-field><br>
 			<label for="description">Ülesande kirjeldus</label><br>
 			<textarea style="width:405px" #userDescription rows="6" id="description" type="text" name="description"></textarea><br>
-			<button type="submit" (click)="addHomework(userSubjectID[userSubjectID.selectedIndex].id, userDescription.value, userDeadline.value)">Lisa Kodune Ülesanne</button>
+			<button class="btn btn-primary" type="submit" (click)="addHomework(userSubjectID[userSubjectID.selectedIndex].id, userDescription.value, userDeadline.value)">Lisa Kodune Ülesanne</button>
 		</form>
 	</div>
 </div>

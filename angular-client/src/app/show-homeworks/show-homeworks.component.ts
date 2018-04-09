@@ -15,7 +15,10 @@ export class ShowHomeworksComponent implements OnInit {
 	constructor(private taskService: TaskService, private authService : AuthService) { }
 
   	subjects = [];
-  	subjectIDs = [];
+	subjectIDs = [];
+	public showOldTasks = false;
+	public currentSubjectId = -1;
+	tasksButtonText = "Näita vanemaid ülesandeid.";
 
   	/**
   		"1" asemele peaks tulema (userid). Seda tuleks käivitada niipea,
@@ -30,12 +33,13 @@ export class ShowHomeworksComponent implements OnInit {
 	getSubjects() {
 	    this.taskService.getSubjects(this.userId)
 	        .subscribe(subjects => {
-	        	console.log(subjects);
+				console.log(subjects);
 	        this.getHomeworkNamesAndIDs(subjects);
 	    });
 	}
 
   	getSubjectHomeworksDetails(subjectId) {
+		this.currentSubjectId = subjectId;
 		this.taskService.getSubjectDetails(subjectId)
 	        .subscribe(subjectDetails => {
 	        	this.showHomeworks(subjectDetails);
@@ -56,13 +60,14 @@ export class ShowHomeworksComponent implements OnInit {
 
 		this.taskService.getHomeworks(tableData.subject_id)
 			.subscribe((homeworks : JSON) =>  {
-				var dataLength = Object.keys(homeworks).length;
+				var filteredHomeworks = this.filterTasksByDate(homeworks);
+				var dataLength = Object.keys(filteredHomeworks).length;
 				if (dataLength != 0) {
 					this.deleteTable();
 
 					for (var i = 0; i < dataLength; i++) {
-						tableData.task = homeworks[i].description;
-						tableData.deadline = homeworks[i].deadline;
+						tableData.task = filteredHomeworks[i].description;
+						tableData.deadline = filteredHomeworks[i].deadline;
 						this.createTable(tableData);
 					}
 
@@ -146,7 +151,36 @@ export class ShowHomeworksComponent implements OnInit {
 	    if (table) {
 	        table.parentNode.removeChild(table);
 	    }
-    }
+	}
+	
+	filterTasksByDate(tasksJson) {
+		var filteredTasks = [];
+		tasksJson.forEach(task => {
+			let date = new Date(task.deadline);
+			let currentDate = new Date();
+			if (this.showOldTasks) {
+				filteredTasks.push(task);
+			} else if (date.getTime() >= currentDate.getTime()){
+				filteredTasks.push(task);
+			}
+		});
+		
+		return filteredTasks;
+	}
+
+	setOldTasks() {
+		this.showOldTasks = !this.showOldTasks;
+		this.getSubjectHomeworksDetails(this.currentSubjectId);
+		if (this.showOldTasks) {
+			this.tasksButtonText = "Näita vähem ülesandeid";
+		} else {
+			this.tasksButtonText = "Näita vanemaid ülesandeid";
+		}
+	}
+
+	displayTasksControlButton() {
+		return this.currentSubjectId != -1;
+	}
 
   	ngOnInit() {
         this.getSubjects();

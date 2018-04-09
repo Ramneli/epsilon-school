@@ -146,7 +146,7 @@ ul {
 }
 
 #taskColWidth {
-	width: 60%;
+	width: 45%;
 }
 
 #homeworkTable td {
@@ -190,10 +190,8 @@ button {
 	padding: 0px 0px;
 	width:100%;
 	word-break: break-word;
-	height:50px;
+	height:46px;
 	margin: 0 auto;
-	margin-top: 5px;
-	margin-bottom:5px;
 	text-align: center;
 	text-decoration: none;
 	display: block;

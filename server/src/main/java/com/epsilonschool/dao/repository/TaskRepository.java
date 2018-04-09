@@ -9,9 +9,7 @@ import java.util.List;
 
 @Repository
 public interface TaskRepository extends CrudRepository<Task, String> {
-    // TODO: Return all tasks that are relevant: task date > current date. Use @Query.
 
-
-    @Query(value = "SELECT * FROM task WHERE deadline >= CURDATE()", nativeQuery = true)
+    //@Query(value = "SELECT * FROM task WHERE deadline >= CURDATE()", nativeQuery = true)
     List<Task> findAll();
 }

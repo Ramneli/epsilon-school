@@ -11,11 +11,10 @@ import java.util.List;
 @RestController
 public class TimetableController {
     private TimetableService timetableService;
-    private UserService userService;
 
-    public TimetableController(TimetableService timetableService, UserService userService) {
+
+    public TimetableController(TimetableService timetableService) {
         this.timetableService = timetableService;
-        this.userService = userService;
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
@@ -24,9 +23,6 @@ public class TimetableController {
         timetableService.addToTimeTable(timetable);
     }
 
-    private String getUserIdByUsername(String username) {
-        return userService.getUserByName(username).getId();
-    }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/timetable/get/{user_id}", method = RequestMethod.POST)
