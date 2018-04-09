@@ -5,6 +5,21 @@
 	font-size: 12px;
 	}
 
+	.navbar-toggler {
+  	background-color: #34af18;
+	}
+
+	.navbar-toggler:hover {
+  	background-color: #2eea30;
+	}
+	.nav-link {
+		border-radius: 5px;
+	}
+
+	.nav-link:hover {
+		background-color: #2dad0f;
+	}
+
 	#homeworkTable td {
 		font-size: 12px;
 	}
@@ -81,7 +96,7 @@
 #homeworkTable {
 	font-family: arial, sans-serif;
 	border-collapse: collapse;
-	width: 79%;
+	width: 100%;
 	/*table-layout: fixed;*/
 	float:left;
 }
