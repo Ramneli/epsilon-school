@@ -36,6 +36,6 @@ public class TimetableService {
 
     private List<Timetable> findAllUserSubjectRelations(String userId) {
         return timetableRepository.findAll().stream()
-                .filter(timetable -> timetable.getUserId().equals(userId)).collect(Collectors.toList());
+                .filter(timetable -> timetable.getUid().equals(userId)).collect(Collectors.toList());
     }
 }

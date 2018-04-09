@@ -22,13 +22,16 @@ public class Task {
     private String description;
     @JsonProperty(value = "deadline")
     private Date deadline;
+    @JsonProperty(value = "type")
+    private String type;
 
     public Task(){}
 
-    public Task(String subjectId, String taskDescription, Date taskDeadline) {
+    public Task(String subjectId, String taskDescription, Date taskDeadline, String type) {
         this.subjectId = subjectId;
         this.description = taskDescription;
         this.deadline = taskDeadline;
+        this.type = type;
     }
 
     public void setSubjectId(String subjectId) {
@@ -57,5 +60,13 @@ public class Task {
 
     public String getDescription() {
         return description;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
     }
 }

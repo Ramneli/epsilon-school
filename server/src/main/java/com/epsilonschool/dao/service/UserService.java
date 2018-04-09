@@ -22,4 +22,8 @@ public class UserService {
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
+    public String getUserIdFromUid(String uid) {
+        return userRepository.findByUid(uid).getId();
+    }
 }

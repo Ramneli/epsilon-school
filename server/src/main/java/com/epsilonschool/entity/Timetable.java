@@ -1,6 +1,5 @@
 package com.epsilonschool.entity;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -11,8 +10,8 @@ public class Timetable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
-    @JsonProperty(value = "user_id")
-    private String userId;
+    @JsonProperty(value = "uid")
+    private String uid;
     @JsonProperty("subject_id")
     private String subjectId;
 
@@ -22,8 +21,8 @@ public class Timetable {
 
     public Timetable(){}
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public void setSubjectId(String subjectId) {
@@ -34,8 +33,8 @@ public class Timetable {
         return subjectId;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUid() {
+        return uid;
     }
 
     public String getUsername() {
