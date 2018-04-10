@@ -67,7 +67,7 @@ export class AddHomeworksComponent implements OnInit {
             	alert('Please check your inputs!');
             }
         });
-
+        alert("Kodune ülesanne lisatud.");
     }
 
     isAuthenticated() {

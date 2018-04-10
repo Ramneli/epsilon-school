@@ -30,6 +30,7 @@ export class CreateSubjectComponent implements OnInit {
 			alert('Please check your inputs.');
 		} else {
 			this.subjectService.createNewSubject(userData).subscribe();
+			alert("Aine loodud.");
 		}
 	}
 

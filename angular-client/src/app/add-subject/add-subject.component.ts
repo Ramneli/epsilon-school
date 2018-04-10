@@ -36,6 +36,7 @@ export class AddSubjectComponent implements OnInit {
       subject_id: subjectId
     };
     this.subjectService.addSubjectToTimetable(userData).subscribe();
+    alert("Aine tunniplaani lisatud.");
   }
 
   	pushAllSubjectsToLists(allSubjects) {
