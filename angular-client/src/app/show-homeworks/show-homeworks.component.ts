@@ -187,7 +187,7 @@ export class ShowHomeworksComponent implements OnInit {
   	ngOnInit() {
 		if (this.isAuthenticated()) {
 			this.userId = this.authService.getUserId();
-			var checkUser = this.checkIfUserExists
+			var checkUser = this.checkIfUserExists();
 			console.log(this.userId);
 			this.getSubjects();
 		}

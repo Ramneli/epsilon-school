@@ -34,6 +34,6 @@ export class CreateSubjectComponent implements OnInit {
 	}
 
 	ngOnInit() {
-    console.log(this.authService.getUserId());
+    	console.log(this.authService.getUserId());
 	}
 }
