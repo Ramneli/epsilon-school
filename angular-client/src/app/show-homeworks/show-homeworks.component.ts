@@ -53,7 +53,8 @@ export class ShowHomeworksComponent implements OnInit {
 			subject_id: subjectDetails['id'],
 			type: subjectDetails['type'],
 			task: "",
-			deadline: ""
+			deadline: "",
+			taskType: ""
 		};
 
 		this.taskService.getHomeworks(tableData.subject_id)
@@ -66,7 +67,9 @@ export class ShowHomeworksComponent implements OnInit {
 					for (var i = 0; i < dataLength; i++) {
 						tableData.task = filteredHomeworks[i].description;
 						tableData.deadline = filteredHomeworks[i].deadline;
+						tableData.taskType = filteredHomeworks[i].type;
 						this.createTable(tableData);
+						console.log(tableData.taskType);
 					}
 
 				} else {
@@ -109,10 +112,22 @@ export class ShowHomeworksComponent implements OnInit {
 	    var header_type = tr.insertCell();
 	    var header_task = tr.insertCell();
 	    var header_lecturer_name = tr.insertCell();
-	    var header_deadline = tr.insertCell();
+		var header_deadline = tr.insertCell();
+		
+		var taskTypeNode = document.createElement("p");
+		taskTypeNode.setAttribute("style", "display: inline;")
+
+		if (tableData.taskType === "Kontrolltöö") {
+			taskTypeNode.setAttribute("style", "color: red;");
+			taskTypeNode.appendChild(document.createTextNode("Kontrolltöö: "));
+		} else {
+			taskTypeNode.setAttribute("style", "color: black;");
+			taskTypeNode.appendChild(document.createTextNode("Ülesanne: "));
+		}
 
 	    header_name.appendChild(document.createTextNode(tableData.name));
 	    header_type.appendChild(document.createTextNode(tableData.type));
+	    header_task.appendChild(taskTypeNode);
 	    header_task.appendChild(document.createTextNode(tableData.task));
 	    header_lecturer_name.appendChild(document.createTextNode(tableData.lecturer_name));
 	    header_deadline.appendChild(document.createTextNode(tableData.deadline));
