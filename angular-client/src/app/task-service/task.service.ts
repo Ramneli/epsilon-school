@@ -42,7 +42,7 @@ export class TaskService {
 	}
 	
 	checkIfUserExists(userId) {
-		const checkUserUrl = 'http://localhost:8080/user/checkuser';
+		const checkUserUrl = 'http://localhost:8080/user/checkuser?uid=';
 		const url = `${checkUserUrl}${userId}`
 		return this.http.get(url);
 	}
