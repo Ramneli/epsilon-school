@@ -73,8 +73,9 @@ export class AddHomeworksComponent implements OnInit {
     isAuthenticated() {
         return this.authService.getAuth();
     }
-    checkIfUserExists(this.userId) {
-        return this.taskService.checkIfUserExists().subscribe();
+
+    checkIfUserExists() {
+        return this.taskService.checkIfUserExists(this.userId).subscribe();
     }
 
     ngOnInit() {

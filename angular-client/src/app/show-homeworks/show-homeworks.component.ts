@@ -180,8 +180,8 @@ export class ShowHomeworksComponent implements OnInit {
 		return this.currentSubjectId != -1;
 	}
 
-	checkIfUserExists(this.userId) {
-		return this.taskService.checkIfUserExists().subscribe();
+	checkIfUserExists() {
+		return this.taskService.checkIfUserExists(this.userId).subscribe();
 	}
 	
   	ngOnInit() {
