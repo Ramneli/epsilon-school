@@ -1,10 +1,12 @@
 <div style="width: 100%;">
 	<div style="width:405px; margin: 0px auto;">
 		<form id="addTask">
+
 			<label for="subjectID">Vali aine</label><br>
 			<select #userSubjectID id="subjectID">
 				<option *ngFor="let subjectName of allSubjectNames" id={{allSubjectIds[allSubjectNames.indexOf(subjectName)]}}>{{subjectName}}</option>
 			</select>
+			
 			<mat-form-field style="width:100%">
 			    <input matInput [matDatepicker]="userDeadline" placeholder="Vali tähtaeg" disabled
 			    (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">

@@ -6,6 +6,7 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 
 import { TaskService } from '../task-service/task.service';
+import { AuthService } from '../auth-service/auth.service';
 
 
 @Component({
@@ -20,19 +21,17 @@ import { TaskService } from '../task-service/task.service';
 })
 export class AddHomeworksComponent implements OnInit {
 
-  	constructor(private taskService: TaskService) { }
+  	constructor(private taskService: TaskService,
+                private authService: AuthService) { }
 
-    taskTypes = ["Kontrolltöö", "Ülesanne"];
+    taskTypes = ["Ülesanne", "Kontrolltöö"];
     allSubjectNames = [];
     allSubjectIds = [];
     userDeadline;
+    userId = "default";
 
-    /**
-          (1) asemele peaks tulema (userid). Seda tuleks käivitada niipea,
-          kui user siia lehele tuleb.
-    */
 	getSubjects() {
-        this.taskService.getSubjects("coolandgood")
+        this.taskService.getSubjects(this.userId)
             .subscribe(data => {
                 this.displayHomeworks(data);
         });
@@ -62,16 +61,28 @@ export class AddHomeworksComponent implements OnInit {
         console.log(taskType);
         console.log(none);
 
-    this.taskService.addHomework(userData)
-    	.subscribe(queryResult => {
-        if (!queryResult) {
-        	alert('Please check your inputs!');
-        }
-    });
+        this.taskService.addHomework(userData)
+        	.subscribe(queryResult => {
+            if (!queryResult) {
+            	alert('Please check your inputs!');
+            }
+        });
 
     }
 
+    isAuthenticated() {
+        return this.authService.getAuth();
+    }
+    checkIfUserExists(this.userId) {
+        return this.taskService.checkIfUserExists().subscribe();
+    }
+
     ngOnInit() {
-  		this.getSubjects();
+        if (this.isAuthenticated()) {
+            this.userId = this.authService.getUserId();
+            var checkUser = this.checkIfUserExists;
+            console.log(this.userId);
+            this.getSubjects();
+        }
     }
 }

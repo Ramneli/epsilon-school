@@ -22,15 +22,11 @@ export class ShowHomeworksComponent implements OnInit {
 	public currentSubjectId = -1;
 	tasksButtonText = "Näita vanemaid ülesandeid.";
 
-  	/**
-  		"1" asemele peaks tulema (userid). Seda tuleks käivitada niipea,
-  		kui user siia lehele tuleb.
-  	*/
-  	userId = "coolandgood";
+  	userId = "default";
 
-  isAuthenticated() {
-    return this.authService.getAuth();
-  }
+	isAuthenticated() {
+	    return this.authService.getAuth();
+	}
 
 	getSubjects() {
 	    this.taskService.getSubjects(this.userId)
@@ -184,8 +180,15 @@ export class ShowHomeworksComponent implements OnInit {
 		return this.currentSubjectId != -1;
 	}
 
+	checkIfUserExists(this.userId) {
+		return this.taskService.checkIfUserExists().subscribe();
+	}
+	
   	ngOnInit() {
 		if (this.isAuthenticated()) {
+			this.userId = this.authService.getUserId();
+			var checkUser = this.checkIfUserExists
+			console.log(this.userId);
 			this.getSubjects();
 		}
   	}

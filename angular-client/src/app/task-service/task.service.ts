@@ -40,6 +40,12 @@ export class TaskService {
 		const url = `${getHomeworksUrl}`;
 		return this.http.post(url, "");
 	}
+	
+	checkIfUserExists(userId) {
+		const checkUserUrl = 'http://localhost:8080/user/checkuser';
+		const url = `${checkUserUrl}${userId}`
+		return this.http.get(url);
+	}
 
 	/**
 	 * @param result - optional value to return as the observable result

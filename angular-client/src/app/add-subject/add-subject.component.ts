@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { SubjectService } from '../subject-service/subject.service';
 import { TaskService } from '../task-service/task.service';
+import { AuthService } from '../auth-service/auth.service';
+
 
 
 @Component({
@@ -12,16 +14,13 @@ import { TaskService } from '../task-service/task.service';
 export class AddSubjectComponent implements OnInit {
 
   constructor(private subjectService: SubjectService,
-              private taskService: TaskService) { }
+              private taskService: TaskService,
+              private authService: AuthService) { }
 
   allSubjectNames = [];
   allSubjectIds = [];
 
-  /**
-    Sisselogimisel on siia "2" asemele userid saada.
-  */
-  
-  userId = "1";
+  userId = "default";
 
   getAllSubjects() {
     this.subjectService.getAllSubjects()
@@ -33,7 +32,7 @@ export class AddSubjectComponent implements OnInit {
   
   addSubjectToTimetable(subjectId) {
     const userData = {
-      user_id: this.userId,
+      uid: this.userId,
       subject_id: subjectId
     };
     this.subjectService.addSubjectToTimetable(userData).subscribe();
@@ -47,8 +46,21 @@ export class AddSubjectComponent implements OnInit {
     }
   }
 
-  	ngOnInit() {
-	    this.getAllSubjects();
-	}
+    checkIfUserExists(this.userId) {
+        return this.taskService.checkIfUserExists().subscribe();
+    }
 
+    isAuthenticated() {
+        return this.authService.getAuth();
+    }
+
+    ngOnInit() {
+        if (this.isAuthenticated()) {
+            this.userId = this.authService.getUserId();
+            var checkUser = this.checkIfUserExists
+            console.log(this.userId);
+            this.getAllSubjects();
+        }
+    }
+	    
 }
