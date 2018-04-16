@@ -31,4 +31,10 @@ public class TaskController {
     public boolean addTask(@RequestBody Task task) {
         return taskService.addTask(task);
     }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/task/getAll/{subjectId}", method = RequestMethod.POST)
+    public String getTasksForHomework(@PathVariable String subjectId) {
+        return taskService.getSubjectWithAllTasks(subjectId).toString();
+    }
 }
