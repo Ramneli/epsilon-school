@@ -34,7 +34,7 @@ public class TaskController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/task/getAll/{subjectId}", method = RequestMethod.POST)
-    public String getTasksForHomework(@PathVariable String subjectId) {
-        return taskService.getSubjectWithAllTasks(subjectId).toString();
+    public String getTasksForHomework(@PathVariable String subjectId, @RequestParam("filter") boolean limitOldTasks) {
+        return taskService.getSubjectWithAllTasks(subjectId, limitOldTasks).toString();
     }
 }

@@ -8,6 +8,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,9 +46,17 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
-    public JSONObject getSubjectWithAllTasks(String subjectId) {
+    public JSONObject getSubjectWithAllTasks(String subjectId, boolean limitOldTasks) {
         Subject subject = subjectRepository.findOne(subjectId);
-        List<Task> tasksOfSubject = this.getAllTasksOfSubject(subjectId);
+        List<Task> tasksOfSubject;
+
+        if (limitOldTasks) {
+            tasksOfSubject = this.getAllTasksOfSubject(subjectId).stream()
+                    .filter(t -> t.getDeadline().after(Date.valueOf(LocalDate.now())))
+                    .collect(Collectors.toList());
+        } else {
+            tasksOfSubject = this.getAllTasksOfSubject(subjectId);
+        }
 
         JSONObject subjectWithTasks = new JSONObject();
         addSubjectDetails(subject, subjectWithTasks);
