@@ -1,20 +1,31 @@
 package com.epsilonschool.controller;
 
+import com.epsilonschool.dao.repository.SubjectRepository;
 import com.epsilonschool.dao.repository.TaskRepository;
 import com.epsilonschool.dao.service.TaskService;
 import com.epsilonschool.entity.Task;
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import static org.mockito.Mockito.times;
 
 public class TaskControllerTests {
+    TaskRepository taskRepository;
+    SubjectRepository subjectRepository;
+    TaskService taskService;
+    TaskController taskController;
+
+    @Before
+    public void setUp() {
+        taskRepository = Mockito.mock(TaskRepository.class);
+        subjectRepository = Mockito.mock(SubjectRepository.class);
+        taskService = new TaskService(taskRepository, subjectRepository);
+        taskController = new TaskController(taskService);
+    }
+
     @Test
     public void testTaskControllerGetAllTasks() {
-        TaskRepository taskRepository = Mockito.mock(TaskRepository.class);
-        TaskService taskService = new TaskService(taskRepository);
-        TaskController taskController = new TaskController(taskService);
-
         taskController.getAllTasks();
 
         Mockito.verify(taskRepository, times(1)).findAll();
@@ -22,10 +33,6 @@ public class TaskControllerTests {
 
     @Test
     public void testTaskControllerGetTaskByID() {
-        TaskRepository taskRepository = Mockito.mock(TaskRepository.class);
-        TaskService taskService = new TaskService(taskRepository);
-        TaskController taskController = new TaskController(taskService);
-
         taskController.getTask("34");
 
         Mockito.verify(taskRepository, times(1)).findAll();
@@ -33,10 +40,6 @@ public class TaskControllerTests {
 
     @Test
     public void testTaskControllerAddNewTask() {
-        TaskRepository taskRepository = Mockito.mock(TaskRepository.class);
-        TaskService taskService = new TaskService(taskRepository);
-        TaskController taskController = new TaskController(taskService);
-
         Task task = new Task();
         taskController.addTask(task);
 
