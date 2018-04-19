@@ -18,6 +18,7 @@ import { TaskService } from './task-service/task.service';
 import { MessageService } from './message-service/message.service';
 import { SubjectService } from './subject-service/subject.service';
 import { UserService } from './user-service/user.service';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { AuthService } from './auth-service/auth.service';
 import { AuthGuardService } from './auth-guard/auth-guard.service';
@@ -55,7 +56,8 @@ export const firebaseConfig = {
     MatFormFieldModule,
     MatInputModule,
     BrowserAnimationsModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFontAwesomeModule
   ],
   providers: [
     TaskService,

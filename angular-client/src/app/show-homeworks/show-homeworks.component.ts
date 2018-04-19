@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../task-service/task.service';
 import { AuthService } from '../auth-service/auth.service';
 import { SubjectService } from '../subject-service/subject.service';
+import { Router } from '@angular/router';
 
 @Component({
  	selector: 'app-show-homeworks',
@@ -14,7 +15,7 @@ export class ShowHomeworksComponent implements OnInit {
 
 
 	constructor(private taskService: TaskService, private authService : AuthService, 
-	private subjectService: SubjectService) { }
+	private subjectService: SubjectService, private router: Router) { }
 
   	subjects = [];
 	subjectIDs = [];
@@ -191,5 +192,10 @@ export class ShowHomeworksComponent implements OnInit {
 			console.log(this.userId);
 			this.getSubjects();
 		}
+	  }
+	  
+	logout() {
+		this.router.navigate(['/']);
+    	this.authService.logout();
   	}
 }

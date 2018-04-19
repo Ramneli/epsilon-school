@@ -1,41 +1,66 @@
 
-	<div class="container-fluid">
-		<div *ngIf="!isAuthenticated()" id="notSignedIn">
-			<h1>Ülesannete nägemiseks peate sisse logima.</h1>
-		</div>
-		<div class="row">
-			<div class="col-md-2" *ngIf="isAuthenticated()">
-				<div id="wrapper">
-					<div class="list-group">
-						<button type="button"
-								style="background-color: #000099; border-top-right-radius: 9px; border-top-left-radius: 9px"
-								disabled>
-								Minu ained
-						</button>
+<div *ngIf="!isAuthenticated()" id="notSignedIn">
+		<h1>Ülesannete nägemiseks peate sisse logima.</h1>
+</div>
 
-						<button class="list-group-item list-group-item-action"
-								*ngFor="let subject of subjects"
-								style="text-align: center; height: 75px;"
-								id="{{subjectIDs[subjects.indexOf(subject)]}}"
-								(click)="getSubjectHomeworksDetails(subjectIDs[subjects.indexOf(subject)])"
-								type="button">{{ subject }} </button>
+<div *ngIf="isAuthenticated()" class="container-fluid h-100">
+	<div class="row no-gutters h-100">
+		<div class="col-lg-2">
+			<div class="h-100 d-inline-block">
+				<div class="sidebar">
+					<div class="list-group">
+						<a routerLink="/homeworks" class="dynamicSidebar subject">Arvutusmeetodid</a>
+						<a routerLink="/homeworks" class="dynamicSidebar subject">Diskreetne matemaatika</a>
+						<a routerLink="/homeworks" class="dynamicSidebar subject">Veebiteenused</a>
+						<a routerLink="/homeworks" class="dynamicSidebar subject">Tarkvaratehnika</a>
+						<a routerLink="/homeworks" class="dynamicSidebar subject">Operatsioonisüsteemide ja arvutivõrkude administreerimine</a>
+	
+						<a routerLink="/addsubject" class="staticSidebar option"><fa name="plus-square"></fa>Lisa aine tunniplaani</a>
+						<div class="sidebar seperator"></div>
+						<a routerLink="/homeworks" class="dynamicSidebar option"><fa name="envelope"></fa>Teavitused</a>
+						<a id="eap" routerLink="/homeworks" class="dynamicSidebar option"><fa name="calculator"></fa>EAP kalkulaator</a>
+						<a routerLink="/homeworks" class="dynamicSidebar option"><fa name="cog"></fa>Seaded</a>
+						<a routerLink="" (click)="logout()" class="staticSidebar option"><fa name="sign-out"></fa>Logi välja</a>
 					</div>
 				</div>
 			</div>
-
-			<div class="col-md-10">
-				<div id="tableDiv">
-					<table *ngIf="isAuthenticated()" id="homeworkTable" style="text-align: left; border-collapse: collapse;">
+		</div>
+		<div class="col-lg-10">
+			<div class="jumbotron">
+				<table class="tasksTable" cellpadding="10">
+					<thead>
 						<tr>
-							<th id="standardColWidth">Aine</th>
-							<th id="standardColWidth">Aine tüüp</th>
-							<th id="taskColWidth">Ülesanne</th>
-							<th id="standardColWidth">Õppejõud</th>
-							<th id="standardColWidth">Tähtaeg</th>
+							<th class="tasksTableHeader">Õppeaine</th>
+							<th class="tasksTableHeader">Aine tüüp</th>
+							<th class="tasksTableHeader">Ülesanne</th>
+							<th class="tasksTableHeader">Õppejõud</th>
+							<th class="tasksTableHeader">Tähtaeg</th>
 						</tr>
-					</table>
-				</div>
-				<button *ngIf="displayTasksControlButton()" class="btn btn-warning btn-xs"(click)="setOldTasks();">{{ tasksButtonText }}</button>
+						<tr>
+							<td>Arvutusmeetodid</td>
+							<td>Harjutus</td>
+							<td><p style="display: inline; color: red; font-weight: bold">Kontrolltöö: </p>Newtoni meetod selgeks teha.</td>
+							<td>Kairi Kasemets</td>
+							<td>22.04.2020</td>
+						</tr>
+
+						<tr>
+							<td>Arvutusmeetodid</td>
+							<td>Harjutus</td>
+							<td>Newtoni meetod selgeks teha.</td>
+							<td>Kairi Kasemets</td>
+							<td>22.04.2020</td>
+						</tr>
+						<tr>
+							<td>Arvutusmeetodid</td>
+							<td>Loeng</td>
+							<td>Newtoni meetod pn tarvis ära tõestada. Newtoni enda käest lahendusi ei või küsida, küll aga võib esitada kaudseid küsimusi tema teoreemide kohta. </td>
+							<td>Kairi Kasemets</td>
+							<td>22.04.2020</td>
+						</tr>
+					</thead>
+				</table>
 			</div>
+		</div>
 	</div>
 </div>

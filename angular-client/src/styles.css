@@ -7,18 +7,18 @@
 	}
 
 	.navbar-toggler {
-  	background-color: #34af18;
+  		color: white;
 	}
 
 	.navbar-toggler:hover {
-  	background-color: #2eea30;
+  		background-color: white;
 	}
 	.nav-link {
-		border-radius: 5px;
+		border-radius: 3px;
 	}
 
 	.nav-link:hover {
-		background-color: #2dad0f;
+		background-color: #2c3a41;
 	}
 
 	#homeworkTable td {
@@ -94,79 +94,6 @@
     }
 }
 
-#homeworkTable {
-	font-family: arial, sans-serif;
-	border-collapse: collapse;
-	width: 100%;
-	/*table-layout: fixed;*/
-	float:left;
-}
-
-#homeworkTable td, th {
-	border: 1px solid #dddddd;
-	text-align: left;
-	padding: 8px;
-}
-
-#homeworkTable tr:nth-child(even) {
-	background-color: #f7f7f7;
-}
-
-#notification {
-	text-align: center;
-	vertical-align: middle;
-	line-height: 37px;
-}
-
-.subjectButton {
-	background-color: #008cba; /* Light Blue */
-	border: none;
-	color: white;
-	padding: 0px 0px;
-	width:95%;
-	word-break: break-word;
-	height:50px;
-	margin: 0 auto;
-	margin-top: 5px;
-	margin-bottom:5px;
-	text-align: center;
-	text-decoration: none;
-	display: block;
-	text-align: center;
-}
-.subjectButton:hover {
-	background-color: #04a3d8;
-}
-
-ul {
-	list-style-type: none;
-}
-
-#standardColWidth {
-	width: 15%;
-}
-
-#taskColWidth {
-	width: 45%;
-}
-
-#homeworkTable td {
-	word-wrap: break-word;
-}
-
-#homeworkTable tr {
-	font-family: Helvetica;
-}
-
-#homeworkTable th {
-	padding-top: 12px;
-	padding-bottom: 12px;
-	text-align: left;
-	background-color: #119311;
-	color: white;
-	font-weight: normal;
-}
-
 textarea {
 	width: 398px;
 	resize: none;
@@ -184,23 +111,65 @@ label {
 	margin-bottom: 5px;
 }
 
-button {
-	background-color: #008CBA; /* Green */
-	border: none;
-	color: white;
-	padding: 0px 0px;
-	width:100%;
-	word-break: break-word;
-	height:46px;
-	margin: 0 auto;
-	text-align: center;
+
+
+.dynamicSidebar.subject:hover {
+	background-color: #273135;
 	text-decoration: none;
-	display: block;
-	text-align: center;
+	color:white;
 }
 
-button:hover {
-	background-color: #04a3d8;
+.dynamicSidebar.subject:focus {
+	background-color: #273135;
+	border-left: 4px solid #cf4a33;
+	text-decoration: none;
+	color:white;
+}
+
+.dynamicSidebar.subject {
+	color:rgb(199, 201, 202);
+	padding: 10px;
+	text-decoration: none;
+}
+
+.addSubject:hover {
+	background-color: #273135;
+	text-decoration: none;
+	color:white;
+}
+
+.addSubject {
+	color:rgb(81, 177, 89);
+	padding: 10px;
+	text-decoration: none;
+}
+
+.dynamicSidebar.option {
+	color:rgb(199, 201, 202);
+	padding: 10px;
+	text-decoration: none;
+}
+
+.dynamicSidebar.option:hover {
+	background-color: #273135;
+	text-decoration: none;
+	color:white;
+}
+
+.staticSidebar.option {
+	color:rgb(199, 201, 202);
+	padding: 10px;
+	text-decoration: none;
+}
+
+.staticSidebar.option:hover {
+	background-color: #273135;
+	text-decoration: none;
+	color:white;
+}
+
+.dynamicSidebar.option:focus {
+	border-left: 3px solid cyan;
 }
 
 select {
@@ -209,31 +178,12 @@ select {
 	margin-top: 5px;
 }
 
-
-#wrapper table {
-	width: 100%;
-	border: 1px solid #119311;
-}
-
-#wrapper th {
-	font-weight: normal;
-	text-align: center;
-	border: none;
-	border-bottom: 3px solid;
-	border-color: #119311;
-	font-family: Helvetica;
-}
-
-#wrapper button {
-	font-family: Helvetica;
-}
-
 #navBar {
     list-style-type: none;
     overflow: hidden;
     margin: 0;
     padding: 0;
-    background-color: #119311;
+    background-color: #96004f;
 }
 #navBar li {
     float: left;
@@ -242,7 +192,7 @@ select {
 
 #navBar a {
     display: inline-block;
-    color: white;
+    color: rgb(202, 199, 199);
     text-align: center;
     padding: 10px 10px;
     text-decoration: none;
@@ -250,5 +200,46 @@ select {
 }
 
 #navBar a:hover {
-    background-color: #14AA14;
+    background-color: #293135;
+}
+table td {
+	border-bottom: 1px solid rgb(199, 199, 199);
+}
+
+.container-fluid.h-100 {
+	position: absolute; 
+	padding: 0;
+	background-color: #f4f4f4;
+}
+
+.h-100.d-inline-block {
+	width: 100%; 
+	background-color: #344146;
+}
+
+.tasksTableHeader {
+	border: none; 
+	border-bottom:1px solid black; 
+	font-family: Helvetica;
+}
+
+.jumbotron {
+	background-color: #f4f4f4;
+}
+
+.tasksTable {
+	table-layout: auto; 
+	width: 100%;
+}
+
+.tasksTable td {
+	font-family: Helvetica;
+}
+
+.sidebar.seperator {
+	border-top: 4px solid #4f6068;
+}
+
+.sidebar {
+	background-color: #344146;
 }
