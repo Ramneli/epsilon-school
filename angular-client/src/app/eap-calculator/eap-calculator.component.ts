@@ -9,6 +9,14 @@ export class EapCalculatorComponent implements OnInit {
 
   constructor() { }
 
+  addSubjectToEapTable(subjectName, subjectMark, eapValue) {
+    if (subjectName == "" || subjectMark == "" || isNaN(parseInt(eapValue))) {
+      alert("Viga lähteandmetes.");
+    } else {
+    alert("TODO (send to server): " + subjectName + " " + subjectMark + " " + eapValue);
+    }
+  }
+
   ngOnInit() {
   }
 
