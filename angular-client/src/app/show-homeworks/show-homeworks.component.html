@@ -9,11 +9,14 @@
 			<div class="h-100 d-inline-block">
 				<div class="sidebar">
 					<div class="list-group">
-						<a 	*ngFor="let subject of subjects" 
-							id="{{subjectIDs[subjects.indexOf(subject)]}}" 
+	
+						<a 
+							routerLink="/homeworks"
 							class="dynamicSidebar subject"
+							*ngFor="let subject of subjects"
+							id="{{subjectIDs[subjects.indexOf(subject)]}}"
 							(click)="getSubjectHomeworksDetails(subjectIDs[subjects.indexOf(subject)])"
-							>Arvutusmeetodid</a>
+							>{{ subject }}</a>
 						
 						<a (click)="openAddSubjectToTimetableDialog()" class="staticSidebar option" style="color:rgb(199, 201, 202)"><fa name="plus-square"></fa>Lisa aine tunniplaani</a>
 						<div class="sidebar seperator"></div>
@@ -21,13 +24,14 @@
 						<a id="eap" routerLink="/homeworks/eapcalculator" class="dynamicSidebar option"><fa name="calculator"></fa>EAP kalkulaator</a>
 						<a routerLink="/homeworks/settings" class="dynamicSidebar option"><fa name="cog"></fa>Seaded</a>
 						<a routerLink="" (click)="logout()" class="staticSidebar option"><fa name="sign-out"></fa>Logi välja</a>
+						
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="col-lg-10">
 			<router-outlet></router-outlet>
-		
+			
 		</div>
 	</div>
 </div>
