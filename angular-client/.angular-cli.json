@@ -22,7 +22,7 @@
         "styles.css",
         "../node_modules/bootstrap/dist/css/bootstrap.min.css" , "../node_modules/font-awesome/css/font-awesome.css"
       ],
-      "scripts": [],
+      "scripts": ["js/app.js", "js/controller/sample-controller.js"],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
