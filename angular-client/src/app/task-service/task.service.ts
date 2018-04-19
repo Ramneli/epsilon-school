@@ -29,6 +29,12 @@ export class TaskService {
 		return this.http.post(url, "");
 	}
 
+	getTasksWithSubject(subjectId, filterOldTasks) {
+		const getHomeworksUrl = 'http://localhost:8080/task/getAll';
+		const url = `${getHomeworksUrl}/${subjectId}?filter=${filterOldTasks}`;
+		return this.http.post(url, "");
+	}
+
 	getHomeworks(subjectId) {
 		const getHomeworksUrl = 'http://localhost:8080/task/get';
 		const url = `${getHomeworksUrl}/${subjectId}`;

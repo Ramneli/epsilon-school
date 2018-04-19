@@ -9,12 +9,12 @@
 			<div class="h-100 d-inline-block">
 				<div class="sidebar">
 					<div class="list-group">
-						<a routerLink="/homeworks" class="dynamicSidebar subject">Arvutusmeetodid</a>
-						<a routerLink="/homeworks" class="dynamicSidebar subject">Diskreetne matemaatika</a>
-						<a routerLink="/homeworks" class="dynamicSidebar subject">Veebiteenused</a>
-						<a routerLink="/homeworks" class="dynamicSidebar subject">Tarkvaratehnika</a>
-						<a routerLink="/homeworks" class="dynamicSidebar subject">Operatsioonisüsteemide ja arvutivõrkude administreerimine</a>
-	
+						<a 	*ngFor="let subject of subjects" 
+							id="{{subjectIDs[subjects.indexOf(subject)]}}" 
+							class="dynamicSidebar subject"
+							(click)="getSubjectHomeworksDetails(subjectIDs[subjects.indexOf(subject)])"
+							>Arvutusmeetodid</a>
+						
 						<a routerLink="/addsubject" class="staticSidebar option"><fa name="plus-square"></fa>Lisa aine tunniplaani</a>
 						<div class="sidebar seperator"></div>
 						<a routerLink="/homeworks" class="dynamicSidebar option"><fa name="envelope"></fa>Teavitused</a>
@@ -26,8 +26,8 @@
 			</div>
 		</div>
 		<div class="col-lg-10">
-			<div class="jumbotron">
-				<table class="tasksTable" cellpadding="10">
+			<div class="jumbotron" id="tableDiv">
+				<table class="tasksTable" cellpadding="10" id="homeworkTable">
 					<thead>
 						<tr>
 							<th class="tasksTableHeader">Õppeaine</th>

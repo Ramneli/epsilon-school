@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
 import { TaskService } from '../task-service/task.service';
 import { AuthService } from '../auth-service/auth.service';
 import { SubjectService } from '../subject-service/subject.service';
-import { Router } from '@angular/router';
 
 @Component({
  	selector: 'app-show-homeworks',
@@ -13,17 +11,15 @@ import { Router } from '@angular/router';
 
 export class ShowHomeworksComponent implements OnInit {
 
-
 	constructor(private taskService: TaskService, private authService : AuthService, 
-	private subjectService: SubjectService, private router: Router) { }
+		private subjectService: SubjectService) {}
 
-  	subjects = [];
 	subjectIDs = [];
+	subjects = [];
+	private userId:string;
 	public showOldTasks = false;
 	public currentSubjectId = -1;
 	tasksButtonText = "Näita vanemaid ülesandeid.";
-
-  	userId = "default";
 
 	isAuthenticated() {
 	    return this.authService.getAuth();
@@ -32,53 +28,26 @@ export class ShowHomeworksComponent implements OnInit {
 	getSubjects() {
 	    this.taskService.getSubjects(this.userId)
 	        .subscribe(subjects => {
-				console.log(subjects);
 	        this.getHomeworkNamesAndIDs(subjects);
 	    });
 	}
 
   	getSubjectHomeworksDetails(subjectId) {
 		this.currentSubjectId = subjectId;
-		this.taskService.getSubjectDetails(subjectId)
-	        .subscribe(subjectDetails => {
-	        	this.showHomeworks(subjectDetails);
+		this.taskService.getTasksWithSubject(subjectId, this.showOldTasks)
+	        .subscribe(subjectWithTasks => {
+	        	this.showHomeworks(subjectWithTasks);
 	    });
 	}
 
-	showHomeworks(subjectDetails) {
-		console.log(subjectDetails);
-		let tableData = {
-			name: subjectDetails['name'],
-			lecturer_name: subjectDetails['lecturer_name'],
-			subject_code: subjectDetails['code'],
-			subject_id: subjectDetails['id'],
-			type: subjectDetails['type'],
-			task: "",
-			deadline: "",
-			taskType: ""
-		};
-
-		this.taskService.getHomeworks(tableData.subject_id)
-			.subscribe((homeworks : JSON) =>  {
-				var filteredHomeworks = this.filterTasksByDate(homeworks);
-				var dataLength = Object.keys(filteredHomeworks).length;
-				if (dataLength != 0) {
-					this.deleteTable();
-
-					for (var i = 0; i < dataLength; i++) {
-						tableData.task = filteredHomeworks[i].description;
-						tableData.deadline = filteredHomeworks[i].deadline;
-						tableData.taskType = filteredHomeworks[i].type;
-						this.createTable(tableData);
-						console.log(tableData.taskType);
-					}
-
-				} else {
-					this.deleteTable();
-					this.createTableWithNoHomeworks();
-				}
-
-			})
+	showHomeworks(subjectWithTasks) {
+		var dataLength = Object.keys(subjectWithTasks.tasks).length;
+		this.deleteTable();
+		if (dataLength != 0) {
+			this.createTable(subjectWithTasks);
+		} else {
+			this.createTableWithNoHomeworks();
+		}
 	}
 
     getHomeworkNamesAndIDs(subjects) {
@@ -91,50 +60,60 @@ export class ShowHomeworksComponent implements OnInit {
     createTable(tableData) {
 	    var table: HTMLTableElement = <HTMLTableElement> document.getElementById("homeworkTable");
 	    if (!table) {
-	        var headers = ["Aine", "Aine tüüp", "Ülesanne", "Õppejõud", "Tähtaeg"];
-	        var listWidth = ["standardColWidth", "standardColWidth", "taskColWidth", "standardColWidth", "standardColWidth"];
-	        var table: HTMLTableElement = <HTMLTableElement> document.createElement("Table");
-	        table.setAttribute("id", "homeworkTable");
-	        var tableHeader = document.createElement("tr");
+			table = this.makeNewTable();
+		}
+		console.log(tableData);
+		this.populateTable(table, tableData);
+	}
+	
+	makeNewTable() {
+		var headers = ["Aine", "Aine tüüp", "Ülesanne", "Õppejõud", "Tähtaeg"];
+		var listWidth = ["standardColWidth", "standardColWidth", "taskColWidth", "standardColWidth", "standardColWidth"];
+		var table: HTMLTableElement = <HTMLTableElement> document.createElement("Table");
+		table.setAttribute("id", "homeworkTable");
+		var tableHeader = document.createElement("tr");
 
-	        for (var i = 0; i < headers.length; i++) {
-		        var cell = document.createElement("th");
-		        cell.setAttribute("id", listWidth[i]);
-		        cell.textContent = headers[i];
-		        tableHeader.appendChild(cell);
-		    }
-
-	        table.appendChild(tableHeader);
-	    }
-
-	    var tr = table.insertRow();
-
-	    var header_name = tr.insertCell();
-	    var header_type = tr.insertCell();
-	    var header_task = tr.insertCell();
-	    var header_lecturer_name = tr.insertCell();
-		var header_deadline = tr.insertCell();
-		
-		var taskTypeNode = document.createElement("p");
-		taskTypeNode.setAttribute("style", "display: inline;")
-
-		if (tableData.taskType === "Kontrolltöö") {
-			taskTypeNode.setAttribute("style", "color: red;");
-			taskTypeNode.appendChild(document.createTextNode("Kontrolltöö: "));
-		} else {
-			taskTypeNode.setAttribute("style", "color: black;");
-			taskTypeNode.appendChild(document.createTextNode("Ülesanne: "));
+		for (var i = 0; i < headers.length; i++) {
+			var cell = document.createElement("th");
+			cell.setAttribute("id", listWidth[i]);
+			cell.textContent = headers[i];
+			tableHeader.appendChild(cell);
 		}
 
-	    header_name.appendChild(document.createTextNode(tableData.name));
-	    header_type.appendChild(document.createTextNode(tableData.type));
-	    header_task.appendChild(taskTypeNode);
-	    header_task.appendChild(document.createTextNode(tableData.task));
-	    header_lecturer_name.appendChild(document.createTextNode(tableData.lecturer_name));
-	    header_deadline.appendChild(document.createTextNode(tableData.deadline));
+		table.appendChild(tableHeader);
+		return table;
+	}
 
+	populateTable(table, tableData) {
+		for (var i = 0; i < Object.keys(tableData.tasks).length; i++) {
+			var tr = table.insertRow();
+
+			var header_name = tr.insertCell();
+			var header_type = tr.insertCell();
+			var header_task = tr.insertCell();
+			var header_lecturer_name = tr.insertCell();
+			var header_deadline = tr.insertCell();
+			
+			var taskTypeNode = document.createElement("p");
+			taskTypeNode.setAttribute("style", "display: inline;")
+
+			if (tableData.tasks[i].task_type === "Kontrolltöö") {
+				taskTypeNode.setAttribute("style", "color: red;");
+				taskTypeNode.appendChild(document.createTextNode("Kontrolltöö: "));
+			} else {
+				taskTypeNode.setAttribute("style", "color: black;");
+				taskTypeNode.appendChild(document.createTextNode("Ülesanne: "));
+			}
+
+			header_name.appendChild(document.createTextNode(tableData.subject_name));
+			header_type.appendChild(document.createTextNode(tableData.subject_type));
+			header_task.appendChild(taskTypeNode);
+			header_task.appendChild(document.createTextNode(tableData.tasks[i].task_description));
+			header_lecturer_name.appendChild(document.createTextNode(tableData.lecturer_name));
+			header_deadline.appendChild(document.createTextNode(tableData.tasks[i].task_deadline));
+		}
 	    document.getElementById("tableDiv").appendChild(table);
-    }
+	}
 
 	createTableWithNoHomeworks() {
 	    let table = document.getElementById("homeworkTable");
@@ -166,21 +145,6 @@ export class ShowHomeworksComponent implements OnInit {
 	        table.parentNode.removeChild(table);
 	    }
 	}
-	
-	filterTasksByDate(tasksJson) {
-		var filteredTasks = [];
-		tasksJson.forEach(task => {
-			let date = new Date(task.deadline);
-			let currentDate = new Date();
-			if (this.showOldTasks) {
-				filteredTasks.push(task);
-			} else if (date.getTime() >= currentDate.getTime()){
-				filteredTasks.push(task);
-			}
-		});
-		
-		return filteredTasks;
-	}
 
 	setOldTasks() {
 		this.showOldTasks = !this.showOldTasks;
@@ -207,10 +171,5 @@ export class ShowHomeworksComponent implements OnInit {
 			console.log(this.userId);
 			this.getSubjects();
 		}
-	  }
-	  
-	logout() {
-		this.router.navigate(['/']);
-    	this.authService.logout();
   	}
 }
