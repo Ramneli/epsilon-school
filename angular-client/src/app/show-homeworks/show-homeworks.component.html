@@ -17,50 +17,17 @@
 						
 						<a routerLink="/addsubject" class="staticSidebar option"><fa name="plus-square"></fa>Lisa aine tunniplaani</a>
 						<div class="sidebar seperator"></div>
-						<a routerLink="/homeworks" class="dynamicSidebar option"><fa name="envelope"></fa>Teavitused</a>
-						<a id="eap" routerLink="/homeworks" class="dynamicSidebar option"><fa name="calculator"></fa>EAP kalkulaator</a>
-						<a routerLink="/homeworks" class="dynamicSidebar option"><fa name="cog"></fa>Seaded</a>
+						<a routerLink="/homeworks/notifications" class="dynamicSidebar option"><fa name="envelope"></fa>Teavitused</a>
+						<a id="eap" routerLink="/homeworks/eapcalculator" class="dynamicSidebar option"><fa name="calculator"></fa>EAP kalkulaator</a>
+						<a routerLink="/homeworks/settings" class="dynamicSidebar option"><fa name="cog"></fa>Seaded</a>
 						<a routerLink="" (click)="logout()" class="staticSidebar option"><fa name="sign-out"></fa>Logi välja</a>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="col-lg-10">
-			<div class="jumbotron" id="tableDiv">
-				<table class="tasksTable" cellpadding="10" id="homeworkTable">
-					<thead>
-						<tr>
-							<th class="tasksTableHeader">Õppeaine</th>
-							<th class="tasksTableHeader">Aine tüüp</th>
-							<th class="tasksTableHeader">Ülesanne</th>
-							<th class="tasksTableHeader">Õppejõud</th>
-							<th class="tasksTableHeader">Tähtaeg</th>
-						</tr>
-						<tr>
-							<td>Arvutusmeetodid</td>
-							<td>Harjutus</td>
-							<td><p style="display: inline; color: red; font-weight: bold">Kontrolltöö: </p>Newtoni meetod selgeks teha.</td>
-							<td>Kairi Kasemets</td>
-							<td>22.04.2020</td>
-						</tr>
-
-						<tr>
-							<td>Arvutusmeetodid</td>
-							<td>Harjutus</td>
-							<td>Newtoni meetod selgeks teha.</td>
-							<td>Kairi Kasemets</td>
-							<td>22.04.2020</td>
-						</tr>
-						<tr>
-							<td>Arvutusmeetodid</td>
-							<td>Loeng</td>
-							<td>Newtoni meetod pn tarvis ära tõestada. Newtoni enda käest lahendusi ei või küsida, küll aga võib esitada kaudseid küsimusi tema teoreemide kohta. </td>
-							<td>Kairi Kasemets</td>
-							<td>22.04.2020</td>
-						</tr>
-					</thead>
-				</table>
-			</div>
+			<router-outlet></router-outlet>
+		
 		</div>
 	</div>
 </div>

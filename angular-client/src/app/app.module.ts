@@ -13,6 +13,11 @@ import { AddHomeworksComponent } from './add-homeworks/add-homeworks.component';
 import { AddSubjectComponent } from './add-subject/add-subject.component';
 import { CreateSubjectComponent } from './create-subject/create-subject.component';
 import { MessagesComponent } from './messages/messages.component';
+import { TasksComponent } from './tasks/tasks.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { EapCalculatorComponent } from './eap-calculator/eap-calculator.component';
+import { SettingsComponent } from './settings/settings.component';
+
 
 import { TaskService } from './task-service/task.service';
 import { MessageService } from './message-service/message.service';
@@ -44,7 +49,11 @@ export const firebaseConfig = {
     AddSubjectComponent,
     CreateSubjectComponent,
     MessagesComponent,
-    HomeComponent
+    HomeComponent,
+    TasksComponent,
+    NotificationsComponent,
+    EapCalculatorComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

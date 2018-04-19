@@ -6,12 +6,22 @@ import { HomeComponent } from './home/home.component';
 import { CreateSubjectComponent } from './create-subject/create-subject.component';
 import { AddSubjectComponent } from './add-subject/add-subject.component';
 import { AddHomeworksComponent } from './add-homeworks/add-homeworks.component';
+import { TasksComponent } from './tasks/tasks.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { EapCalculatorComponent } from './eap-calculator/eap-calculator.component';
+import { SettingsComponent } from './settings/settings.component';
 
 import { AuthGuardService } from './auth-guard/auth-guard.service';
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
-	{ path: 'homeworks', component: ShowHomeworksComponent },
+	{ path: 'homeworks', component: ShowHomeworksComponent,
+		children: [
+			{ path: '', component: TasksComponent },
+			{ path: 'notifications', component: NotificationsComponent},
+			{ path: 'eapcalculator', component: EapCalculatorComponent},
+			{ path: 'settings', component: SettingsComponent}
+		] },
 	{ path: 'addhomeworks', component: AddHomeworksComponent, canActivate: [AuthGuardService] },
 	{ path: 'createsubject', component: CreateSubjectComponent, canActivate: [AuthGuardService] },
 	{ path: 'addsubject', component: AddSubjectComponent, canActivate: [AuthGuardService] }
