@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../task-service/task.service';
 import { AuthService } from '../auth-service/auth.service';
 import { SubjectService } from '../subject-service/subject.service';
+import { Router } from '@angular/router';
 
 @Component({
  	selector: 'app-show-homeworks',
@@ -12,7 +13,7 @@ import { SubjectService } from '../subject-service/subject.service';
 export class ShowHomeworksComponent implements OnInit {
 
 	constructor(private taskService: TaskService, private authService : AuthService, 
-		private subjectService: SubjectService) {}
+		private subjectService: SubjectService, private router: Router) {}
 
 	subjectIDs = [];
 	subjects = [];
@@ -164,6 +165,11 @@ export class ShowHomeworksComponent implements OnInit {
 		return this.taskService.checkIfUserExists(this.userId).subscribe();
 	}
 	
+	logout() {
+		this.authService.logout();
+		this.router.navigate(['/']);
+	}
+
   	ngOnInit() {
 		if (this.isAuthenticated()) {
 			this.userId = this.authService.getUserId();
