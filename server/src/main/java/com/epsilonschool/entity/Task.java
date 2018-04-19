@@ -24,6 +24,8 @@ public class Task {
     private Date deadline;
     @JsonProperty(value = "type")
     private String type;
+    @JsonProperty(value = "author")
+    private String author;
 
     public Task(){}
 
@@ -68,5 +70,13 @@ public class Task {
 
     public String getType() {
         return type;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }

@@ -37,4 +37,11 @@ public class TaskController {
     public String getTasksForHomework(@PathVariable String subjectId, @RequestParam("filter") boolean limitOldTasks) {
         return taskService.getSubjectWithAllTasks(subjectId, limitOldTasks).toString();
     }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/task/update", method = RequestMethod.POST)
+    public boolean updateTask(@RequestBody Task task) {
+        return taskService.updateTask(task);
+    }
+
 }

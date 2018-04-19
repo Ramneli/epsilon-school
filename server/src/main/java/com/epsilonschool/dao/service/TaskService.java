@@ -84,4 +84,9 @@ public class TaskService {
         subjectWithTasks.put("subject_id", subject.getId());
         subjectWithTasks.put("subject_type", subject.getType());
     }
+
+    public boolean updateTask(Task task) {
+        taskRepository.updateTask(task.getDescription(), task.getTaskId(), task.getAuthor());
+        return true;
+    }
 }
