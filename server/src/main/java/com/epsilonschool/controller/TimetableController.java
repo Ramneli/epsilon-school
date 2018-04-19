@@ -25,6 +25,12 @@ public class TimetableController {
         timetableService.addToTimeTable(timetable);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/timetable/remove", method = RequestMethod.POST)
+    public void removeFromTimetable(@RequestBody Timetable timetable) {
+        timetableService.removeFromTimeTable(timetable);
+    }
+
 
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/timetable/get/{uid}", method = RequestMethod.POST)

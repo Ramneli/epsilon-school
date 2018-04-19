@@ -31,6 +31,7 @@ public class Timetable {
 
     public String getSubjectId() {
         return subjectId;
+
     }
 
     public String getUid() {
@@ -44,4 +45,5 @@ public class Timetable {
     public void setUsername(String username) {
         this.username = username;
     }
+
 }

@@ -23,6 +23,10 @@ public class TimetableService {
         timetableRepository.save(timetable);
     }
 
+    public void removeFromTimeTable(Timetable timetable) {
+        timetableRepository.delete(timetable.getUid(), timetable.getSubjectId());
+    }
+
     public List<Subject> getSubjects(String userId) {
         List<Timetable> timetables = findAllUserSubjectRelations(userId);
         return findAllSubjectsOfUser(timetables);
