@@ -1,39 +1,40 @@
+<div class="row no-gutters">
+	<div class="col-lg-2" style="cursor: pointer;">
+		<div routerLink="/" style="background-color: #273135; width: 100%; height: 100%; text-align: center; vertical-align: middle; line-height: 49px">
+			<a routerLink="/" style="text-decoration: none; color:white; font-family: Helvetica;font-size: 16px; font-weight:bold">Epsilon-School</a>
+		</div>
+	</div>
 
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #119311;">
-  <a class="navbar-brand" routerLink="/" style="color:white">Epsilon-School</a>
-  <button style="" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+	<div class="col-lg-10">
+		<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #273135">	
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" style="color:white" routerLink="/homeworks">Ülesanded <span class="sr-only">(current)</span></a>
-      </li>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" style="color:rgb(199, 201, 202)" routerLink="/homeworks"><fa name="tasks"></fa>Ülesanded</a>
+					</li>
 
-      <li *ngIf="isLoggedIn" class="nav-item active">
-        <a class="nav-link" style="color:white" routerLink="/addhomeworks">Lisa ülesanne <span class="sr-only">(current)</span></a>
-      </li>
+					<li *ngIf="isLoggedIn" class="nav-item active">
+						<a class="nav-link" style="color:rgb(199, 201, 202)" routerLink="/addhomeworks"><fa name="plus-square"></fa>Lisa ülesanne</a>
+					</li>
 
-      <li *ngIf="isLoggedIn" class="nav-item active">
-        <a class="nav-link" style="color:white" routerLink="/createsubject">Lisa uus aine <span class="sr-only">(current)</span></a>
-      </li>
+					<li *ngIf="isLoggedIn" class="nav-item active">
+						<a class="nav-link" style="color:rgb(199, 201, 202)" routerLink="/createsubject"><fa name="plus-square"></fa>Lisa uus aine</a>
+					</li>
+				</ul>
+			</div>
 
-      <li *ngIf="isLoggedIn" class="nav-item active">
-        <a class="nav-link" style="color:white" routerLink="/addsubject">Lisa aine tunniplaani <span class="sr-only">(current)</span></a>
-      </li>
+			<a *ngIf="!isLoggedIn" style="color:white"></a>
+			<a *ngIf="isLoggedIn" style="color:white;">Tere, {{ user_displayName }} </a>
 
-    </ul>
-
-  </div>
-  <a *ngIf="!isLoggedIn" class="nav-link" style="color:white">Tere, kasutaja <span class="sr-only">(current)</span></a>
-  <a *ngIf="isLoggedIn" class="nav-link" style="color:white;">Tere, {{ user_displayName }} <span class="sr-only">(current)</span></a>
-<div>
-  <button vertical-align="right" *ngIf="!isLoggedIn" style="width:120px" class="btn btn-success my-2 my-sm-0" (click)="login()">Logi sisse</button>
-
-  <button vertical-align="right" *ngIf="isLoggedIn" style="width:120px;" class="btn btn-danger my-2 my-sm-0" (click)="logout()">Logi välja</button>
+			<div>
+				<a *ngIf="!isLoggedIn" routerLink="" (click)="login()" class="staticSidebarOption"><fa name="sign-in"></fa>Logi sisse</a>
+			</div>
+		</nav>
+	</div>
 </div>
-</nav>
-<div style="height:5px"></div>
 <router-outlet></router-outlet>
 <app-messages></app-messages>
