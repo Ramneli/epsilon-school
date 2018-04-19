@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatDatepickerModule, MatNativeDateModule, MatFormFieldModule, MatInputModule, MatFormFieldControl } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DatePipe } from '@angular/common';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 import { AppComponent } from './app.component';
 import { ShowHomeworksComponent } from './show-homeworks/show-homeworks.component';
@@ -66,7 +68,8 @@ export const firebaseConfig = {
     MatInputModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    MatDialogModule
   ],
   providers: [
     TaskService,

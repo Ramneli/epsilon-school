@@ -19,11 +19,11 @@
 					</li>
 
 					<li *ngIf="isLoggedIn" class="nav-item active">
-						<a class="nav-link" style="color:rgb(199, 201, 202)" routerLink="/addhomeworks"><fa name="plus-square"></fa>Lisa ülesanne</a>
+						<a class="nav-link" style="color:rgb(199, 201, 202)" (click)="openAddHomeworkDialog()"><fa name="plus-square"></fa>Lisa ülesanne</a>
 					</li>
 
 					<li *ngIf="isLoggedIn" class="nav-item active">
-						<a class="nav-link" style="color:rgb(199, 201, 202)" routerLink="/createsubject"><fa name="plus-square"></fa>Lisa uus aine</a>
+						<a class="nav-link" style="color:rgb(199, 201, 202); cursor: pointer;" (click)="openAddSubjectDialog()"><fa name="plus-square"></fa>Lisa uus aine</a>
 					</li>
 				</ul>
 			</div>

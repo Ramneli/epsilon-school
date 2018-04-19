@@ -5,7 +5,6 @@ import { TaskService } from '../task-service/task.service';
 import { AuthService } from '../auth-service/auth.service';
 
 
-
 @Component({
   selector: 'app-add-subject',
   templateUrl: './add-subject.component.html',

@@ -15,7 +15,7 @@
 							(click)="getSubjectHomeworksDetails(subjectIDs[subjects.indexOf(subject)])"
 							>Arvutusmeetodid</a>
 						
-						<a routerLink="/addsubject" class="staticSidebar option"><fa name="plus-square"></fa>Lisa aine tunniplaani</a>
+						<a (click)="openAddSubjectToTimetableDialog()" class="staticSidebar option" style="color:rgb(199, 201, 202)"><fa name="plus-square"></fa>Lisa aine tunniplaani</a>
 						<div class="sidebar seperator"></div>
 						<a routerLink="/homeworks/notifications" class="dynamicSidebar option"><fa name="envelope"></fa>Teavitused</a>
 						<a id="eap" routerLink="/homeworks/eapcalculator" class="dynamicSidebar option"><fa name="calculator"></fa>EAP kalkulaator</a>

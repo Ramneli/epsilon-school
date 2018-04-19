@@ -1,15 +1,15 @@
 <div>
 	<form id="addSubject">
 		<div style="width: 100%;">
-			<div style="width:405px; margin: 0 auto;">
+			<div  align="center" style="width:50%; margin-left: 25%; text-align: left;">
 					<label for="subjectName">Aine nimi</label><br>
-					<input #userSubjectName id="subjectName" type="text" name="subjectName"><br>
+					<input style="width:100%" #userSubjectName id="subjectName" type="text" name="subjectName"><br>
 
 					<label for="subjectCode">Ainekood</label><br>
-					<input #userSubjectCode id="subjectCode" type="text" name="subjectCode"><br>
+					<input style="width:100%" #userSubjectCode id="subjectCode" type="text" name="subjectCode"><br>
 
 					<label for="lecturerName">Õppejõud</label><br>
-					<input #userLecturerName id="lecturerName" type="text" name="lecturerName" ><br>
+					<input style="width:100%" #userLecturerName id="lecturerName" type="text" name="lecturerName" ><br>
 
 					<label for="subjectID">Tunni tüüp</label><br>
 					<select style="width:99%" #userChoice id="subjectID">
@@ -21,7 +21,7 @@
 						<option>Loeng + Harjutus + Praktikum</option>
 					</select>
 
-					<button class = "btn btn-primary" style="width:99%" type="submit" (click)="addSubjectToTimetable
+					<button class = "btn btn-primary" style="width:99%; margin-top: 20px;" type="submit" (click)="addSubjectToTimetable
 					(userSubjectName.value, userSubjectCode.value, userLecturerName.value, userChoice.value)" name="Loo Aine">Loo Uus Aine</button>
 			</div>
 		</div>

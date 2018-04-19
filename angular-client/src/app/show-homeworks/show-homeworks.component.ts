@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
 import { TaskService } from '../task-service/task.service';
 import { AuthService } from '../auth-service/auth.service';
 import { SubjectService } from '../subject-service/subject.service';
-import { Router } from '@angular/router';
+
+import { AddSubjectComponent } from '../add-subject/add-subject.component';
+
 
 @Component({
  	selector: 'app-show-homeworks',
@@ -12,8 +17,11 @@ import { Router } from '@angular/router';
 
 export class ShowHomeworksComponent implements OnInit {
 
-	constructor(private taskService: TaskService, private authService : AuthService, 
-		private subjectService: SubjectService, private router: Router) {}
+	constructor(private taskService: TaskService,
+				private authService : AuthService, 
+				private subjectService: SubjectService,
+				private router: Router,
+				private dialog: MatDialog) {}
 
 	subjectIDs = [];
 	subjects = [];
@@ -169,6 +177,14 @@ export class ShowHomeworksComponent implements OnInit {
 		this.authService.logout();
 		this.router.navigate(['/']);
 	}
+
+	openAddSubjectToTimetableDialog(): void {
+    let dialogRef = this.dialog.open(AddSubjectComponent, {
+      width: '600px',
+      height: '200px'
+    });
+  }
+
 
   	ngOnInit() {
 		if (this.isAuthenticated()) {
