@@ -16,6 +16,12 @@ public class SettingsController {
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/settings/save", method = RequestMethod.POST)
     public void saveSettings(@RequestBody Settings settings) {
+        this.settingsService.saveUserSettings(settings);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/settings/update", method = RequestMethod.POST)
+    public void updateSettings(@RequestBody Settings settings) {
         this.settingsService.updateUserSettings(settings);
     }
 
