@@ -7,9 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class SessionController {
+
     @GetMapping("/test")
-    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Void> test() {
         System.out.println("Was here");
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -17,7 +18,6 @@ public class SessionController {
         return ResponseEntity.ok().header("tere", "maailm").build();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200/login")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login() {
         System.out.println("Logged in.");

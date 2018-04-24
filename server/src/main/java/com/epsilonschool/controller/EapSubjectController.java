@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class EapSubjectController {
 
     private EapSubjectService eapSubjectService;
@@ -20,7 +21,6 @@ public class EapSubjectController {
         this.userService = userService;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/eapsubject/add", method = RequestMethod.POST)
     public ResponseEntity addEapSubject(@RequestBody EapSubject eapSubject) {
         eapSubjectService.addEapSubject(eapSubject);
@@ -29,7 +29,6 @@ public class EapSubjectController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/eapsubject/get/{uid}")
     public List<EapSubject> getAllEapSubjects(@PathVariable String uid) {
         return eapSubjectService.getAllSubjectsByUserId(uid);

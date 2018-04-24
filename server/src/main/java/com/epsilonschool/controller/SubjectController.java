@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/subject")
 public class SubjectController {
 
     private SubjectService subjectService;
@@ -15,19 +17,17 @@ public class SubjectController {
         this.subjectService = subjectService;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/subject/get/{subjectId}", method = RequestMethod.POST)
+    @PostMapping("/get/{subjectId}")
     public Subject getSubject(@PathVariable String subjectId) {
         return subjectService.getById(subjectId);
     }
 
-    @RequestMapping(value = "/subjects", method = RequestMethod.POST)
+    @PostMapping("/all")
     public List<Subject> getSubjects() {
         return subjectService.getSubjects();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/subject/add", method = RequestMethod.POST)
+    @PostMapping("/add")
     public void addSubject(@RequestBody Subject subject) {
         subjectService.addSubject(subject);
     }

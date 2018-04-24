@@ -5,6 +5,8 @@ import com.epsilonschool.entity.Settings;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/settings")
 public class SettingsController {
 
     private SettingsService settingsService;
@@ -13,20 +15,17 @@ public class SettingsController {
         this.settingsService = settingsService;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/settings/save", method = RequestMethod.POST)
+    @PostMapping("/save")
     public void saveSettings(@RequestBody Settings settings) {
         this.settingsService.saveUserSettings(settings);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/settings/update", method = RequestMethod.POST)
+    @PostMapping("/update")
     public void updateSettings(@RequestBody Settings settings) {
         this.settingsService.updateUserSettings(settings);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/settings/load", method = RequestMethod.POST)
+    @PostMapping("/load")
     public Settings loadSettings(@RequestParam("uid") String uid) {
         return this.settingsService.loadUserSettings(uid);
     }
