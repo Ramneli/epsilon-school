@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/task")
 public class TaskController {
     private TaskService taskService;
 
@@ -14,32 +16,27 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/task/get/{subjectId}", method = RequestMethod.POST)
+    @PostMapping("/get/{subjectId}")
     public List<Task> getTask(@PathVariable String subjectId) {
         return taskService.getTask(subjectId);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/task/getAll", method = RequestMethod.POST)
+    @PostMapping("/getAll")
     public List<Task> getAllTasks() {
         return taskService.getAllTasks();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/task/add", method = RequestMethod.POST)
+    @PostMapping("/add")
     public boolean addTask(@RequestBody Task task) {
         return taskService.addTask(task);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/task/getAll/{subjectId}", method = RequestMethod.POST)
+    @PostMapping("/getAll/{subjectId}")
     public String getTasksForHomework(@PathVariable String subjectId, @RequestParam("filter") boolean limitOldTasks) {
         return taskService.getSubjectWithAllTasks(subjectId, limitOldTasks).toString();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/task/update", method = RequestMethod.POST)
+    @PostMapping("/update")
     public boolean updateTask(@RequestBody Task task) {
         return taskService.updateTask(task);
     }

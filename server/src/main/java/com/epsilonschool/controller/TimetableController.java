@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/timetable")
 public class TimetableController {
     private TimetableService timetableService;
     private UserService userService;
@@ -19,21 +21,17 @@ public class TimetableController {
         this.userService = userService;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/timetable/addTo", method = RequestMethod.POST)
+    @PostMapping("/addTo")
     public void addToTimetable(@RequestBody Timetable timetable) {
         timetableService.addToTimeTable(timetable);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/timetable/remove", method = RequestMethod.POST)
+    @PostMapping("/remove")
     public void removeFromTimetable(@RequestBody Timetable timetable) {
         timetableService.removeFromTimeTable(timetable);
     }
 
-
-    @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/timetable/get/{uid}", method = RequestMethod.POST)
+    @PostMapping("/get/{uid}")
     public List<Subject> getSubjectsFromTimetable(@PathVariable String uid) {
         return timetableService.getSubjects(uid);
     }
