@@ -1,14 +1,27 @@
-<div style="width:100%;">
-		<div style="width: 80%; margin: 0 auto">
+<div id="validation-form">
+</div>
+<form #createSubjectForm="ngForm" class="needs-validation" novalidate id="createSubjectForm">
+	<div style="width: 80%; margin: 0 auto">
+    <div>
 					<label for="subjectName">Aine nimi</label><br>
-					<input class="form-control" placeholder="Õppeaine nimetus" #userSubjectName id="subjectName" type="text" name="subjectName"><br>
-
+					<input class="form-control" placeholder="Õppeaine nimetus" #userSubjectName id="subjectName" type="text" name="subjectName" required>
+          <div class="invalid-feedback">
+            Palun sisesta aine nimi.
+          </div><br>
+    </div>
+    <div>
 					<label for="subjectCode">Ainekood</label><br>
-					<input class="form-control" placeholder="Õppeaine kood" #userSubjectCode id="subjectCode" type="text" name="subjectCode"><br>
-
+					<input class="form-control" placeholder="Õppeaine kood" #userSubjectCode id="subjectCode" type="text" name="subjectCode" required>
+          <div class="invalid-feedback">
+            Palun sisesta ainekood.
+          </div><br>
+    </div>
 					<label for="lecturerName">Õppejõud</label><br>
-					<input class="form-control" placeholder="Õppejõu nimi" #userLecturerName id="lecturerName" type="text" name="lecturerName" ><br>
-
+					<input class="form-control" placeholder="Õppejõu nimi" #userLecturerName id="lecturerName" type="text" name="lecturerName" required>
+          <div class="invalid-feedback">
+            Palun sisesta õppejõu nimi.
+          </div><br>
+    <div>
 					<label for="subjectID">Tunni tüüp</label><br>
 					<select class="form-control" style="width:100%" #userChoice id="subjectID">
 						<option>Loeng</option>
@@ -18,8 +31,8 @@
 						<option>Harjutus + Praktikum</option>
 						<option>Loeng + Harjutus + Praktikum</option>
 					</select>
-
+    </div>
 					<button class = "btn btn-primary" style="width:100%; margin-top: 20px;" type="submit" (click)="addSubjectToTimetable
-					(userSubjectName.value, userSubjectCode.value, userLecturerName.value, userChoice.value)" name="Loo Aine">Loo Uus Aine</button>
-			</div>
-		</div>
+          (userSubjectName.value, userSubjectCode.value, userLecturerName.value, userChoice.value, createSubjectForm)" name="Loo Aine">Loo Uus Aine</button>
+  </div>
+</form>
