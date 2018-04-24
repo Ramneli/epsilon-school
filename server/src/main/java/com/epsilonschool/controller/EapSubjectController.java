@@ -34,4 +34,12 @@ public class EapSubjectController {
     public List<EapSubject> getAllEapSubjects(@PathVariable String uid) {
         return eapSubjectService.getAllSubjectsByUserId(uid);
     }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/eapsubject/remove")
+    public void removeEapSubject(@RequestParam("id") String id, @RequestParam("uid") String uid) {
+        eapSubjectService.removeEapSubject(Integer.valueOf(id));
+        double weighedAverageGrade = eapSubjectService.calculateUserAverageGrade(uid);
+        userService.updateAverageGrade(uid, weighedAverageGrade);
+    }
 }

@@ -34,8 +34,13 @@ public class EapSubjectService {
             eapSum += eapSubject.getEap();
             weighedEap += eapSubject.getEap() * eapSubject.getGrade();
         }
+        if (eapSum == 0) return 0;
         BigDecimal roundedValue = BigDecimal.valueOf(weighedEap / eapSum);
         roundedValue = roundedValue.setScale(3, BigDecimal.ROUND_HALF_UP);
         return roundedValue.doubleValue();
+    }
+
+    public void removeEapSubject(int id) {
+        eapSubjectRepository.delete(id);
     }
 }

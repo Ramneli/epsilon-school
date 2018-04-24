@@ -32,6 +32,13 @@ export class SubjectService {
 		return this.http.post(eapSubjectPostUrl, "");
 	}
 
+	removeEapSubject(id) {
+		var userId = this.authService.getUserId();
+		const eapSubjectPostUrl = 'http://localhost:8080/eapsubject/remove?id='
+		+ String(id) + "&uid=" + userId;
+		return this.http.post(eapSubjectPostUrl, "");
+	}
+
 	getUserEapSubjects() {
 		const subjectsUrl = 'http://localhost:8080/eapsubject/get/' + this.authService.getUserId();
 		return this.http.post(subjectsUrl, "");

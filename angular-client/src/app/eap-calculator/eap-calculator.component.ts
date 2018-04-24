@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SubjectService } from '../subject-service/subject.service';
 import { AuthService } from '../auth-service/auth.service';
+import { Observable } from '../../../node_modules/rxjs/Observable';
+import '../../../node_modules/rxjs/add/observable/of';
 
 @Component({
   selector: 'app-eap-calculator',
@@ -23,7 +25,7 @@ export class EapCalculatorComponent implements OnInit {
         "eap"    : eapValue
       }
       this.subjectService.postEapSubject(eapSubject).subscribe(result => {
-		this.updateTable();
+				this.updateTable();
       });
     }
   }
@@ -47,29 +49,51 @@ export class EapCalculatorComponent implements OnInit {
 			if (headers[i] != "Aine") {
 				th.className += " columnCenteredText";
 			}
+
 			tr.appendChild(th);
 		}
+		let removeHeader = document.createElement("th");
+		removeHeader.className = "tasksTableHeader";
+		removeHeader.appendChild(document.createTextNode(""));
+		tr.appendChild(removeHeader);
+		
 
 		for (var i = 0; i < Object.keys(data).length; i++) {
 			var dataRow = table.insertRow();
-
 			var eapValue = document.createElement("td");
 			var grade = document.createElement("td");
+			var remove = document.createElement("td");
+
+			remove.className = "columnCenteredText"
 			eapValue.className = "columnCenteredText";
 			grade.className = "columnCenteredText";
-
 			eapValue.appendChild(document.createTextNode(data[i].eap));
 			grade.appendChild(document.createTextNode(data[i].grade));
+
+			var element = document.createElement("a");
+			element.setAttribute("style", "cursor:pointer; color: red");
+			element.appendChild(document.createTextNode("x"));
+			
+			remove.appendChild(element);
 
 			dataRow.insertCell().appendChild(document.createTextNode(data[i].name));
 			dataRow.appendChild(grade);
 			dataRow.appendChild(eapValue);
+			dataRow.appendChild(remove);
+
+			element.setAttribute("id", data[i].id);
 			table.appendChild(dataRow);
+
+			element.addEventListener('click', event=> {
+				this.subjectService.removeEapSubject(element.getAttribute("id")).subscribe(res => {
+					this.updateTable();
+				});
+				
+			});
+			this.loadAverageGrade();
 		}
 		eapSubjectDiv.appendChild(table);
-		this.loadAverageGrade();
 	});
-    
   }
 
   loadAverageGrade() {
@@ -80,17 +104,16 @@ export class EapCalculatorComponent implements OnInit {
 		gradeDiv = document.createElement("div");
 		gradeDiv.setAttribute("id", "gradeDiv");
 		var gradeParagraph = document.createElement("p");
-
+			
 		gradeParagraph.setAttribute("style", "display:inline; font-family: Helvetica");
 		gradeDiv.setAttribute("style", "text-align: right;");
 		gradeParagraph.appendChild(document.createTextNode("Kaalutud keskmine hinne: " + String(grade)));
 		gradeDiv.appendChild(gradeParagraph);
 		eapSubjectDiv.appendChild(gradeDiv);
-	  }); 
+		}); 
   }
 
   ngOnInit() {
     this.updateTable();
   }
-
 }

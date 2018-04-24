@@ -2,6 +2,7 @@ package com.epsilonschool.entity;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 
@@ -12,6 +13,7 @@ public class EapSubject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("id")
     private int id;
     @JsonProperty("user_id")
     private String userId;
