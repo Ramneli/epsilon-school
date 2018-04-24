@@ -86,6 +86,7 @@ export class ShowHomeworksComponent implements OnInit {
 		for (var i = 0; i < headers.length; i++) {
 			var cell = document.createElement("th");
 			cell.setAttribute("id", listWidth[i]);
+			cell.setAttribute("class", "tasksTableHeader");
 			cell.textContent = headers[i];
 			tableHeader.appendChild(cell);
 		}
@@ -105,13 +106,12 @@ export class ShowHomeworksComponent implements OnInit {
 			var header_deadline = tr.insertCell();
 			
 			var taskTypeNode = document.createElement("p");
-			taskTypeNode.setAttribute("style", "display: inline;")
 
 			if (tableData.tasks[i].task_type === "Kontrolltöö") {
-				taskTypeNode.setAttribute("style", "color: red;");
+				taskTypeNode.setAttribute("style", "color: red; display: inline;");
 				taskTypeNode.appendChild(document.createTextNode("Kontrolltöö: "));
 			} else {
-				taskTypeNode.setAttribute("style", "color: black;");
+				taskTypeNode.setAttribute("style", "color: black; display: inline;");
 				taskTypeNode.appendChild(document.createTextNode("Ülesanne: "));
 			}
 
@@ -131,9 +131,10 @@ export class ShowHomeworksComponent implements OnInit {
 	    if (!table) {
 		    table = document.createElement("Table");
 		    table.setAttribute("id", "homeworkTable");
-
+			table.setAttribute("class", "tasksTable");
 		    var tableHeader = document.createElement("tr");
-		    var cell_message = document.createElement("th");
+			var cell_message = document.createElement("th");
+			cell_message.setAttribute("class", "tasksTableHeader")
 		    var tableRow = document.createElement("tr");
 		    var cell_message_content = document.createElement("tr");
 
