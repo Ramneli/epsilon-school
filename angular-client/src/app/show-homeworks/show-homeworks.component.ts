@@ -72,6 +72,7 @@ export class ShowHomeworksComponent implements OnInit {
 			table = this.makeNewTable();
 		}
 		console.log(tableData);
+		table.setAttribute("class", "tasksTable")
 		this.populateTable(table, tableData);
 	}
 	

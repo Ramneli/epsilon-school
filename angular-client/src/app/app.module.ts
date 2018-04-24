@@ -25,6 +25,7 @@ import { TaskService } from './task-service/task.service';
 import { MessageService } from './message-service/message.service';
 import { SubjectService } from './subject-service/subject.service';
 import { UserService } from './user-service/user.service';
+import { NotificationService } from './notification-service/notification.service';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { AuthService } from './auth-service/auth.service';
@@ -76,6 +77,7 @@ export const firebaseConfig = {
     MessageService,
     SubjectService,
     UserService,
+    NotificationService,
     Title,
     DatePipe,
     AuthService,
