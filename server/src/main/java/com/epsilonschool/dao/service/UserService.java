@@ -26,4 +26,12 @@ public class UserService {
     public String getUserIdFromUid(String uid) {
         return userRepository.findByUid(uid).getId();
     }
+
+    public double getUserAverageGrade(String uid) {
+       return userRepository.findByUid(uid).getAverageGrade();
+    }
+
+    public void updateAverageGrade(String userId, double weighedAverageGrade) {
+        userRepository.updateAverageGrade(userId, weighedAverageGrade);
+    }
 }

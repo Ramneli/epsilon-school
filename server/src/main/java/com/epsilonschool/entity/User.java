@@ -1,5 +1,7 @@
 package com.epsilonschool.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +13,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String uid;
+
+    @JsonIgnore
+    private double averageGrade;
 
     public User() {}
 
@@ -28,5 +33,17 @@ public class User {
 
     public String getId() {
         return id;
+    }
+
+    public double getAverageGrade() {
+        return averageGrade;
+    }
+
+    public void setAverageGrade(double averageGrade) {
+        this.averageGrade = averageGrade;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

@@ -28,4 +28,9 @@ public class UserController {
         Optional<User> user = Optional.ofNullable(userService.getUserByUid(uid));
         return user.isPresent() || addUser(uid);
     }
+
+    @PostMapping("user/getgrade")
+    private double getUserAverageGrade(@RequestParam("uid") String uid) {
+        return userService.getUserAverageGrade(uid);
+    }
 }
