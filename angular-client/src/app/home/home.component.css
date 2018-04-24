@@ -1,0 +1,15 @@
+@media only screen and (max-width: 900px) {
+    img {
+        margin: 0 auto;
+        height: 200px;
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 901px) {
+    img {
+        margin: 0 auto;
+        height: 400px;
+        width: 100%;
+    }
+}
