@@ -5,7 +5,7 @@
           <div class="container">
             <form>
               <p style="font-family: Helvetica; display:inline;">Aine nimi</p>
-              <input #subjectName class="form-control" id="eapSubjectName" placeholder="Õppeaine nimetus"><br>
+              <input #subjectName class="form-control" id="eapSubjectName" autocomplete="off" placeholder="Õppeaine nimetus"><br>
               <p style="font-family: Helvetica; display:inline">Hinne</p>
               <select #subjectMark class="form-control" id="subjectMark">
                 <option>1</option>
@@ -15,7 +15,7 @@
                 <option>5</option>
               </select><br>
               <p style="font-family: Helvetica; display:inline">EAP</p>
-              <input #eapValue class="form-control" id="eapValue" placeholder="Ainepunktid"><br>
+              <input #eapValue class="form-control" id="eapValue" autocomplete="off" placeholder="Ainepunktid"><br>
               <div style="text-align: right"><button type="submit" style="width:20%" (click)="addSubjectToEapTable(subjectName.value, subjectMark.value, eapValue.value)" class="btn btn-primary">Lisa</button></div>
             </form>
           </div>
