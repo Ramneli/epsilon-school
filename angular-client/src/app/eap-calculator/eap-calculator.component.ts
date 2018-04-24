@@ -90,9 +90,10 @@ export class EapCalculatorComponent implements OnInit {
 				});
 				
 			});
-			this.loadAverageGrade();
+			
 		}
 		eapSubjectDiv.appendChild(table);
+		this.loadAverageGrade();
 	});
   }
 
