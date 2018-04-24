@@ -27,25 +27,31 @@ export class CreateSubjectComponent implements OnInit {
 			var objectsToValidate = document.getElementsByClassName("needs-validation");
 			objectsToValidate[0].className = "was-validated";
 		} else {
+
+			//var objectsToValidate = document.getElementsByClassName("was-validated");
+			//objectsToValidate[0].className = "needs-validation";
+
 			this.subjectService.createNewSubject(userData).subscribe();
-			this.displayMessage();
-			var x : HTMLFormElement;
-			x = <HTMLFormElement>document.getElementById("createSubjectForm");
-			x.reset();
+			this.displaySuccessAlert();
+
+			var subjectCreationForm : HTMLFormElement;
+		    subjectCreationForm = <HTMLFormElement>document.getElementById("createSubjectForm");
+			subjectCreationForm.reset();
 		}
 	}
 
-	displayMessage() {
+	displaySuccessAlert() {
 		var successMsgDiv = document.createElement('div');
 		successMsgDiv.setAttribute('id', "successMsgDiv");
-		successMsgDiv.setAttribute('style', 'height: 40px; background-color: #39ef54; border-radius: 3px;');
-		successMsgDiv.appendChild(document.createTextNode('Success'));
-		var div2 = document.getElementById('validation-form');
-		div2.appendChild(successMsgDiv);
-		this.timeout();
+		successMsgDiv.setAttribute("class", "alert alert-success");
+		successMsgDiv.appendChild(document.createTextNode('Aine edukalt loodud!'));
+
+		var validationFormDiv = document.getElementById('validation-form');
+		validationFormDiv.appendChild(successMsgDiv);
+		this.startAlertTimeout();
 	}
 
-	timeout() {
+	startAlertTimeout() {
 	    setTimeout(function () {
 	    	var successMsgDiv = document.getElementById('successMsgDiv');
 	    	successMsgDiv.parentNode.removeChild(successMsgDiv);
@@ -53,6 +59,6 @@ export class CreateSubjectComponent implements OnInit {
 	  } 
 
 	ngOnInit() {
-    	console.log(this.authService.getUserId());
+    	
 	}
 }
