@@ -2,6 +2,8 @@ package com.epsilonschool.dao.service;
 
 import com.epsilonschool.dao.repository.EapSubjectRepository;
 import com.epsilonschool.entity.EapSubject;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +19,14 @@ public class EapSubjectService {
         this.eapSubjectRepository = eapSubjectRepository;
     }
 
-    public void addEapSubject(EapSubject eapSubject) {
-        this.eapSubjectRepository.save(eapSubject);
+    public ResponseEntity addEapSubject(EapSubject eapSubject) {
+        try {
+            this.eapSubjectRepository.save(eapSubject);
+            return ResponseEntity.ok(HttpStatus.OK);
+        } catch (DataIntegrityViolationException e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.badRequest().body("Invalid data.");
+        }
     }
 
 
