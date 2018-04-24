@@ -223,6 +223,10 @@ table td {
 	font-family: Helvetica;
 }
 
+.columnCenteredText {
+	text-align: center;
+}
+
 .jumbotron {
 	background-color: #f4f4f4;
 }
@@ -258,8 +262,10 @@ table td {
 	display: inline-block;
 	width: 40px;
 	height: 24px;
-  }
+}
   
+
+
   .switch input {display:none;}
   
   .slider {

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SubjectService } from '../subject-service/subject.service';
+import { AuthService } from '../auth-service/auth.service';
 
 @Component({
   selector: 'app-eap-calculator',
@@ -7,17 +9,88 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EapCalculatorComponent implements OnInit {
 
-  constructor() { }
+  constructor(private subjectService : SubjectService,
+              private authService : AuthService) { }
 
-  addSubjectToEapTable(subjectName, subjectMark, eapValue) {
-    if (subjectName == "" || subjectMark == "" || isNaN(parseInt(eapValue))) {
+  addSubjectToEapTable(subjectName, grade, eapValue) {
+    if (subjectName == "" || grade == "" || isNaN(parseInt(eapValue))) {
       alert("Viga lähteandmetes.");
     } else {
-    alert("TODO (send to server): " + subjectName + " " + subjectMark + " " + eapValue);
+      let eapSubject = {
+        "user_id": this.authService.getUserId(),
+        "name"   : subjectName,
+        "grade"  : grade,
+        "eap"    : eapValue
+      }
+      this.subjectService.postEapSubject(eapSubject).subscribe(result => {
+		this.updateTable();
+      });
     }
   }
 
+  updateTable() {
+	var table : HTMLTableElement = <HTMLTableElement> document.getElementById("tasksTable");
+	if (table) table.parentNode.removeChild(table);
+
+	var eapSubjects = this.subjectService.getUserEapSubjects().subscribe(data => {
+		var eapSubjectDiv = document.getElementById("eapSubjectsDiv");
+		var headers = ["Aine", "Hinne", "EAP"];
+		table = <HTMLTableElement> document.createElement("Table");
+		table.classList.add("tasksTable");
+		table.setAttribute("id", "tasksTable");
+
+		var tr = table.insertRow();
+		for (var i = 0; i < 3; i++) {
+			let th = document.createElement("th");
+			th.className = "tasksTableHeader";
+			th.appendChild(document.createTextNode(headers[i]));
+			if (headers[i] != "Aine") {
+				th.className += " columnCenteredText";
+			}
+			tr.appendChild(th);
+		}
+
+		for (var i = 0; i < Object.keys(data).length; i++) {
+			var dataRow = table.insertRow();
+
+			var eapValue = document.createElement("td");
+			var grade = document.createElement("td");
+			eapValue.className = "columnCenteredText";
+			grade.className = "columnCenteredText";
+
+			eapValue.appendChild(document.createTextNode(data[i].eap));
+			grade.appendChild(document.createTextNode(data[i].grade));
+
+			dataRow.insertCell().appendChild(document.createTextNode(data[i].name));
+			dataRow.appendChild(grade);
+			dataRow.appendChild(eapValue);
+			table.appendChild(dataRow);
+		}
+		eapSubjectDiv.appendChild(table);
+		this.loadAverageGrade();
+	});
+    
+  }
+
+  loadAverageGrade() {
+	  this.subjectService.getAverageGrade().subscribe(grade => {
+		var eapSubjectDiv = document.getElementById("eapSubjectsDiv");
+		var gradeDiv = document.getElementById("gradeDiv");
+		if (gradeDiv) gradeDiv.parentNode.removeChild(gradeDiv);
+		gradeDiv = document.createElement("div");
+		gradeDiv.setAttribute("id", "gradeDiv");
+		var gradeParagraph = document.createElement("p");
+
+		gradeParagraph.setAttribute("style", "display:inline; font-family: Helvetica");
+		gradeDiv.setAttribute("style", "text-align: right;");
+		gradeParagraph.appendChild(document.createTextNode("Kaalutud keskmine hinne: " + String(grade)));
+		gradeDiv.appendChild(gradeParagraph);
+		eapSubjectDiv.appendChild(gradeDiv);
+	  }); 
+  }
+
   ngOnInit() {
+    this.updateTable();
   }
 
 }

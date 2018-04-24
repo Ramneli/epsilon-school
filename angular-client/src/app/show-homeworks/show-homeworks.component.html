@@ -1,9 +1,9 @@
 
-<div *ngIf="!isAuthenticated()" id="notSignedIn">
-		<h1>Ülesannete nägemiseks peate sisse logima.</h1>
+<div id="notSignedIn">
+	<h1 *ngIf="!isAuthenticated() else homeworks">Ülesannete nägemiseks peate sisse logima.</h1>
 </div>
-
-<div *ngIf="isAuthenticated()" class="container-fluid h-100">
+<ng-template #homeworks>
+<div class="container-fluid h-100">
 	<div class="row no-gutters h-100">
 		<div class="col-lg-2">
 			<div class="h-100 d-inline-block">
@@ -29,9 +29,10 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-10">
+		<div class="col-lg-10" style="background-color: #f4f4f4">
 			<router-outlet></router-outlet>
 			
 		</div>
 	</div>
 </div>
+</ng-template>
