@@ -35,7 +35,7 @@ export class AddSubjectComponent implements OnInit {
       subject_id: subjectId
     };
     this.subjectService.addSubjectToTimetable(userData).subscribe();
-    alert("Aine tunniplaani lisatud.");
+    this.displaySuccessAlert();
   }
 
   	pushAllSubjectsToLists(allSubjects) {
@@ -52,6 +52,24 @@ export class AddSubjectComponent implements OnInit {
 
     isAuthenticated() {
         return this.authService.getAuth();
+    }
+
+    displaySuccessAlert() {
+        var successMsgDiv = document.createElement('div');
+        successMsgDiv.setAttribute('id', "successMsgDiv");
+        successMsgDiv.setAttribute("class", "alert alert-success");
+        successMsgDiv.appendChild(document.createTextNode('Aine tunniplaani lisatud.'));
+
+        var validationFormDiv = document.getElementById('validation-form');
+        validationFormDiv.appendChild(successMsgDiv);
+        this.startAlertTimeout();
+    }
+
+    startAlertTimeout() {
+        setTimeout(function () {
+            var successMsgDiv = document.getElementById('successMsgDiv');
+            successMsgDiv.parentNode.removeChild(successMsgDiv);
+        }, 3000);
     }
 
     ngOnInit() {

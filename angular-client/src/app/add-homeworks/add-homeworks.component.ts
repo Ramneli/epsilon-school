@@ -108,7 +108,7 @@ export class AddHomeworksComponent implements OnInit {
         var successMsgDiv = document.createElement('div');
         successMsgDiv.setAttribute('id', "successMsgDiv");
         successMsgDiv.setAttribute("class", "alert alert-success");
-        successMsgDiv.appendChild(document.createTextNode('Aine edukalt loodud!'));
+        successMsgDiv.appendChild(document.createTextNode('Kodune ülesanne lisatud.'));
 
         var validationFormDiv = document.getElementById('validation-form');
         validationFormDiv.appendChild(successMsgDiv);
