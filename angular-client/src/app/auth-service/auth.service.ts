@@ -18,6 +18,7 @@ export class AuthService {
     return this.af.auth.signInWithPopup(provider).then(success => {
       this.isLoggedIn = true;
       this.userId = success.user.uid;
+      console.log(success.user.getIdToken());
     });
   }
 

@@ -63,7 +63,8 @@ export class AddHomeworksComponent implements OnInit {
             subject_id: userSubjectID,
             description: userDescription,
             deadline: this.userDeadline,
-            type: taskType
+            type: taskType,
+            author: this.getUser()
         }
         
         if (userDescription.length == 0 || this.userDeadline == null) {
@@ -127,6 +128,10 @@ export class AddHomeworksComponent implements OnInit {
 
     checkIfUserExists() {
         return this.taskService.checkIfUserExists(this.userId).subscribe();
+    }
+
+    getUser() {
+        return this.authService.getUserId();
     }
 
     ngOnInit() {
