@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/eapsubject")
 public class EapSubjectController {
 
     private EapSubjectService eapSubjectService;
@@ -23,7 +24,7 @@ public class EapSubjectController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/eapsubject/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ResponseEntity addEapSubject(@RequestBody EapSubject eapSubject) {
         ResponseEntity response = eapSubjectService.addEapSubject(eapSubject);
         double weighedAverageGrade = eapSubjectService.calculateUserAverageGrade(eapSubject.getUserId());
@@ -31,13 +32,13 @@ public class EapSubjectController {
         return response;
     }
 
-    @PostMapping("/eapsubject/get/{uid}")
+    @PostMapping("/get/{uid}")
     public List<EapSubject> getAllEapSubjects(@PathVariable String uid) {
         return eapSubjectService.getAllSubjectsByUserId(uid);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping("/eapsubject/remove")
+    @PostMapping("/remove")
     public void removeEapSubject(@RequestParam("id") String id, @RequestParam("uid") String uid) {
         eapSubjectService.removeEapSubject(Integer.valueOf(id));
         double weighedAverageGrade = eapSubjectService.calculateUserAverageGrade(uid);
