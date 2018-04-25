@@ -1,9 +1,16 @@
 <div class="jumbotron">
     <div id="alert"></div>
     <h3>Seaded</h3>
+
+        <!--<div *ngIf="!settingsLoaded">
+            <div style="text-align: center; line-height: 100px; vertical-align: middle;">
+                <fa name="cog" animation="spin" size="5x"></fa>
+            </div>
+        </div>-->
+        
+    <div>
     
       <div class="row">
-          
               <div class="col sm-10">
                   <p style="display: inline; font-family: Helvetica; font-size:14px;">
                     Näita tähtaegu ületanud koduseid ülesandeid   
@@ -12,13 +19,14 @@
           
             <div class="col sm-2" style="text-align:right;">
                 <label class="switch">
-                    <input type="checkbox">
+                    <input #deadline type="checkbox" id="oldTasks">
                     <span class="slider round"></span>
                 </label>
             </div>
-    </div>
-    <div style="text-align: center;" >
-        <button (click)="displaySuccessAlert()" class="btn btn-primary">Salvesta</button>
-    </div>
+        </div>
 
+        <div style="text-align: center;" >
+                <button (click)="saveSettings(deadline)" class="btn btn-primary">Salvesta</button>
+        </div>
+    </div>
   </div>

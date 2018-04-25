@@ -22,11 +22,13 @@ public class SettingsController {
 
     @PostMapping("/update")
     public void updateSettings(@RequestBody Settings settings) {
+        System.out.println("Updating settings...");
         this.settingsService.updateUserSettings(settings);
     }
 
     @PostMapping("/load")
     public Settings loadSettings(@RequestParam("uid") String uid) {
+        System.out.println("Loading...");
         return this.settingsService.loadUserSettings(uid);
     }
 }

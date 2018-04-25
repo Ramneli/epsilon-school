@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SettingsService } from '../settings-service/settings.service';
 
 @Component({
   selector: 'app-settings',
@@ -7,8 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor() { }
+	settingsLoaded : boolean = false;
 
+  constructor(private settingsService : SettingsService) {
+	 }
+
+
+	saveSettings(deadline) {
+		var showOldTasks = 0;
+		if (deadline.checked) showOldTasks = 1;
+		this.settingsService.saveSettings(String(showOldTasks)).subscribe(res => {
+			this.displaySuccessAlert();
+		});
+	}
+
+	loadSettings() {
+		
+	}
 
   displaySuccessAlert() {
     var successAlert = document.createElement("div");
@@ -29,6 +45,16 @@ export class SettingsComponent implements OnInit {
 	}
 
   ngOnInit() {
+			this.settingsService.loadSettings().subscribe(data => {
+				var showOldTasks : boolean = false;
+				var settings = JSON.parse(JSON.stringify(data));
+				if(settings.oldTasks == 1) showOldTasks = true;
+				var oldTasksSetting : HTMLInputElement;
+					console.log("hi!");
+					oldTasksSetting = <HTMLInputElement> document.getElementById("oldTasks");
+					oldTasksSetting.checked = showOldTasks;
+					this.settingsLoaded = true;				
+			});
   }
 
 }

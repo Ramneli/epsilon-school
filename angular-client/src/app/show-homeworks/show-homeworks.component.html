@@ -12,7 +12,7 @@
 		<div class="col-lg-2">
 			<div class="h-100 d-inline-block">
 				<div class="sidebar">
-					<div *ngIf="isAuthenticated() else test" class="list-group">
+					<div class="list-group">
 						<a 
 							routerLink="/homeworks"
 							class="dynamicSidebar subject"
@@ -29,11 +29,6 @@
 						<a routerLink="" (click)="logout()" class="staticSidebar option"><fa name="sign-out"></fa>Logi välja</a>
 						
 					</div>
-
-					<ng-template #test>
-							<h1>Oodake...</h1>
-					</ng-template>
-
 				</div>
 			</div>
 		</div>

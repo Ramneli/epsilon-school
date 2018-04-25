@@ -1,7 +1,8 @@
 <div>
-  <div id="validation-form" style="width:100%; margin: 0 auto"></div>
+  <div id="validation-form" style="width:80%; margin: 0 auto"></div>
 </div>
-
+<div style="width:100%;">
+	<div style="width: 80%; margin: 0 auto">
 		<form  #addTaskForm="ngForm" class="needs-validation" novalidate id="addTaskForm">
 			<div>
 				<label for="subjectID">Vali aine</label><br>
@@ -39,4 +40,5 @@
 
 			<button class="btn btn-primary" type="submit" style="margin-top: 20px; width: 100%;" (click)="addHomework(userSubjectID[userSubjectID.selectedIndex].id, userDescription.value, userDeadline.value, taskTypeChoice.value)">Lisa Kodune Ülesanne</button>
 		</form>
-
+</div>
+</div>

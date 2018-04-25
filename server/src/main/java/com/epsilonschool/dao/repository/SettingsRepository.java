@@ -12,7 +12,7 @@ public interface SettingsRepository extends CrudRepository<Settings, String> {
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE TABLE settings SET old_tasks=?2 WHERE uid=?1", nativeQuery = true)
+    @Query(value = "UPDATE settings SET old_tasks=?2 WHERE uid=?1", nativeQuery = true)
     void updateSettings(String uid, char oldTasks);
 
     Settings findByUid(String uid);

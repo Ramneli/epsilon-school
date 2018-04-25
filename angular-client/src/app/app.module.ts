@@ -33,6 +33,7 @@ import { AuthGuardService } from './auth-guard/auth-guard.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
 import { HomeComponent } from './home/home.component';
+import { SettingsService } from './settings-service/settings.service';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyD98RBDQEBAKyyxGv2oZ1-oKECwBU5NUew",
@@ -82,7 +83,8 @@ export const firebaseConfig = {
     DatePipe,
     AuthService,
     AngularFireAuth,
-    AuthGuardService
+    AuthGuardService,
+    SettingsService
     ],
   bootstrap: [AppComponent]
 })
