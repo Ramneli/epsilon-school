@@ -24,7 +24,8 @@ const routes: Routes = [
 		] },
 	{ path: 'addhomeworks', component: AddHomeworksComponent, canActivate: [AuthGuardService] },
 	{ path: 'createsubject', component: CreateSubjectComponent, canActivate: [AuthGuardService] },
-	{ path: 'addsubject', component: AddSubjectComponent, canActivate: [AuthGuardService] }
+	{ path: 'addsubject', component: AddSubjectComponent, canActivate: [AuthGuardService] },
+	{ path: '**', component: HomeComponent}
 ];
 
 @NgModule({
