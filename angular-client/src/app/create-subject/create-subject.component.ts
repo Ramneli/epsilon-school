@@ -12,7 +12,7 @@ export class CreateSubjectComponent implements OnInit {
 
   	constructor(private subjectService: SubjectService, private authService : AuthService) { }
 
-	addSubjectToTimetable(userSubjectName, userSubjectCode, userLecturerName, userChoice, createSubjectForm) {
+	addSubjectToTimetable(userSubjectName, userSubjectCode, userLecturerName, userChoice) {
 		let userData = {
 			name: userSubjectName,
 			code: userSubjectCode,
@@ -25,7 +25,7 @@ export class CreateSubjectComponent implements OnInit {
 		
 		if (userSubjectName.length == 0 || userSubjectCode.length == 0 || userLecturerName.length == 0) {
 			var objectsToValidate = document.getElementsByClassName("needs-validation");
-			objectsToValidate[0].className = "was-validated";
+			objectsToValidate[objectsToValidate.length - 1].className = "was-validated";
 		} else {
 
 			//var objectsToValidate = document.getElementsByClassName("was-validated");
@@ -33,12 +33,17 @@ export class CreateSubjectComponent implements OnInit {
 
 			this.subjectService.createNewSubject(userData).subscribe();
 			this.displaySuccessAlert();
-
-			var subjectCreationForm : HTMLFormElement;
-		    subjectCreationForm = <HTMLFormElement>document.getElementById("createSubjectForm");
-			subjectCreationForm.reset();
+			this.resetPageForm();
 		}
 	}
+
+	resetPageForm() {
+        var subjectCreationForm : HTMLFormElement;
+        subjectCreationForm = <HTMLFormElement>document.getElementById("createSubjectForm");
+        subjectCreationForm.reset();
+        var objectsNeedToValidate = document.getElementsByClassName("was-validated");
+        objectsNeedToValidate[0].className = "needs-validation";
+    }
 
 	displaySuccessAlert() {
 		var successMsgDiv = document.createElement('div');

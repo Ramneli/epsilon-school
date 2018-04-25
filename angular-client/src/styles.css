@@ -307,3 +307,10 @@ table td {
   .slider.round:before {
 	border-radius: 50%;
   }
+
+  .errorMessageAlert {
+	color: #DC3545;
+	font-family: "Segoe UI", "Roboto", "Helvetica Neue", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+	font-size: 11px;
+	margin-top: 3px;
+}

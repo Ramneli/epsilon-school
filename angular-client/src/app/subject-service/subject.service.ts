@@ -45,7 +45,7 @@ export class SubjectService {
 	}
 
 	getAllSubjects() {
-		const subjectsUrl = 'http://localhost:8080/subjects';
+		const subjectsUrl = 'http://localhost:8080/subject/all';
 		return this.http.post(subjectsUrl, "");
 	}
 
