@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { SubjectService } from '../subject-service/subject.service';
 import { TaskService } from '../task-service/task.service';
 import { AuthService } from '../auth-service/auth.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-subject',
@@ -14,7 +14,9 @@ export class AddSubjectComponent implements OnInit {
 
   constructor(private subjectService: SubjectService,
               private taskService: TaskService,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private router : Router
+              ) { }
 
   allSubjectNames = [];
   allSubjectIds = [];
@@ -34,7 +36,11 @@ export class AddSubjectComponent implements OnInit {
       uid: this.userId,
       subject_id: subjectId
     };
-    this.subjectService.addSubjectToTimetable(userData).subscribe();
+    this.subjectService.addSubjectToTimetable(userData).subscribe(d => {
+        this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+            this.router.navigate(['/homeworks']);
+        });
+    });
     this.displaySuccessAlert();
   }
 
@@ -76,7 +82,6 @@ export class AddSubjectComponent implements OnInit {
         if (this.isAuthenticated()) {
             this.userId = this.authService.getUserId();
             var checkUser = this.checkIfUserExists();
-            console.log(this.userId);
             this.getAllSubjects();
         }
     }
