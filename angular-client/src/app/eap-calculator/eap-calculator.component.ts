@@ -16,7 +16,8 @@ export class EapCalculatorComponent implements OnInit {
 
   addSubjectToEapTable(subjectName, grade, eapValue) {
     if (subjectName == "" || grade == "" || isNaN(parseInt(eapValue))) {
-      alert("Viga lähteandmetes.");
+      	var objectsToValidate = document.getElementsByClassName("needs-validation");
+		objectsToValidate[objectsToValidate.length - 1].className = "was-validated";
     } else {
       let eapSubject = {
         "user_id": this.authService.getUserId(),

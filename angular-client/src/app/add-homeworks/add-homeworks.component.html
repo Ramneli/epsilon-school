@@ -1,28 +1,42 @@
-<div style="width:100%;">
-		<div style="width: 80%; margin: 0 auto">
-			<form id="addTask">
+<div>
+  <div id="validation-form" style="width:80%; margin: 0 auto"></div>
+</div>
 
+		<form  #addTaskForm="ngForm" class="needs-validation" novalidate id="addTaskForm">
+			<div>
 				<label for="subjectID">Vali aine</label><br>
-				<select class="form-control" #userSubjectID id="subjectID">
+				<select class="form-control" #userSubjectID id="subjectID" required>
 					<option *ngFor="let subjectName of allSubjectNames" id={{allSubjectIds[allSubjectNames.indexOf(subjectName)]}}>{{subjectName}}</option>
 				</select>
-				
-				<mat-form-field style="width:100%">
+			</div>
+			
+			<div>
+				<mat-form-field id="datepickerNotTouched">
 					<input matInput [matDatepicker]="userDeadline" placeholder="Vali tähtaeg" disabled
-					(dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+					(dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)" >
 					<mat-datepicker-toggle matSuffix [for]="userDeadline"></mat-datepicker-toggle>
 					<mat-datepicker #userDeadline disabled="false"></mat-datepicker>
-				</mat-form-field><br>
+				</mat-form-field>
+				<div id="error-message">
+		     
+		        </div><br>
+			</div>
 
+			<div>
 				<label for="description">Ülesande kirjeldus</label><br>
-				<textarea class="form-control" style="width:100%" #userDescription rows="6" id="description" type="text" name="description"></textarea><br>
+				<textarea class="form-control" style="width:100%" #userDescription rows="6" id="description" type="text" name="description" required></textarea>
+				<div class="invalid-feedback">
+				    Palun sisesta ülesande kirjeldus.
+				</div><br>
+			</div>
 
+			<div>
 				<label for="taskID">Ülesande tüüp</label><br>
-				<select class="form-control" #taskTypeChoice id="taskID">
+				<select class="form-control" #taskTypeChoice id="taskID" required>
 					<option *ngFor="let taskType of taskTypes">{{ taskType }}</option>
 				</select>
+			</div>
 
-				<button class="btn btn-primary" type="submit" style="margin-top: 20px; width: 100%;" (click)="addHomework(userSubjectID[userSubjectID.selectedIndex].id, userDescription.value, userDeadline.value, taskTypeChoice.value)">Lisa Kodune Ülesanne</button>
-			</form>
-	</div>
-</div>
+			<button class="btn btn-primary" type="submit" style="margin-top: 20px; width: 100%;" (click)="addHomework(userSubjectID[userSubjectID.selectedIndex].id, userDescription.value, userDeadline.value, taskTypeChoice.value)">Lisa Kodune Ülesanne</button>
+		</form>
+

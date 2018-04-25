@@ -48,6 +48,14 @@ export class AddHomeworksComponent implements OnInit {
 
     addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
         this.userDeadline = `${event.value}`;
+        var datepicker = document.getElementById("datepickerNothingSelected");
+        //datepicker.id = "datepickerNotTouched";
+        datepicker.id = "datepickerCorrect";
+        var errorMessage = document.getElementById("error-message");
+        while (errorMessage.firstChild) {
+            errorMessage.removeChild(errorMessage.firstChild);
+        }
+
     }
 
     addHomework(userSubjectID, userDescription, none, taskType) {
@@ -57,17 +65,60 @@ export class AddHomeworksComponent implements OnInit {
             deadline: this.userDeadline,
             type: taskType
         }
-        console.log("SIIN ON TASK TYPE:");
-        console.log(taskType);
-        console.log(none);
-
-        this.taskService.addHomework(userData)
-        	.subscribe(queryResult => {
+        
+        if (userDescription.length == 0 || this.userDeadline == null) {
+            if (this.userDeadline == null) {
+                var datepicker = document.getElementById("datepickerNotTouched");
+                datepicker.id = "datepickerNothingSelected";
+                var errorMessageDiv = document.createElement('div');
+                errorMessageDiv.setAttribute('id', "errorMessageDiv");
+                errorMessageDiv.setAttribute('class', "errorMessageAlert")
+                errorMessageDiv.appendChild(document.createTextNode('Palun vali tähtaeg.'));
+                var x = document.getElementById("error-message");
+                x.appendChild(errorMessageDiv);
+            }
+            var objectsToValidate = document.getElementsByClassName("needs-validation");
+            objectsToValidate[objectsToValidate.length - 1].className = "was-validated";
+        } else {
+            this.taskService.addHomework(userData)
+            .subscribe(queryResult => {
+            console.log(queryResult);
+            
             if (!queryResult) {
-            	alert('Please check your inputs!');
+
             }
         });
-        alert("Kodune ülesanne lisatud.");
+        this.displaySuccessAlert();
+
+        this.resetPageForm();
+        
+        }
+    }
+
+    resetPageForm() {
+        var subjectCreationForm : HTMLFormElement;
+        subjectCreationForm = <HTMLFormElement>document.getElementById("addTaskForm");
+        subjectCreationForm.reset();
+        var objectsNeedToValidate = document.getElementsByClassName("was-validated");
+        objectsNeedToValidate[0].className = "needs-validation";
+    }
+
+    displaySuccessAlert() {
+        var successMsgDiv = document.createElement('div');
+        successMsgDiv.setAttribute('id', "successMsgDiv");
+        successMsgDiv.setAttribute("class", "alert alert-success");
+        successMsgDiv.appendChild(document.createTextNode('Aine edukalt loodud!'));
+
+        var validationFormDiv = document.getElementById('validation-form');
+        validationFormDiv.appendChild(successMsgDiv);
+        this.startAlertTimeout();
+    }
+
+    startAlertTimeout() {
+        setTimeout(function () {
+            var successMsgDiv = document.getElementById('successMsgDiv');
+            successMsgDiv.parentNode.removeChild(successMsgDiv);
+        }, 3000);
     }
 
     isAuthenticated() {
