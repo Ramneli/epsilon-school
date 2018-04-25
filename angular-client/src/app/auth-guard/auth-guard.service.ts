@@ -10,7 +10,6 @@ export class AuthGuardService implements CanActivate {
   constructor(public auth: AuthService, public router: Router) {}
 
   canActivate(): Observable<boolean> {
-    console.log("Authenticated: " + this.auth.getAuth());
     return this.auth.getAuth() ? Observable.of(true) : Observable.of(false);
   }
 }

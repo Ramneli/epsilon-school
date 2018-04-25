@@ -31,7 +31,6 @@ export class ShowHomeworksComponent implements OnInit {
 				private router: Router,
 				private dialog: MatDialog) {
 					this.subjectsLoaded = false;
-					console.log(this.userId);
 					this.taskService.getSubjects(this.userId)
 	        			.subscribe(subjects => {
 						this.getHomeworkNamesAndIDs(subjects);

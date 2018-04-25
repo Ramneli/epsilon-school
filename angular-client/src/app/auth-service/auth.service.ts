@@ -22,13 +22,8 @@ export class AuthService {
     return this.af.auth.signInWithPopup(provider).then(success => {
       this.isLoggedIn = true;
       this.userId = success.user.uid;
-<<<<<<< HEAD
       this.user = this.af.auth.currentUser;
-      var token = this.af.auth.currentUser.getIdToken();
       localStorage.setItem("token", this.user.uid);
-=======
-      console.log(success.user.getIdToken());
->>>>>>> 90d87a14f74243b6ed56dc8f92cefb05efca2104
     });
   }
 
