@@ -56,7 +56,7 @@ export class CreateSubjectComponent implements OnInit {
 	    	var successMsgDiv = document.getElementById('successMsgDiv');
 	    	successMsgDiv.parentNode.removeChild(successMsgDiv);
 	    }, 3000);
-	  } 
+	} 
 
 	ngOnInit() {
     	

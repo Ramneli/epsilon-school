@@ -9,12 +9,8 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angul
 export class AuthGuardService implements CanActivate {
   constructor(public auth: AuthService, public router: Router) {}
 
-  canActivate(): boolean {
-    //console.log(this.auth);
-    if (this.auth.getAuth() == true) {
-      return true;
-    }
-    this.router.navigate(['/']);
-    return false;
+  canActivate(): Observable<boolean> {
+    console.log("Authenticated: " + this.auth.getAuth());
+    return this.auth.getAuth() ? Observable.of(true) : Observable.of(false);
   }
 }

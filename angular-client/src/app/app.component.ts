@@ -34,7 +34,6 @@ export class AppComponent {
 					this.authService.setUserId("");
           this.isLoggedIn = false;
         } else {
-          console.log(auth);
           this.authService.setLoginStatus(true);
 					this.authService.setUserId(auth.uid);
           this.isLoggedIn = true;

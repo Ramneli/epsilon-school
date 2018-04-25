@@ -1,15 +1,18 @@
 
-<div id="notSignedIn">
-	<h1 *ngIf="!isAuthenticated() else homeworks">Ülesannete nägemiseks peate sisse logima.</h1>
+
+<div *ngIf="!isAuthenticated() else homeworks">
+	<div style="text-align: center; vertical-align: middle; line-height: 500px">
+		<fa name="cog" animation="spin" size="5x"></fa>
+	</div>
 </div>
+
 <ng-template #homeworks>
 <div class="container-fluid h-100">
 	<div class="row no-gutters h-100">
 		<div class="col-lg-2">
 			<div class="h-100 d-inline-block">
 				<div class="sidebar">
-					<div class="list-group">
-	
+					<div *ngIf="isAuthenticated() else test" class="list-group">
 						<a 
 							routerLink="/homeworks"
 							class="dynamicSidebar subject"
@@ -26,6 +29,11 @@
 						<a routerLink="" (click)="logout()" class="staticSidebar option"><fa name="sign-out"></fa>Logi välja</a>
 						
 					</div>
+
+					<ng-template #test>
+							<h1>Oodake...</h1>
+					</ng-template>
+
 				</div>
 			</div>
 		</div>

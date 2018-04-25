@@ -17,18 +17,27 @@ import { AddSubjectComponent } from '../add-subject/add-subject.component';
 
 export class ShowHomeworksComponent implements OnInit {
 
-	constructor(private taskService: TaskService,
-				private authService : AuthService, 
-				private subjectService: SubjectService,
-				private router: Router,
-				private dialog: MatDialog) {}
-
 	subjectIDs = [];
 	subjects = [];
 	private userId:string;
 	public showOldTasks = false;
 	public currentSubjectId = -1;
+	subjectsLoaded: boolean;
 	tasksButtonText = "Näita vanemaid ülesandeid.";
+
+	constructor(private taskService: TaskService,
+				private authService : AuthService, 
+				private subjectService: SubjectService,
+				private router: Router,
+				private dialog: MatDialog) {
+					this.subjectsLoaded = false;
+					console.log(this.userId);
+					this.taskService.getSubjects(this.userId)
+	        			.subscribe(subjects => {
+						this.getHomeworkNamesAndIDs(subjects);
+					});
+				}
+
 
 	isAuthenticated() {
 	    return this.authService.getAuth();
@@ -63,7 +72,8 @@ export class ShowHomeworksComponent implements OnInit {
 	    for (let i = 0; i < subjects.length; i++) {
 	        this.subjects.push(subjects[i].name);
 	        this.subjectIDs.push(subjects[i].id)
-	    }
+		}
+		this.subjectsLoaded = true;
 	}
 
     createTable(tableData) {
@@ -177,6 +187,7 @@ export class ShowHomeworksComponent implements OnInit {
 	
 	logout() {
 		this.authService.logout();
+		localStorage.removeItem("token");
 		this.router.navigate(['/']);
 	}
 
@@ -192,7 +203,6 @@ export class ShowHomeworksComponent implements OnInit {
 		if (this.isAuthenticated()) {
 			this.userId = this.authService.getUserId();
 			var checkUser = this.checkIfUserExists();
-			console.log(this.userId);
 			this.getSubjects();
 		}
   	}

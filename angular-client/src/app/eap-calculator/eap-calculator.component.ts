@@ -3,6 +3,7 @@ import { SubjectService } from '../subject-service/subject.service';
 import { AuthService } from '../auth-service/auth.service';
 import { Observable } from '../../../node_modules/rxjs/Observable';
 import '../../../node_modules/rxjs/add/observable/of';
+import '../../../node_modules/rxjs/add/observable/forkJoin';
 
 @Component({
   selector: 'app-eap-calculator',
@@ -33,6 +34,15 @@ export class EapCalculatorComponent implements OnInit {
   updateTable() {
 	var table : HTMLTableElement = <HTMLTableElement> document.getElementById("tasksTable");
 	if (table) table.parentNode.removeChild(table);
+
+	const combined = Observable.forkJoin(
+		this.subjectService.getUserEapSubjects(),
+		this.subjectService.getAverageGrade()
+	);
+	
+	combined.subscribe(data => {
+		console.log(data);
+	});
 
 	var eapSubjects = this.subjectService.getUserEapSubjects().subscribe(data => {
 		var eapSubjectDiv = document.getElementById("eapSubjectsDiv");
