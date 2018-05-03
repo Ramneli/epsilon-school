@@ -91,4 +91,9 @@ public class TaskService {
         taskRepository.updateTask(task.getDescription(), task.getTaskId(), task.getAuthor(), task.getDeadline());
         return true;
     }
+
+    public boolean deleteTask(Task task) {
+        taskRepository.deleteTask(task.getTaskId(), task.getAuthor());
+        return true;
+    }
 }
