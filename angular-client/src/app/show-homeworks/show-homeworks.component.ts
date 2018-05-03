@@ -222,7 +222,7 @@ export class ShowHomeworksComponent implements OnInit {
 	openAddSubjectToTimetableDialog(): void {
     let dialogRef = this.dialog.open(AddSubjectComponent, {
       width: '600px',
-      height: '200px'
+      height: '250px'
     });
   }
 

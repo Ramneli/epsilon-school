@@ -77,7 +77,7 @@ export class AppComponent {
   openAddSubjectDialog(): void {
     let dialogRef = this.dialog.open(CreateSubjectComponent, {
       width: '45%',
-      height: '66%'
+      height: '80%'
     });
     /*dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
@@ -87,7 +87,7 @@ export class AppComponent {
   openAddHomeworkDialog(): void {
     let dialogRef = this.dialog.open(AddHomeworksComponent, {
       width: '45%',
-      height: '75%'
+      height: '85%'
     });
   }
 }
