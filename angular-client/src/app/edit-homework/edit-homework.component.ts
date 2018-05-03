@@ -69,10 +69,7 @@ export class EditHomeworkComponent implements OnInit {
                 console.log(queryResult);
                 console.log(userData);
             });
-            //this.resetPageForm();
             this.displaySuccessAlert();
-            
-        
         }
     }
 
