@@ -18,4 +18,25 @@ export class UserService {
     return this.http.get(userBlockStatusURL);
   }
 
+
+  getReportedUsers() {
+    const reportedUsersURL = "http://localhost:8080/user/allReported";
+    return this.http.post(reportedUsersURL, "");
+  }
+
+  setBlockStatus(uid) {
+    const changeBlockStatusURL = "http://localhost:8080/user/changeblock?uid=" + uid;
+    return this.http.get(changeBlockStatusURL);
+  }
+
+  getReporteeInfo(uid) {
+    const reporteeInfoURL = "http://localhost:8080/report/get?reportee=" + uid;
+    return this.http.get(reporteeInfoURL);
+  }
+
+  resolveReport(uid) {
+    console.log(uid);
+    const resolveReportURL = "http://localhost:8080/user/resolveReport?uid=" + uid;
+    return this.http.get(resolveReportURL);
+  }
 }

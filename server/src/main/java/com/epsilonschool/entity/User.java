@@ -15,6 +15,7 @@ public class User {
     private String uid;
     private int admin;
     private int isBlocked;
+    private int reportCount;
 
     @JsonIgnore
     private double averageGrade;
@@ -63,5 +64,13 @@ public class User {
 
     public void setIsBlocked(int isBlocked) {
         this.isBlocked = isBlocked;
+    }
+
+    public int getReportCount() {
+        return reportCount;
+    }
+
+    public void setReportCount(int reportCount) {
+        this.reportCount = reportCount;
     }
 }

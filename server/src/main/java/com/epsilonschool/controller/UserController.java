@@ -1,12 +1,14 @@
 package com.epsilonschool.controller;
 
-        import com.epsilonschool.dao.service.SettingsService;
-        import com.epsilonschool.dao.service.UserService;
-        import com.epsilonschool.entity.Settings;
-        import com.epsilonschool.entity.User;
-        import org.springframework.web.bind.annotation.*;
+import com.epsilonschool.dao.service.ReportService;
+import com.epsilonschool.dao.service.SettingsService;
+import com.epsilonschool.dao.service.UserService;
+import com.epsilonschool.entity.Settings;
+import com.epsilonschool.entity.User;
+import org.springframework.web.bind.annotation.*;
 
-        import java.util.Optional;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -14,10 +16,12 @@ package com.epsilonschool.controller;
 public class UserController {
     private UserService userService;
     private SettingsService settingsService;
+    private ReportService reportService;
 
-    public UserController(UserService userService, SettingsService settingsService) {
+    public UserController(UserService userService, SettingsService settingsService, ReportService reportService) {
         this.userService = userService;
         this.settingsService = settingsService;
+        this.reportService = reportService;
     }
 
     @GetMapping("/adduser")
@@ -43,8 +47,35 @@ public class UserController {
         return user.isPresent() || addUser(uid);
     }
 
+    @PostMapping("/allReported")
+    public List<User> getAllReportedUsers() {
+        return this.userService.getAllReportedUsers();
+    }
+
+    @GetMapping("/changeblock")
+    public void blockUser(@RequestParam("uid") String uid) {
+        User user = userService.getUserByUid(uid);
+        if (user.getIsBlocked() == 1) {
+            userService.unblockUser(uid);
+        } else {
+            userService.blockUser(uid);
+        }
+    }
+
     @PostMapping("/getgrade")
     private double getUserAverageGrade(@RequestParam("uid") String uid) {
         return userService.getUserAverageGrade(uid);
+    }
+
+    @GetMapping("/resolveReport")
+    public void resolveReportsOfUser(@RequestParam("uid") String uid) {
+        userService.resolveReports(uid);
+        reportService.clearReportsOfUser(uid);
+        User user = userService.getUserByUid(uid);
+        if (user.getIsBlocked() == 1) {
+            userService.unblockUser(uid);
+        } else {
+            userService.blockUser(uid);
+        }
     }
 }

@@ -4,6 +4,8 @@ import com.epsilonschool.dao.repository.UserRepository;
 import com.epsilonschool.entity.User;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -33,5 +35,22 @@ public class UserService {
 
     public void updateAverageGrade(String userId, double weighedAverageGrade) {
         userRepository.updateAverageGrade(userId, weighedAverageGrade);
+    }
+
+    public List<User> getAllReportedUsers() {
+        return userRepository.findAllReportedUsers();
+    }
+
+    public void unblockUser(String uid) {
+        userRepository.unBlockUser(uid);
+    }
+
+    public void blockUser(String uid) {
+        userRepository.blockUser(uid);
+    }
+
+
+    public void resolveReports(String uid) {
+        userRepository.resolveReports(uid);
     }
 }
