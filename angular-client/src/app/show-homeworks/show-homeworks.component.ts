@@ -140,6 +140,7 @@ export class ShowHomeworksComponent implements OnInit {
 				editButton.setAttribute("src", "../../assets/images/editbutton.png");
                 editButton.setAttribute("width", "17");
                 editButton.setAttribute("id", String(i));
+                editButton.setAttribute("style", "cursor: pointer;")
                 editButton.addEventListener('click', e => {
                     console.log(editButton);
                     var editButtonId = editButton.getAttribute("id");
