@@ -27,6 +27,11 @@ public class SubjectController {
         return subjectService.getSubjects();
     }
 
+    @PostMapping("/search")
+    public List<Subject> getSubjectsSearch(@RequestParam String searchKeyword) {
+        return subjectService.getSubjects(searchKeyword);
+    }
+
     @PostMapping("/add")
     public void addSubject(@RequestBody Subject subject) {
         subjectService.addSubject(subject);
