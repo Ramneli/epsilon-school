@@ -43,9 +43,9 @@ export class EditHomeworkComponent implements OnInit {
 
     updateHomework(userDescription, userDeadline) {
         var cookieData = localStorage.getItem("currentTask");
-        var subjectId = cookieData.split(":")[1];
+        var taskId = cookieData.split(":")[1];
         let userData = {
-            subject_id: subjectId,
+            id: taskId,
             description: userDescription,
             deadline: this.userDeadline,
             author: this.getUser()
@@ -71,14 +71,6 @@ export class EditHomeworkComponent implements OnInit {
             });
             this.displaySuccessAlert();
         }
-    }
-
-    resetPageForm() {
-        var subjectCreationForm : HTMLFormElement;
-        subjectCreationForm = <HTMLFormElement>document.getElementById("addTaskForm");
-        subjectCreationForm.reset();
-        var objectsNeedToValidate = document.getElementsByClassName("was-validated");
-        objectsNeedToValidate[0].className = "needs-validation";
     }
 
     displaySuccessAlert() {

@@ -146,7 +146,7 @@ export class ShowHomeworksComponent implements OnInit {
                 editButton.addEventListener('click', e => {
                     console.log(editButton);
                     var editButtonId = editButton.getAttribute("id");
-                    var cookieData: string = this.tasks[parseInt(editButtonId)].task_description + ":" + this.currentSubjectId;
+                    var cookieData: string = this.tasks[parseInt(editButtonId)].task_description + ":" + tableData.tasks[i].task_id;
                     localStorage.setItem("currentTask", cookieData);
                     this.editHomework();
                 });
