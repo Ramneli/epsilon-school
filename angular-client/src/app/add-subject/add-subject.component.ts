@@ -31,18 +31,40 @@ export class AddSubjectComponent implements OnInit {
   	}
 
   
-  addSubjectToTimetable(subjectId) {
-    const userData = {
-      uid: this.userId,
-      subject_id: subjectId
-    };
-    this.subjectService.addSubjectToTimetable(userData).subscribe(d => {
-        this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-            this.router.navigate(['/homeworks']);
+    addSubjectToTimetable(subjectId) {
+        const userData = {
+        uid: this.userId,
+        subject_id: subjectId
+        };
+        this.subjectService.addSubjectToTimetable(userData).subscribe(d => {
+            this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+                this.router.navigate(['/homeworks']);
+            });
         });
-    });
-    this.displaySuccessAlert();
-  }
+        this.displaySuccessAlert('Aine tunniplaani lisatud.');
+    }
+
+    searchSubject(keyword) {
+        this.subjectService.searchSubject(keyword).subscribe(res => {
+            this.pushAllSubjectsToLists(res);
+            var dataLength = Object.keys(res).length;
+            if (dataLength != 0) {
+                Object.keys(this.allSubjectNames).forEach(i => {
+                    let subjectButton = document.createElement("button");
+                    subjectButton.setAttribute("id", this.allSubjectIds[i]);
+                    subjectButton.appendChild(document.createTextNode(this.allSubjectNames[i]));
+                    subjectButton.addEventListener('click', e => {
+                        this.addSubjectToTimetable(this.allSubjectIds[i]);
+                    })
+                    document.getElementById("subjectButtons").appendChild(subjectButton);
+                });
+            } else {
+                this.displaySuccessAlert('Ühtegi ainet ei leitud.');
+            }
+            
+            console.log(res);
+        });
+    }
 
   	pushAllSubjectsToLists(allSubjects) {
     	console.log(allSubjects);
@@ -60,11 +82,11 @@ export class AddSubjectComponent implements OnInit {
         return this.authService.getAuth();
     }
 
-    displaySuccessAlert() {
+    displaySuccessAlert(message) {
         var successMsgDiv = document.createElement('div');
         successMsgDiv.setAttribute('id', "successMsgDiv");
         successMsgDiv.setAttribute("class", "alert alert-success");
-        successMsgDiv.appendChild(document.createTextNode('Aine tunniplaani lisatud.'));
+        successMsgDiv.appendChild(document.createTextNode(message));
 
         var validationFormDiv = document.getElementById('validation-form');
         validationFormDiv.appendChild(successMsgDiv);
