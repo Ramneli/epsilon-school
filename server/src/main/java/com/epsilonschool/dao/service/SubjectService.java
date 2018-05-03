@@ -27,6 +27,10 @@ public class SubjectService {
         return subjectRepository.findAll();
     }
 
+    public List<Subject> getSubjects(String searchKeyword) {
+        return subjectRepository.findAllSearch(searchKeyword);
+    }
+
     public SubjectService(SubjectRepository subjectRepository) {
         this.subjectRepository = subjectRepository;
     }
