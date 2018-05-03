@@ -58,6 +58,11 @@ export class TaskService {
         return this.http.post(updateHomeworkUrl, updateHomeworkData)
     }
 
+    deleteHomework(taskIdJson) {
+        const deleteHomeworkUrl = 'http://localhost:8080/task/delete';
+        return this.http.post(deleteHomeworkUrl, taskIdJson);
+    }
+
 	/**
 	 * @param result - optional value to return as the observable result
 	 */

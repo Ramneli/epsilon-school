@@ -28,7 +28,6 @@ export class EditHomeworkComponent implements OnInit {
     addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
         this.userDeadline = `${event.value}`;
         var datepicker = document.getElementById("datepickerNothingSelected");
-        //datepicker.id = "datepickerNotTouched";
         datepicker.id = "datepickerCorrect";
         var errorMessage = document.getElementById("error-message");
         while (errorMessage.firstChild) {
@@ -69,15 +68,28 @@ export class EditHomeworkComponent implements OnInit {
                 console.log(queryResult);
                 console.log(userData);
             });
-            this.displaySuccessAlert();
+            let message = 'Kodune ülesanne uuendatud. Värskendage lehte muudatuste nägemiseks.';
+            this.displaySuccessAlert(message);
         }
     }
 
-    displaySuccessAlert() {
+    deleteHomework() {
+        var cookieData = localStorage.getItem("currentTask");
+        var taskId = cookieData.split(":")[1];
+        let deleteHomeworkJson = {
+            id: taskId,
+            uid: this.getUser()
+        }
+        this.taskService.deleteHomework(deleteHomeworkJson).subscribe();
+        let message = 'Kodune ülesanne kustutatud.'
+        this.displaySuccessAlert(message);
+    }
+
+    displaySuccessAlert(message) {
         var successMsgDiv = document.createElement('div');
         successMsgDiv.setAttribute('id', "successMsgDiv");
         successMsgDiv.setAttribute("class", "alert alert-success");
-        successMsgDiv.appendChild(document.createTextNode('Kodune ülesanne uuendatud. Värskendage lehte muudatuste nägemiseks.'));
+        successMsgDiv.appendChild(document.createTextNode(message));
 
         var validationFormDiv = document.getElementById('validation-form');
         validationFormDiv.appendChild(successMsgDiv);
