@@ -10,6 +10,7 @@ export class AuthService {
   private userId: string;
   private user: any;
   private admin: boolean = false;
+  private isBlocked : boolean = true;
 
   constructor(public af: AngularFireAuth) {
     console.log("Service running...");
@@ -62,5 +63,9 @@ export class AuthService {
 
   getUser() {
     return this.user;
+  }
+
+  hasAccess() : boolean {
+    return !this.isBlocked;
   }
 }

@@ -13,4 +13,9 @@ export class UserService {
     return this.http.get(userStatusURL);
   }
 
+  getBlockStatus() {
+    const userBlockStatusURL = "http://localhost:8080/user/access?uid=" + this.authService.getUserId();
+    return this.http.get(userBlockStatusURL);
+  }
+
 }

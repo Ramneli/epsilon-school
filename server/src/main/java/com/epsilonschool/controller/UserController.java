@@ -32,6 +32,11 @@ public class UserController {
         return this.userService.getUserByUid(uid).getAdmin();
     }
 
+    @GetMapping("/access")
+    private int getAccessStatus(@RequestParam("uid") String uid) {
+        return this.userService.getUserByUid(uid).getIsBlocked();
+    }
+
     @GetMapping("/checkuser")
     public boolean checkUser(@RequestParam("uid") String uid) {
         Optional<User> user = Optional.ofNullable(userService.getUserByUid(uid));
