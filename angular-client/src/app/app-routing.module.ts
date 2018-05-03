@@ -12,7 +12,7 @@ import { EapCalculatorComponent } from './eap-calculator/eap-calculator.componen
 import { SettingsComponent } from './settings/settings.component';
 
 import { AuthGuardService } from './auth-guard/auth-guard.service';
-import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { EditHomeworkComponent } from './edit-homework/edit-homework.component';
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
@@ -21,12 +21,12 @@ const routes: Routes = [
 			{ path: '', component: TasksComponent },
 			{ path: 'notifications', component: NotificationsComponent},
 			{ path: 'eapcalculator', component: EapCalculatorComponent},
-			{ path: 'settings', component: SettingsComponent},
-			{ path: 'admin', component: AdminPanelComponent}
+			{ path: 'settings', component: SettingsComponent}
 		] },
 	{ path: 'addhomeworks', component: AddHomeworksComponent, canActivate: [AuthGuardService] },
 	{ path: 'createsubject', component: CreateSubjectComponent, canActivate: [AuthGuardService] },
 	{ path: 'addsubject', component: AddSubjectComponent, canActivate: [AuthGuardService] },
+	{ path: 'edithomework', component: EditHomeworkComponent, canActivate: [AuthGuardService]},
 	{ path: '**', component: HomeComponent}
 ];
 

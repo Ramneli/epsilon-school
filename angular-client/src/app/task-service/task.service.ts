@@ -18,9 +18,9 @@ export class TaskService {
 		return this.http.post(url, "");
 	}
 
-	addHomework(json) {
+	addHomework(addHomeworkData) {
 		const addHomeworkUrl = 'http://localhost:8080/task/add';
-		return this.http.post(addHomeworkUrl, json);
+		return this.http.post(addHomeworkUrl, addHomeworkData);
 	}
 
 	getSubjectDetails(subjectId) {
@@ -51,7 +51,12 @@ export class TaskService {
 		const checkUserUrl = 'http://localhost:8080/user/checkuser?uid=';
 		const url = `${checkUserUrl}${userId}`
 		return this.http.get(url);
-	}
+    }
+    
+    updateHomework(updateHomeworkData) {
+        const updateHomeworkUrl = 'http://localhost:8080/task/update';
+        return this.http.post(updateHomeworkUrl, updateHomeworkData)
+    }
 
 	/**
 	 * @param result - optional value to return as the observable result

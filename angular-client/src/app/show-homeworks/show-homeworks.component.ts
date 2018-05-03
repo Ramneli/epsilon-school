@@ -7,6 +7,7 @@ import { AuthService } from '../auth-service/auth.service';
 import { SubjectService } from '../subject-service/subject.service';
 
 import { AddSubjectComponent } from '../add-subject/add-subject.component';
+import { EditHomeworkComponent } from '../edit-homework/edit-homework.component';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class ShowHomeworksComponent implements OnInit {
 	subjects = [];
 	private userId:string;
 	public showOldTasks = false;
-	public currentSubjectId = -1;
+    public currentSubjectId = -1;
+    public tasks = [];
 	subjectsLoaded: boolean;
 	tasksButtonText = "Näita vanemaid ülesandeid.";
 
@@ -61,6 +63,7 @@ export class ShowHomeworksComponent implements OnInit {
 		var dataLength = Object.keys(subjectWithTasks.tasks).length;
 		this.deleteTable();
 		if (dataLength != 0) {
+            this.tasks = subjectWithTasks.tasks;
 			this.createTable(subjectWithTasks);
 		} else {
 			this.createTableWithNoHomeworks();
@@ -86,7 +89,7 @@ export class ShowHomeworksComponent implements OnInit {
 	}
 	
 	makeNewTable() {
-		var headers = ["Aine", "Aine tüüp", "Ülesanne", "Õppejõud", "Tähtaeg"];
+		var headers = ["Aine", "Aine tüüp", "Ülesanne", "Õppejõud", "Tähtaeg", ""];
 		var listWidth = ["standardColWidth", "standardColWidth", "taskColWidth", "standardColWidth", "standardColWidth"];
 		var table: HTMLTableElement = <HTMLTableElement> document.createElement("Table");
 		table.setAttribute("id", "homeworkTable");
@@ -105,7 +108,7 @@ export class ShowHomeworksComponent implements OnInit {
 	}
 
 	populateTable(table, tableData) {
-		for (var i = 0; i < Object.keys(tableData.tasks).length; i++) {
+		Object.keys(tableData.tasks).forEach(i => {
 			var tr = table.insertRow();
 
 			var header_name = tr.insertCell();
@@ -113,6 +116,7 @@ export class ShowHomeworksComponent implements OnInit {
 			var header_task = tr.insertCell();
 			var header_lecturer_name = tr.insertCell();
 			var header_deadline = tr.insertCell();
+			var header_edit = tr.insertCell();
 			
 			var taskTypeNode = document.createElement("p");
 
@@ -130,8 +134,30 @@ export class ShowHomeworksComponent implements OnInit {
 			header_task.appendChild(document.createTextNode(tableData.tasks[i].task_description));
 			header_lecturer_name.appendChild(document.createTextNode(tableData.lecturer_name));
 			header_deadline.appendChild(document.createTextNode(tableData.tasks[i].task_deadline));
-		}
+
+			if (this.userId == tableData.tasks[i].task_author) {
+				var editButton = document.createElement("img");
+				editButton.setAttribute("src", "../../assets/images/editbutton.png");
+                editButton.setAttribute("width", "17");
+                editButton.setAttribute("id", String(i));
+                editButton.addEventListener('click', e => {
+                    console.log(editButton);
+                    var editButtonId = editButton.getAttribute("id");
+                    var cookieData: string = this.tasks[parseInt(editButtonId)].task_description + ":" + this.currentSubjectId;
+                    localStorage.setItem("currentTask", cookieData);
+                    this.editHomework();
+                });
+				header_edit.appendChild(editButton);
+			}
+		});
 	    document.getElementById("tableDiv").appendChild(table);
+    }
+    
+	editHomework() {
+		let dialogRef = this.dialog.open(EditHomeworkComponent, {
+			width: '45%',
+			height: '75%'
+		});
 	}
 
 	createTableWithNoHomeworks() {

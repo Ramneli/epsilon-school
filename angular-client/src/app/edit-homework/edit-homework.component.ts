@@ -4,48 +4,27 @@ import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-mo
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
-
 import { TaskService } from '../task-service/task.service';
 import { AuthService } from '../auth-service/auth.service';
 
-
 @Component({
-    selector: 'app-add-homeworks',
-    templateUrl: './add-homeworks.component.html',
-    styleUrls: ['./add-homeworks.component.css'],
+	selector: 'app-edit-homework',
+	templateUrl: './edit-homework.component.html',
+    styleUrls: ['./edit-homework.component.css'],
     providers: [
         { provide: MAT_DATE_LOCALE, useValue: 'et'},
         { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
         { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS }
   ]
 })
-export class AddHomeworksComponent implements OnInit {
 
-  	constructor(private taskService: TaskService,
-                private authService: AuthService) { }
+export class EditHomeworkComponent implements OnInit {
 
-    taskTypes = ["Ülesanne", "Kontrolltöö"];
-    allSubjectNames = [];
-    allSubjectIds = [];
+    constructor(private authService: AuthService,
+                private taskService: TaskService) { }
+
     userDeadline;
-    userId = "default";
-
-	getSubjects() {
-        this.taskService.getSubjects(this.userId)
-            .subscribe(data => {
-                this.displayHomeworks(data);
-        });
-    }
-
-    displayHomeworks(homeworks) {
-        console.log(homeworks)
-        for (let i = 0; i < homeworks.length; i++) {
-            this.allSubjectNames.push(homeworks[i].name);
-            this.allSubjectIds.push(homeworks[i].id);
-
-        }
-    }
-
+    
     addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
         this.userDeadline = `${event.value}`;
         var datepicker = document.getElementById("datepickerNothingSelected");
@@ -58,12 +37,17 @@ export class AddHomeworksComponent implements OnInit {
 
     }
 
-    addHomework(userSubjectID, userDescription, none, taskType) {
+    getUser() {
+        return this.authService.getUserId();
+    }
+
+    updateHomework(userDescription, userDeadline) {
+        var cookieData = localStorage.getItem("currentTask");
+        var subjectId = cookieData.split(":")[1];
         let userData = {
-            subject_id: userSubjectID,
+            subject_id: subjectId,
             description: userDescription,
             deadline: this.userDeadline,
-            type: taskType,
             author: this.getUser()
         }
         
@@ -81,14 +65,13 @@ export class AddHomeworksComponent implements OnInit {
             var objectsToValidate = document.getElementsByClassName("needs-validation");
             objectsToValidate[objectsToValidate.length - 1].className = "was-validated";
         } else {
-            this.taskService.addHomework(userData)
-            .subscribe(queryResult => {
-            console.log(queryResult);
+            this.taskService.updateHomework(userData).subscribe(queryResult => {
+                console.log(queryResult);
+                console.log(userData);
+            });
+            this.resetPageForm();
+            this.displaySuccessAlert();
             
-        });
-        this.displaySuccessAlert();
-
-        this.resetPageForm();
         
         }
     }
@@ -105,7 +88,7 @@ export class AddHomeworksComponent implements OnInit {
         var successMsgDiv = document.createElement('div');
         successMsgDiv.setAttribute('id', "successMsgDiv");
         successMsgDiv.setAttribute("class", "alert alert-success");
-        successMsgDiv.appendChild(document.createTextNode('Kodune ülesanne lisatud.'));
+        successMsgDiv.appendChild(document.createTextNode('Kodune ülesanne uuendatud.'));
 
         var validationFormDiv = document.getElementById('validation-form');
         validationFormDiv.appendChild(successMsgDiv);
@@ -119,24 +102,10 @@ export class AddHomeworksComponent implements OnInit {
         }, 3000);
     }
 
-    isAuthenticated() {
-        return this.authService.getAuth();
-    }
 
-    checkIfUserExists() {
-        return this.taskService.checkIfUserExists(this.userId).subscribe();
-    }
-
-    getUser() {
-        return this.authService.getUserId();
-    }
-
-    ngOnInit() {
-        if (this.isAuthenticated()) {
-            this.userId = this.authService.getUserId();
-            var checkUser = this.checkIfUserExists();
-            console.log(this.userId);
-            this.getSubjects();
-        }
-    }
+	ngOnInit() {
+        var element : HTMLTextAreaElement = <HTMLTextAreaElement> document.getElementById("description");
+        var currentTask = localStorage.getItem("currentTask").split(":")[0];
+		element.value = currentTask;
+	}
 }

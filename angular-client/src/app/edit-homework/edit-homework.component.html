@@ -1,0 +1,30 @@
+<div>
+  <div id="validation-form" style="width:80%; margin: 0 auto"></div>
+</div>
+<div style="width:100%;">
+	<div style="width: 80%; margin: 0 auto">
+		<form  #addTaskForm="ngForm" class="needs-validation" novalidate id="addTaskForm">
+			<div>
+				<mat-form-field id="datepickerNotTouched">
+					<input matInput [matDatepicker]="userDeadline" placeholder="Vali tähtaeg" disabled
+					(dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)" >
+					<mat-datepicker-toggle matSuffix [for]="userDeadline"></mat-datepicker-toggle>
+					<mat-datepicker #userDeadline disabled="false"></mat-datepicker>
+				</mat-form-field>
+				<div id="error-message">
+		     
+		        </div><br>
+			</div>
+
+			<div>
+				<label for="description">Ülesande kirjeldus</label><br>
+				  <textarea class="form-control" style="width:100%" #userDescription rows="6" id="description" type="text" name="description" required></textarea>
+				<div class="invalid-feedback">
+				    Palun sisesta ülesande kirjeldus.
+				</div><br>
+			</div>
+            <button class="btn btn-primary" type="submit" style="margin-top: 20px; width: 100%;" 
+            (click)="updateHomework(userDescription.value, userDeadline.value)">Uuenda Kodust Ülesannet</button>
+		</form>
+</div>
+</div>
