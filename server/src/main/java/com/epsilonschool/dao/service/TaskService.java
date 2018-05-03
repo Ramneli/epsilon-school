@@ -73,6 +73,7 @@ public class TaskService {
             currentTask.put("task_description", task.getDescription());
             currentTask.put("task_deadline", task.getDeadline());
             currentTask.put("task_type", task.getType());
+            currentTask.put("task_author", task.getAuthor());
             tasks.put(currentTask);
         }
     }
