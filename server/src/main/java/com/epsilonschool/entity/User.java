@@ -13,6 +13,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String uid;
+    private int admin;
 
     @JsonIgnore
     private double averageGrade;
@@ -45,5 +46,13 @@ public class User {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public int getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(int admin) {
+        this.admin = admin;
     }
 }

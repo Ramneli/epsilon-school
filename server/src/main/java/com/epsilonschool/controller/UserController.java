@@ -27,6 +27,11 @@ public class UserController {
         return true;
     }
 
+    @GetMapping("/status")
+    private int getAdminStatus(@RequestParam("uid") String uid) {
+        return this.userService.getUserByUid(uid).getAdmin();
+    }
+
     @GetMapping("/checkuser")
     public boolean checkUser(@RequestParam("uid") String uid) {
         Optional<User> user = Optional.ofNullable(userService.getUserByUid(uid));
