@@ -78,10 +78,10 @@ export class EditHomeworkComponent implements OnInit {
         var taskId = cookieData.split(":")[1];
         let deleteHomeworkJson = {
             id: taskId,
-            uid: this.getUser()
+            author: this.getUser()
         }
         this.taskService.deleteHomework(deleteHomeworkJson).subscribe();
-        let message = 'Kodune ülesanne kustutatud.'
+        let message = 'Kodune ülesanne kustutatud. Värskendage lehte muudatuste nägemiseks.'
         this.displaySuccessAlert(message);
     }
 

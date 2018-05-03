@@ -16,9 +16,9 @@ export class SubjectService {
 				private authService : AuthService) { }
 
 
-	addSubjectToTimetable(json) {;
+	addSubjectToTimetable(addSubjectJson) {;
 		const timetableUrl = 'http://localhost:8080/timetable/addTo';
-		return this.http.post(timetableUrl, json);
+		return this.http.post(timetableUrl, addSubjectJson);
 	
 	}
 
@@ -49,10 +49,15 @@ export class SubjectService {
 		return this.http.post(subjectsUrl, "");
 	}
 
-	createNewSubject(json) {
+	createNewSubject(createSubjectJson) {
 		const subjectsUrl = 'http://localhost:8080/subject/add';
-		return this.http.post(subjectsUrl, json);
-	}
+		return this.http.post(subjectsUrl, createSubjectJson);
+    }
+    
+    removeSubjectFromTimetable(removeSubjectJson) {
+        const removeSubjectUrl = 'http://localhost:8080/timetable/remove';
+        return this.http.post(removeSubjectUrl, removeSubjectJson);
+    }
 
 	/**
 	 * @param result - optional value to return as the observable result

@@ -247,7 +247,6 @@ export class ShowHomeworksComponent implements OnInit {
 					this.authService.setAdminStatus(true);
 				}
 			});
-			this.getSubjects();
 		}
   	}
 }
