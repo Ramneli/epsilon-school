@@ -77,7 +77,7 @@ export class EditHomeworkComponent implements OnInit {
         var successMsgDiv = document.createElement('div');
         successMsgDiv.setAttribute('id', "successMsgDiv");
         successMsgDiv.setAttribute("class", "alert alert-success");
-        successMsgDiv.appendChild(document.createTextNode('Kodune ülesanne uuendatud.'));
+        successMsgDiv.appendChild(document.createTextNode('Kodune ülesanne uuendatud. Värskendage lehte muudatuste nägemiseks.'));
 
         var validationFormDiv = document.getElementById('validation-form');
         validationFormDiv.appendChild(successMsgDiv);
