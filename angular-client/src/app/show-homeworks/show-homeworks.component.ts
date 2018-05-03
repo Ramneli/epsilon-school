@@ -35,13 +35,19 @@ export class ShowHomeworksComponent implements OnInit {
 				private dialog: MatDialog,
 				private userService : UserService) {
 					this.subjectsLoaded = false;
-					this.taskService.getSubjects(this.userId)
-	        			.subscribe(subjects => {
-						this.getHomeworkNamesAndIDs(subjects);
+					this.userService.getBlockStatus().subscribe(res => {
+						if (res == 0) {
+							this.taskService.getSubjects(this.userId)
+	        				.subscribe(subjects => {
+							this.getHomeworkNamesAndIDs(subjects);
+						});
+						} else {
+							this.authService.logout().then(res => {
+								alert("Your account has been disabled. For more info, please contact admin@epsilon.com");
+							  });
+						}
 					});
 				}
-
-
 	isAuthenticated() {
 	    return this.authService.getAuth();
 	}
