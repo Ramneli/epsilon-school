@@ -8,6 +8,7 @@ import { SubjectService } from '../subject-service/subject.service';
 
 import { AddSubjectComponent } from '../add-subject/add-subject.component';
 import { EditHomeworkComponent } from '../edit-homework/edit-homework.component';
+import { UserService } from '../user-service/user.service';
 
 
 @Component({
@@ -31,7 +32,8 @@ export class ShowHomeworksComponent implements OnInit {
 				private authService : AuthService, 
 				private subjectService: SubjectService,
 				private router: Router,
-				private dialog: MatDialog) {
+				private dialog: MatDialog,
+				private userService : UserService) {
 					this.subjectsLoaded = false;
 					this.taskService.getSubjects(this.userId)
 	        			.subscribe(subjects => {
@@ -224,11 +226,21 @@ export class ShowHomeworksComponent implements OnInit {
     });
   }
 
+  isAdmin() : boolean {
+	return this.authService.getAdminStatus();
+	}
 
   	ngOnInit() {
 		if (this.isAuthenticated()) {
 			this.userId = this.authService.getUserId();
 			var checkUser = this.checkIfUserExists();
+			var userStatus = this.userService.getUserStatus().subscribe(status => {
+				if (status == 0) {
+					this.authService.setAdminStatus(false);
+				} else {
+					this.authService.setAdminStatus(true);
+				}
+			});
 			this.getSubjects();
 		}
   	}

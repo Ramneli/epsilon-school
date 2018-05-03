@@ -20,6 +20,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { EapCalculatorComponent } from './eap-calculator/eap-calculator.component';
 import { SettingsComponent } from './settings/settings.component';
 import { EditHomeworkComponent } from './edit-homework/edit-homework.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 
 import { TaskService } from './task-service/task.service';
@@ -35,6 +36,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
 import { HomeComponent } from './home/home.component';
 import { SettingsService } from './settings-service/settings.service';
+import { AdminGuardService } from './admin-guard/admin-guard.service';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyD98RBDQEBAKyyxGv2oZ1-oKECwBU5NUew",
@@ -59,7 +61,8 @@ export const firebaseConfig = {
     NotificationsComponent,
     EapCalculatorComponent,
     SettingsComponent,
-    EditHomeworkComponent
+    EditHomeworkComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +89,8 @@ export const firebaseConfig = {
     AuthService,
     AngularFireAuth,
     AuthGuardService,
-    SettingsService
+    SettingsService,
+    AdminGuardService
     ],
   bootstrap: [AppComponent]
 })

@@ -10,8 +10,10 @@ import { TasksComponent } from './tasks/tasks.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { EapCalculatorComponent } from './eap-calculator/eap-calculator.component';
 import { SettingsComponent } from './settings/settings.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 import { AuthGuardService } from './auth-guard/auth-guard.service';
+import { AdminGuardService } from './admin-guard/admin-guard.service';
 import { EditHomeworkComponent } from './edit-homework/edit-homework.component';
 
 const routes: Routes = [
@@ -21,7 +23,8 @@ const routes: Routes = [
 			{ path: '', component: TasksComponent },
 			{ path: 'notifications', component: NotificationsComponent},
 			{ path: 'eapcalculator', component: EapCalculatorComponent},
-			{ path: 'settings', component: SettingsComponent}
+			{ path: 'settings', component: SettingsComponent},
+			{ path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuardService]}
 		] },
 	{ path: 'addhomeworks', component: AddHomeworksComponent, canActivate: [AuthGuardService] },
 	{ path: 'createsubject', component: CreateSubjectComponent, canActivate: [AuthGuardService] },

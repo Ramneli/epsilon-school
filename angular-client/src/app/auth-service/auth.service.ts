@@ -9,6 +9,8 @@ export class AuthService {
   private isLoggedIn: boolean;
   private userId: string;
   private user: any;
+  private admin: boolean = false;
+
   constructor(public af: AngularFireAuth) {
     console.log("Service running...");
     if (localStorage.getItem("token")) {
@@ -50,6 +52,14 @@ export class AuthService {
     return this.user ? true : false;
   }
   
+  setAdminStatus(status : boolean) {
+    this.admin = status;
+  }
+
+  getAdminStatus() : boolean {
+    return this.admin;
+  }
+
   getUser() {
     return this.user;
   }
