@@ -67,9 +67,8 @@ export class EapCalculatorComponent implements OnInit {
 		removeHeader.className = "tasksTableHeader";
 		removeHeader.appendChild(document.createTextNode(""));
 		tr.appendChild(removeHeader);
-		
 
-		for (var i = 0; i < Object.keys(data).length; i++) {
+		Object.keys(data).forEach(key => {
 			var dataRow = table.insertRow();
 			var eapValue = document.createElement("td");
 			var grade = document.createElement("td");
@@ -78,8 +77,8 @@ export class EapCalculatorComponent implements OnInit {
 			remove.className = "columnCenteredText"
 			eapValue.className = "columnCenteredText";
 			grade.className = "columnCenteredText";
-			eapValue.appendChild(document.createTextNode(data[i].eap));
-			grade.appendChild(document.createTextNode(data[i].grade));
+			eapValue.appendChild(document.createTextNode(data[key].eap));
+			grade.appendChild(document.createTextNode(data[key].grade));
 
 			var element = document.createElement("a");
 			element.setAttribute("style", "cursor:pointer; color: red");
@@ -87,24 +86,25 @@ export class EapCalculatorComponent implements OnInit {
 			
 			remove.appendChild(element);
 
-			dataRow.insertCell().appendChild(document.createTextNode(data[i].name));
+			dataRow.insertCell().appendChild(document.createTextNode(data[key].name));
 			dataRow.appendChild(grade);
 			dataRow.appendChild(eapValue);
 			dataRow.appendChild(remove);
 
-			element.setAttribute("id", data[i].id);
+			element.setAttribute("id", data[key].id);
 			table.appendChild(dataRow);
 
-			element.addEventListener('click', event=> {
+			element.addEventListener('click', e=> {
+				console.log("ID: " + element.id);
 				this.subjectService.removeEapSubject(element.getAttribute("id")).subscribe(res => {
 					this.updateTable();
 				});
 				
 			});
 			
-		}
-		eapSubjectDiv.appendChild(table);
-		this.loadAverageGrade();
+		});
+			eapSubjectDiv.appendChild(table);
+			this.loadAverageGrade();
 	});
   }
 
@@ -123,8 +123,8 @@ export class EapCalculatorComponent implements OnInit {
 		gradeDiv.appendChild(gradeParagraph);
 		eapSubjectDiv.appendChild(gradeDiv);
 		}); 
-  }
-
+	}
+	
   ngOnInit() {
     this.updateTable();
   }

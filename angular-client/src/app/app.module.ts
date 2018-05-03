@@ -34,6 +34,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
 import { HomeComponent } from './home/home.component';
 import { SettingsService } from './settings-service/settings.service';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyD98RBDQEBAKyyxGv2oZ1-oKECwBU5NUew",
@@ -57,7 +58,8 @@ export const firebaseConfig = {
     TasksComponent,
     NotificationsComponent,
     EapCalculatorComponent,
-    SettingsComponent
+    SettingsComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,
