@@ -70,6 +70,7 @@ public class TaskService {
     private void addTasksForSubject(List<Task> tasksOfSubject, JSONArray tasks) {
         for (Task task : tasksOfSubject) {
             JSONObject currentTask = new JSONObject();
+            currentTask.put("task_id", task.getTaskId());
             currentTask.put("task_description", task.getDescription());
             currentTask.put("task_deadline", task.getDeadline());
             currentTask.put("task_type", task.getType());
@@ -87,7 +88,7 @@ public class TaskService {
     }
 
     public boolean updateTask(Task task) {
-        taskRepository.updateTask(task.getDescription(), task.getTaskId(), task.getAuthor());
+        taskRepository.updateTask(task.getDescription(), task.getTaskId(), task.getAuthor(), task.getDeadline());
         return true;
     }
 }

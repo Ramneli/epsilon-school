@@ -38,6 +38,10 @@ public class TaskController {
 
     @PostMapping("/update")
     public boolean updateTask(@RequestBody Task task) {
+        System.out.println(task.getDescription());
+        System.out.println(task.getAuthor());
+        System.out.println(task.getDeadline());
+        System.out.println(task.getSubjectId());
         return taskService.updateTask(task);
     }
 
