@@ -312,3 +312,17 @@ table td {
 	font-size: 11px;
 	margin-top: 3px;
 }
+
+.subjectButton {
+    border: 1px solid transparent;
+    background-color:white;
+}
+
+.subjectButton:focus {
+    background-color:gray;
+}
+
+.addButton {
+    width:100%;
+    margin-top: 20px;
+}

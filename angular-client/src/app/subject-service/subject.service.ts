@@ -16,11 +16,18 @@ export class SubjectService {
 				private authService : AuthService) { }
 
 
-	addSubjectToTimetable(addSubjectJson) {;
+	addSubjectToTimetable(addSubjectJson) {
 		const timetableUrl = 'http://localhost:8080/timetable/addTo';
 		return this.http.post(timetableUrl, addSubjectJson);
 	
-	}
+    }
+    
+    searchSubject(keyword) {
+        const encodedKeyword = encodeURI(keyword);
+        const searchSubjectUrl = 'http://localhost:8080/subject/search?searchKeyword=' + encodedKeyword;
+        return this.http.post(searchSubjectUrl, "");
+        
+    }
 
 	postEapSubject(eapSubject) {
 		const eapSubjectPostUrl = 'http://localhost:8080/eapsubject/add'

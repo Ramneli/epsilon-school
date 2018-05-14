@@ -215,18 +215,8 @@ export class ShowHomeworksComponent implements OnInit {
 		if (subjectTypeHeader) {
 			subjectTypeHeader.parentNode.removeChild(subjectTypeHeader);
 		}
-	}
-
-	setOldTasks() {
-		this.showOldTasks = !this.showOldTasks;
-		this.getSubjectHomeworksDetails(this.currentSubjectId);
-		if (this.showOldTasks) {
-			this.tasksButtonText = "Näita vähem ülesandeid";
-		} else {
-			this.tasksButtonText = "Näita vanemaid ülesandeid";
-		}
-	}
-
+    }
+    
 	displayTasksControlButton() {
 		return this.currentSubjectId != -1;
 	}
