@@ -14,10 +14,14 @@
             </button>-->
             <label>Otsi ainet</label>
             <input placeholder="Otsi ainet..." #userSearch type="text">
-            <button class="btn btn-primary" type="submit"
-                (click)="searchSubject(userSearch)"
+            <button class="btn btn-secondary" type="submit"
+                (click)="searchSubject(userSearch.value)"
                 name="Lisa Aine" style="width:100%; margin-top: 20px;">Otsi
             </button>
+            <nav>
+                <ul id="list"></ul>
+            </nav>
+            <div id="addButtonDiv"></div>
         </div>
         <div id="subjectButtons"></div>
     </div>	

@@ -36,12 +36,7 @@ export class ShowHomeworksComponent implements OnInit {
 				private userService : UserService) {
 					this.subjectsLoaded = false;
 					this.userService.getBlockStatus().subscribe(res => {
-						if (res == 0) {
-							this.taskService.getSubjects(this.userId)
-	        				.subscribe(subjects => {
-							this.getHomeworkNamesAndIDs(subjects);
-						});
-						} else {
+						if (res == 1) {
 							this.authService.logout().then(res => {
 								alert("Your account has been disabled. For more info, please contact admin@epsilon.com");
 							  });
@@ -60,6 +55,7 @@ export class ShowHomeworksComponent implements OnInit {
 	}
 
   	getSubjectHomeworksDetails(subjectId) {
+		this.deleteTable();
 		this.currentSubjectId = subjectId;
 		this.taskService.getTasksWithSubject(subjectId, this.showOldTasks)
 	        .subscribe(subjectWithTasks => {
@@ -91,7 +87,6 @@ export class ShowHomeworksComponent implements OnInit {
 	    if (!table) {
 			table = this.makeNewTable();
 		}
-		console.log(tableData);
 		table.setAttribute("class", "tasksTable")
 		this.populateTable(table, tableData);
 	}
@@ -116,6 +111,20 @@ export class ShowHomeworksComponent implements OnInit {
 	}
 
 	populateTable(table, tableData) {
+		console.log(tableData);
+		var subjectLecturerHeader = document.createElement("h3");
+		subjectLecturerHeader.setAttribute("id", "subjectLecturerHeader");
+		var subjectLecturerHeaderText = tableData.subject_name + " - " + tableData.lecturer_name;
+		subjectLecturerHeader.appendChild(document.createTextNode(subjectLecturerHeaderText));
+
+		var subjectTypeHeader = document.createElement("h4");
+		subjectTypeHeader.setAttribute("id", "subjectTypeHeader");
+		var subjectTypeHeaderText = tableData.subject_type;
+		subjectTypeHeader.appendChild(document.createTextNode(subjectTypeHeaderText));
+
+		document.getElementById("tableDiv").appendChild(subjectLecturerHeader);
+		document.getElementById("tableDiv").appendChild(subjectTypeHeader);
+
 		Object.keys(tableData.tasks).forEach(i => {
 			var tr = table.insertRow();
 
@@ -159,7 +168,7 @@ export class ShowHomeworksComponent implements OnInit {
 				header_edit.appendChild(editButton);
 			}
 		});
-	    document.getElementById("tableDiv").appendChild(table);
+		document.getElementById("tableDiv").appendChild(table);
     }
     
 	editHomework() {
@@ -189,16 +198,23 @@ export class ShowHomeworksComponent implements OnInit {
 		    tableRow.appendChild(cell_message_content);
 		    table.appendChild(tableHeader);
 		    table.appendChild(tableRow);
-		    document.getElementById("tableDiv").appendChild(table);
+			document.getElementById("tableDiv").appendChild(table);
 		}
 	}
 
 	deleteTable() {
-	    var table = document.getElementById("homeworkTable");
-
+		var table = document.getElementById("homeworkTable");
+		var subjectLecturerHeader = document.getElementById("subjectLecturerHeader");
+		var subjectTypeHeader = document.getElementById("subjectTypeHeader");
 	    if (table) {
-	        table.parentNode.removeChild(table);
-	    }
+			table.parentNode.removeChild(table);
+		}
+		if (subjectLecturerHeader) {
+			subjectLecturerHeader.parentNode.removeChild(subjectLecturerHeader);
+		}
+		if (subjectTypeHeader) {
+			subjectTypeHeader.parentNode.removeChild(subjectTypeHeader);
+		}
 	}
 
 	setOldTasks() {
@@ -247,6 +263,7 @@ export class ShowHomeworksComponent implements OnInit {
 					this.authService.setAdminStatus(true);
 				}
 			});
+			this.getSubjects();
 		}
   	}
 }
