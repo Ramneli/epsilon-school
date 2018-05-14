@@ -57,11 +57,13 @@ export class AdminPanelComponent implements OnInit {
 				var showReportDetailsBtn = document.createElement("button");
 				showReportDetailsBtn.className = "btn btn-primary";
 				showReportDetailsBtn.appendChild(document.createTextNode("Kuva raportid"));
-
+				showReportDetailsBtn.setAttribute("style", "width:150px");
+				
 				var resolveReportBtn = document.createElement("button");
 				resolveReportBtn.className = "btn btn-success";
 				resolveReportBtn.appendChild(document.createTextNode("Lahenda"));
-				
+				resolveReportBtn.setAttribute("style", "width:150px");
+
 				var blockAccessBtn = document.createElement("button");
 				if (data[key].isBlocked == 1) {
 					blockAccessBtn.className = "btn btn-success";
@@ -70,6 +72,7 @@ export class AdminPanelComponent implements OnInit {
 					blockAccessBtn.className = "btn btn-danger";
 					blockAccessBtn.appendChild(document.createTextNode("Blokeeri"));
 				}
+				blockAccessBtn.setAttribute("style", "width:150px");
 				
 				
 

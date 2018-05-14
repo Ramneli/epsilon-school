@@ -64,7 +64,7 @@ export class SettingsComponent implements OnInit {
     
     getHomeworkNamesAndIDs(subjects) {
 	    for (let i = 0; i < subjects.length; i++) {
-	        this.subjects.push(subjects[i].name);
+	        this.subjects.push(subjects[i].name + " (" + subjects[i].lecturer_name + ")");
 	        this.subjectIDs.push(subjects[i].id)
 		}
     }

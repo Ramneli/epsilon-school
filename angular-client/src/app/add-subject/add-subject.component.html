@@ -4,13 +4,13 @@
     <div style="width:100%;">
         <div style="width: 80%; margin: 0 auto">
             <label>Otsi ainet</label>
-            <input placeholder="Otsi ainet..." #userSearch type="text" style="width:100%;">
+            <input placeholder="Otsi ainet..." #userSearch type="text" autocomplete="off" style="width:100%;">
             <button class="btn btn-secondary" type="submit"
                 (click)="searchSubject(userSearch.value)"
                 name="Lisa aine" style="width:100%; margin-top: 20px;">Otsi
             </button>
             <nav style="margin-top: 20px; margin-bottom: 20px; width:100%">
-                <ul id="list"></ul>
+                <ul id="list" style="border: 1px solid rgb(185, 185, 185)"></ul>
             </nav>
             <div id="addButtonDiv" style="width: 100%;"></div>
         </div>
