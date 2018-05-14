@@ -63,6 +63,11 @@ export class TaskService {
         return this.http.post(deleteHomeworkUrl, taskIdJson);
     }
 
+    reportHomework(reportJson) {
+        const reportHomeworkUrl = 'http://localhost:8080/report/add';
+        return this.http.post(reportHomeworkUrl, reportJson);
+    }
+
 	/**
 	 * @param result - optional value to return as the observable result
 	 */

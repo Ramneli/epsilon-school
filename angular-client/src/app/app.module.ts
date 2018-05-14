@@ -37,6 +37,7 @@ import { AngularFireModule } from 'angularfire2';
 import { HomeComponent } from './home/home.component';
 import { SettingsService } from './settings-service/settings.service';
 import { AdminGuardService } from './admin-guard/admin-guard.service';
+import { ReportHomeworkComponent } from './report-homework/report-homework.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyD98RBDQEBAKyyxGv2oZ1-oKECwBU5NUew",
@@ -62,7 +63,8 @@ export const firebaseConfig = {
     EapCalculatorComponent,
     SettingsComponent,
     EditHomeworkComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    ReportHomeworkComponent
   ],
   imports: [
     BrowserModule,

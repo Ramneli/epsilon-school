@@ -8,6 +8,7 @@ import { SubjectService } from '../subject-service/subject.service';
 
 import { AddSubjectComponent } from '../add-subject/add-subject.component';
 import { EditHomeworkComponent } from '../edit-homework/edit-homework.component';
+import { ReportHomeworkComponent } from '../report-homework/report-homework.component';
 import { UserService } from '../user-service/user.service';
 
 
@@ -169,7 +170,7 @@ export class ShowHomeworksComponent implements OnInit {
 			var header_task = tr.insertCell();
 			var header_deadline = tr.insertCell();
 			var header_edit = tr.insertCell();
-			
+			var header_report = tr.insertCell();
 			var taskTypeNode = document.createElement("p");
 			taskTypeNode.setAttribute("style", "color: red; display: inline;");
 			if (tasks[i].task_type === "Kontrolltöö") {
@@ -192,18 +193,36 @@ export class ShowHomeworksComponent implements OnInit {
                 editButton.addEventListener('click', e => {
                  
 					var editButtonId = editButton.getAttribute("id");
-                    var cookieData: string = this.tasks[name][parseInt(editButtonId)].task_description + ":" + tasks[i].task_id;
-                    localStorage.setItem("currentTask", cookieData);
+                    var editCookieData: string = this.tasks[name][parseInt(editButtonId)].task_description + ":" + tasks[i].task_id;
+                    localStorage.setItem("currentTask", editCookieData);
                     this.editHomework();
                 });
-				header_edit.appendChild(editButton);
-			}
+                header_edit.appendChild(editButton);
+            }
+            var reportButton = document.createElement("img");
+            reportButton.setAttribute("src", "../../assets/images/reportbutton.png");
+            reportButton.setAttribute("width", "17");
+            reportButton.setAttribute("id", String(i));
+            reportButton.setAttribute("style", "cursor: pointer;")
+            reportButton.addEventListener('click', e => {
+                var reportButtonId = reportButton.getAttribute("id");
+                var reportCookieData: string = tasks[i].task_author + ":" + tasks[i].task_id;
+                localStorage.setItem("currentReport", reportCookieData);
+                this.reportHomework();
+            });
+            header_report.appendChild(reportButton);
+            
 		});
 		table.setAttribute("cellpadding", "15");
 		table.appendChild(document.createElement("br"));
 		document.getElementById("tableDiv").appendChild(table);
 	}
-
+    reportHomework() {
+        let dialogRef = this.dialog.open(ReportHomeworkComponent, {
+			width: '45%',
+			height: '75%'
+		});
+    }
 	editHomework() {
 		let dialogRef = this.dialog.open(EditHomeworkComponent, {
 			width: '45%',
