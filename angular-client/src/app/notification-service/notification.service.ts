@@ -14,9 +14,14 @@ export class NotificationService {
     private http: HttpClient,
    private authService : AuthService) { }
 
-  loadNotifications() {;
+  loadNotifications() {
     const notificationsUrl = 'http://localhost:8080/notification/load';
     return this.http.post(notificationsUrl, "");
+  }
+  
+  saveNotification(notificationData) {
+    const notificationsUrl = 'http://localhost:8080/notification/save';
+    return this.http.post(notificationsUrl, notificationData);
 	}
 
 }

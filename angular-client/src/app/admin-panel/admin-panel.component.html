@@ -13,7 +13,10 @@
 			<div id="reportDetails" style="margin-top:20px">
 					
 			</div>
-
 		</div>
+	</div>
+	<div>
+		<textarea id="notificationTextArea" #notificationData ></textarea>
+		<button (click)="sendNotification(notificationData.value)"class="btn btn-primary">Saada teavitus</button>
 	</div>
 </div>

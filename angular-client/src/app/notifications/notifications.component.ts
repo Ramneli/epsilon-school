@@ -16,11 +16,18 @@ export class NotificationsComponent implements OnInit {
 		this.deleteTable();
 		var table = document.createElement("table");
 		table.setAttribute("class", "tasksTable");
+		table.setAttribute("cellpadding", "15");
 
 		var header_message = document.createElement("th");
 		var header_deadline = document.createElement("th");
-		header_message.appendChild(document.createTextNode("Teavitus"))
-		header_deadline.appendChild(document.createTextNode("Tähtaeg"))
+		header_message.appendChild(document.createTextNode("Teavitus"));
+		header_deadline.appendChild(document.createTextNode("Tähtaeg"));
+
+		header_message.setAttribute("class", "tasksTableHeader");
+		header_deadline.setAttribute("class", "tasksTableHeader");
+
+		header_message.setAttribute("id", "messageColWidth");
+		header_deadline.setAttribute("id", "deadlineColWidth");
 
 		var header_Row = document.createElement("tr");
 

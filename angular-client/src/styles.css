@@ -249,6 +249,13 @@ table td {
 	#editColWidth {
 		width:5%;
 	}
+
+	#messageColWidth {
+		width: 90%;
+	}
+	#deadlineColWidth {
+		width: 10%;
+	}
 }
 
 @media only screen and (max-width: 540px) {

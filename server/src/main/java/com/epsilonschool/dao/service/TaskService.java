@@ -55,7 +55,6 @@ public class TaskService {
         List<Task> tasksOfSubject;
 
         char limitOldTasks = settingsRepository.findByUid(uid).getOldTasks();
-        System.out.println(limitOldTasks);
 
         if (limitOldTasks == '0') {
             tasksOfSubject = this.getAllTasksOfSubject(subjectId).stream()
