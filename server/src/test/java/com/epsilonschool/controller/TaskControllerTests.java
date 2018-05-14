@@ -1,6 +1,7 @@
 package com.epsilonschool.controller;
 
 import com.epsilonschool.dao.repository.ReportRepository;
+import com.epsilonschool.dao.repository.SettingsRepository;
 import com.epsilonschool.dao.repository.SubjectRepository;
 import com.epsilonschool.dao.repository.TaskRepository;
 import com.epsilonschool.dao.service.TaskService;
@@ -9,12 +10,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import static org.mockito.Mockito.mockingDetails;
 import static org.mockito.Mockito.times;
 
 public class TaskControllerTests {
     TaskRepository taskRepository;
     SubjectRepository subjectRepository;
     ReportRepository reportRepository;
+    SettingsRepository settingsRepository;
     TaskService taskService;
     TaskController taskController;
 
@@ -22,7 +25,9 @@ public class TaskControllerTests {
     public void setUp() {
         taskRepository = Mockito.mock(TaskRepository.class);
         subjectRepository = Mockito.mock(SubjectRepository.class);
-        taskService = new TaskService(taskRepository, subjectRepository, reportRepository);
+        settingsRepository = Mockito.mock(SettingsRepository.class);
+        reportRepository = Mockito.mock(ReportRepository.class);
+        taskService = new TaskService(taskRepository, subjectRepository, reportRepository, settingsRepository);
         taskController = new TaskController(taskService);
     }
 
