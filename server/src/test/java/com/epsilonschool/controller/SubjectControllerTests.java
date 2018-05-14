@@ -44,11 +44,4 @@ public class SubjectControllerTests {
 
         Mockito.verify(subjectRepository, Mockito.times(1)).save(subject);
     }
-
-    @Test
-    public void testSubjectControllerSearchSubject() {
-        subjectController.getSubjectsSearch("matem");
-
-        Mockito.verify(subjectRepository, Mockito.times(1)).findAllSearch("matem");
-    }
 }

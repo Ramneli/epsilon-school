@@ -14,15 +14,14 @@ import static org.mockito.Mockito.times;
 public class TaskControllerTests {
     TaskRepository taskRepository;
     SubjectRepository subjectRepository;
+    ReportRepository reportRepository;
     TaskService taskService;
     TaskController taskController;
-    ReportRepository reportRepository;
 
     @Before
     public void setUp() {
         taskRepository = Mockito.mock(TaskRepository.class);
         subjectRepository = Mockito.mock(SubjectRepository.class);
-        reportRepository = Mockito.mock(ReportRepository.class);
         taskService = new TaskService(taskRepository, subjectRepository, reportRepository);
         taskController = new TaskController(taskService);
     }
