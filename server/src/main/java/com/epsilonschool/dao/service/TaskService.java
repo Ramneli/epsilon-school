@@ -84,6 +84,14 @@ public class TaskService {
     }
 
     private void addTasksForSubject(List<Task> tasksOfSubject, JSONArray tasks) {
+
+        JSONArray harjutus = new JSONArray();
+        JSONArray loeng = new JSONArray();
+        JSONArray praktikum = new JSONArray();
+        JSONArray loengHarjutus = new JSONArray();
+        JSONArray harjutusPraktikum = new JSONArray();
+        JSONArray loengHarjutusPraktikum = new JSONArray();
+
         for (Task task : tasksOfSubject) {
             JSONObject currentTask = new JSONObject();
             currentTask.put("task_id", task.getTaskId());
@@ -91,8 +99,42 @@ public class TaskService {
             currentTask.put("task_deadline", task.getDeadline());
             currentTask.put("task_type", task.getType());
             currentTask.put("task_author", task.getAuthor());
-            tasks.put(currentTask);
+
+            switch (task.getTaskClass().toLowerCase()) {
+                case "harjutus":
+                    harjutus.put(currentTask);
+                    break;
+                case "loeng":
+                    loeng.put(currentTask);
+                    break;
+                case "praktikum":
+                    praktikum.put(currentTask);
+                    break;
+                case "loeng + harjutus":
+                    loengHarjutus.put(currentTask);
+                    break;
+                case "harjutus + praktikum":
+                    harjutusPraktikum.put(currentTask);
+                    break;
+                case "loeng + harjutus + praktikum":
+                    loengHarjutusPraktikum.put(currentTask);
+                    break;
+                default:
+                    harjutus.put(currentTask);
+                    break;
+            }
         }
+
+        JSONObject tasksByClass = new JSONObject();
+
+        tasksByClass.put("Harjutus",harjutus);
+        tasksByClass.put("Loeng", loeng);
+        tasksByClass.put("Praktikum", praktikum);
+        tasksByClass.put("LoengHarjutus", loengHarjutus);
+        tasksByClass.put("HarjutusPraktikum", harjutusPraktikum);
+        tasksByClass.put("LoengHarjutusPraktikum", loengHarjutusPraktikum);
+
+        tasks.put(tasksByClass);
     }
 
     private void addSubjectDetails(Subject subject, JSONObject subjectWithTasks) {
