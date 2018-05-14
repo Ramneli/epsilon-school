@@ -13,10 +13,15 @@
 			<div id="reportDetails" style="margin-top:20px">
 					
 			</div>
+
+			<h4>Saada teavitus kõigile kasutajatele</h4>
+			<div style="width:100%; text-align: right;">
+					<textarea rows=3 style="width: 100%" id="notificationTextArea" #notificationData ></textarea>
+					<button (click)="sendNotification(notificationData.value)"class="btn btn-primary">Saada teavitus</button>
+			</div>
 		</div>
+
+		
 	</div>
-	<div>
-		<textarea id="notificationTextArea" #notificationData ></textarea>
-		<button (click)="sendNotification(notificationData.value)"class="btn btn-primary">Saada teavitus</button>
-	</div>
+	
 </div>

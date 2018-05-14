@@ -237,6 +237,11 @@ table td {
 	width: 100%;
 }
 
+.reportedTasksTable {
+	table-layout: fixed;
+	width: 100%;
+}
+
 @media only screen and (min-width: 541px) {
 	#standardColWidth {
 		width:15%;
@@ -273,6 +278,10 @@ table td {
 }
 
 .tasksTable td {
+	font-family: Helvetica;
+}
+
+.reportedTasksTable td {
 	font-family: Helvetica;
 }
 

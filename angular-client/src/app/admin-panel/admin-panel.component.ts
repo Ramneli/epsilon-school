@@ -90,7 +90,18 @@ export class AdminPanelComponent implements OnInit {
 
 				showReportDetailsBtn.addEventListener('click', e=> {
 					this.userService.getReporteeInfo(String(showReportDetailsBtn.id)).subscribe(res => {
-						this.createReportDetails(res);
+						if (Object.keys(res).length != 0) {
+							this.userService.getReportedUserTasks(res[0].reportee).subscribe(details=> {
+								this.createReportDetails(res, details);
+							});
+						} else {
+							var detailsDiv = document.getElementById("reportDetailsData");
+							var table : HTMLTableElement = <HTMLTableElement> document.getElementById("reportedTasksTable");
+							var tableHead = document.getElementById("tableHead");
+							if (detailsDiv) detailsDiv.parentNode.removeChild(detailsDiv);
+							if (table) table.parentNode.removeChild(table);
+							if (tableHead) tableHead.parentNode.removeChild(tableHead);
+						}
 					});
 				});
 
@@ -116,33 +127,81 @@ export class AdminPanelComponent implements OnInit {
 		});
 	}
 
-	createReportDetails(reportData) {
+	createReportDetails(reportData, tasks) {
+		console.log(tasks);
 		var parentDiv = document.getElementById("reportDetails");
 		var detailsDiv = document.getElementById("reportDetailsData");
-		if (detailsDiv) {
-			detailsDiv.parentNode.removeChild(detailsDiv);
-		} 
-		detailsDiv = document.createElement("div");
-		detailsDiv.id = "reportDetailsData";
+		var tableHead = document.getElementById("tableHead");
+		var table : HTMLTableElement = <HTMLTableElement> document.getElementById("reportedTasksTable");
+
+		if (detailsDiv) detailsDiv.parentNode.removeChild(detailsDiv);
+		if (table) table.parentNode.removeChild(table);
+		if (tableHead) tableHead.parentNode.removeChild(tableHead);
+
+		tableHead = document.createElement("h4");
+		tableHead.setAttribute("id", "tableHead");
+		tableHead.appendChild(document.createTextNode("Raporteeritud ained"));
+		parentDiv.appendChild(tableHead);
+
 		
-		var header = document.createElement("h4");
-		header.appendChild(document.createTextNode("Raporti detailid"));
 
-		detailsDiv.appendChild(header);
 
-		Object.keys(reportData).forEach(element => {
-			var line = document.createElement("p");
-			line.setAttribute("style", "font-family:Helvetica");
-			line.appendChild(document.createTextNode("Raporteeriti ülesannet id-ga " +reportData[element].task_id +
-			" põhjusega: " + reportData[element].description));
-			var nextLine = document.createElement("br");
-			line.appendChild(nextLine);
-			detailsDiv.appendChild(line);
+		var headers = ["Ülesande kirjeldus", "Tähtaeg"];
+		table = <HTMLTableElement> document.createElement("Table");
+		table.classList.add("reportedTasksTable");
+		table.setAttribute("id", "reportedTasksTable");
+		table.setAttribute("style", "table-layout:fixed; white-space: pre;");
+		var tr = table.insertRow();
+		for (var i = 0; i < 2; i++) {
+			let th = document.createElement("th");
+			th.className = "tasksTableHeader";
+			th.appendChild(document.createTextNode(headers[i]));
+			if (headers[i] == "Tähtaeg") {
+				th.className += " columnCenteredText";
+				th.setAttribute("style", "width:20%");
+			} else {
+				th.setAttribute("style", "width:80%");
+			}
+
+			tr.appendChild(th);
+		}
+
+		Object.keys(tasks).forEach(key => {
+			var dataRow = table.insertRow();
+			var taskDescription = document.createElement("td");
+			var taskDeadline = document.createElement("td");
+
+			taskDeadline.className = "columnCenteredText";
+			taskDescription.appendChild(document.createTextNode(tasks[key].description));
+			taskDeadline.appendChild(document.createTextNode(tasks[key].deadline));
+			
+			dataRow.appendChild(taskDescription);
+			dataRow.appendChild(taskDeadline);
 		});
+		table.appendChild(document.createElement("br"));
+		parentDiv.appendChild(table);
+		if (Object.keys(reportData).length != 0) {
+			detailsDiv = document.createElement("div");
+			detailsDiv.id = "reportDetailsData";
+			
+			var header = document.createElement("h4");
+			header.appendChild(document.createTextNode("Kasutajale " + reportData[0].reportee + " tehtud raporteerimiste põhjused."));
 
+			detailsDiv.appendChild(header);
 		
-		parentDiv.appendChild(detailsDiv);
+			var counter = 1;
+			Object.keys(reportData).forEach(element => {
+				var line = document.createElement("p");
+				line.setAttribute("style", "font-family:Helvetica");
+				line.appendChild(document.createTextNode(counter + ". " + reportData[element].description));
+				var nextLine = document.createElement("br");
+				line.appendChild(nextLine);
+				detailsDiv.appendChild(line);
+				counter++;
+			});
+			parentDiv.appendChild(detailsDiv);
 	}
+}
 
 
 	sendNotification(notificationData) {
