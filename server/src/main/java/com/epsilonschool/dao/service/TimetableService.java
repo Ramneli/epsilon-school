@@ -3,6 +3,7 @@ package com.epsilonschool.dao.service;
 import com.epsilonschool.dao.repository.TimetableRepository;
 import com.epsilonschool.entity.Subject;
 import com.epsilonschool.entity.Timetable;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +21,11 @@ public class TimetableService {
     }
 
     public void addToTimeTable(Timetable timetable) {
-        timetableRepository.save(timetable);
+        try {
+            timetableRepository.save(timetable);
+        } catch (DataIntegrityViolationException e) {
+            System.out.println("Tried to add duplicate entry: " + e.getMessage());
+        }
     }
 
     public void removeFromTimeTable(Timetable timetable) {
