@@ -1,0 +1,19 @@
+<div>
+        <div id="validation-form" style="width:80%; margin: 0 auto"></div>
+      </div>
+      <div style="width:100%;">
+          <div style="width: 80%; margin: 0 auto">
+              <form  #addTaskForm="ngForm" class="needs-validation" novalidate id="addTaskForm">
+                  <div>
+                      <label for="description">Raport</label><br>
+                        <textarea class="form-control" style="width:100%" #userReport rows="6" id="description" type="text" name="description" required></textarea>
+                      <div class="invalid-feedback">
+                          Palun sisesta raport antud ülesande kohta.
+                      </div><br>
+                  </div>
+                  <button class="btn btn-primary" type="submit" style="margin-top: 20px; width: 100%;" 
+                  (click)="reportHomework(userReport.value)">Raporteeri ülesanne</button>
+              </form>
+      </div>
+      </div>
+       
