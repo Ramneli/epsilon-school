@@ -41,4 +41,8 @@ public class ReportService {
     public List<Task> getReportedTasks(String reportee) {
         return this.taskRepository.findAllReportedTasks(reportee);
     }
+
+    public List<Report> getAll() {
+        return this.reportRepository.findAllReports();
+    }
 }

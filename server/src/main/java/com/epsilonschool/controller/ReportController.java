@@ -25,6 +25,10 @@ public class ReportController {
     public List<Report> getReportCount(@RequestParam("reportee") String reportee) {
         return this.reportService.getReports(reportee);
     }
+    @GetMapping("/report/getAll")
+    public List<Report> getAllReports() {
+        return this.reportService.getAll();
+    }
 
     @GetMapping("/report/reportedTasks")
     public List<Task> getReportedTasks(@RequestParam("uid") String reportee) {
