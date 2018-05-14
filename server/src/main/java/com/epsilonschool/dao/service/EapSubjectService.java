@@ -39,8 +39,8 @@ public class EapSubjectService {
         }
     }
 
-    private boolean isValidEapSubject(EapSubject eapSubject) {
-        return eapSubject.getEap() > 0 && eapSubject.getGrade() <= 5 && eapSubject.getGrade() > 0;
+    public boolean isValidEapSubject(EapSubject eapSubject) {
+        return eapSubject.getEap() < 128 && eapSubject.getEap() > 0 && eapSubject.getGrade() <= 5 && eapSubject.getGrade() > 0;
     }
 
 
