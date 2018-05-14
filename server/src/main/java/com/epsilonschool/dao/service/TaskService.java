@@ -114,13 +114,13 @@ public class TaskService {
                 case "praktikum":
                     praktikum.put(currentTask);
                     break;
-                case "loengharjutus":
+                case "loeng + harjutus":
                     loengHarjutus.put(currentTask);
                     break;
-                case "harjutuspraktikum":
+                case "harjutus + praktikum":
                     harjutusPraktikum.put(currentTask);
                     break;
-                case "loengharjutuspraktikum":
+                case "loeng + harjutus + praktikum":
                     loengHarjutusPraktikum.put(currentTask);
                     break;
                 default:
