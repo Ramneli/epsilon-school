@@ -64,6 +64,7 @@
 
     searchSubject(keyword) {
         this.subjectService.searchSubject(keyword).subscribe(res => {
+            console.log(res);
             var dataLength = Object.keys(res).length;
             if (dataLength != 0) {
                 this.removeSearchPageChildren();
@@ -71,7 +72,7 @@
                     let subjectButton = document.createElement("button");
                     subjectButton.setAttribute("id", res[i].id);
                     subjectButton.setAttribute("class", "subjectButton");
-                    subjectButton.appendChild(document.createTextNode(res[i].name + " (" + res[i].type + ")"));
+                    subjectButton.appendChild(document.createTextNode(res[i].name + " (" + res[i].lecturer_name + ")"));
                     document.getElementById("list").appendChild(subjectButton);
                     document.getElementById("list").appendChild(document.createElement("br"));
                     subjectButton.addEventListener('click', e => {

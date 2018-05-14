@@ -23,18 +23,8 @@
           <div class="invalid-feedback">
             Palun sisesta õppejõu nimi.
           </div><br>
-    <div>
-					<label for="subjectID">Tunni tüüp</label><br>
-					<select class="form-control" style="width:100%" #userChoice id="subjectID">
-						<option>Loeng</option>
-						<option>Harjutus</option>
-						<option>Praktikum</option>
-						<option>Loeng + Harjutus</option>
-						<option>Harjutus + Praktikum</option>
-						<option>Loeng + Harjutus + Praktikum</option>
-					</select>
-    </div>
+
 					<button class = "btn btn-primary" style="width:100%; margin-top: 20px;" type="submit" (click)="addSubjectToTimetable
-          (userSubjectName.value, userSubjectCode.value, userLecturerName.value, userChoice.value)" name="Loo Aine">Loo uus aine</button>
+          (userSubjectName.value, userSubjectCode.value, userLecturerName.value)" name="Loo Aine">Loo uus aine</button>
   </div>
 </form>

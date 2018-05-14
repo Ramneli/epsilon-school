@@ -40,7 +40,7 @@ export class AddHomeworksComponent implements OnInit {
     displayHomeworks(homeworks) {
         console.log(homeworks)
         for (let i = 0; i < homeworks.length; i++) {
-            this.allSubjectNames.push(homeworks[i].name + " (" + homeworks[i].type + ")");
+            this.allSubjectNames.push(homeworks[i].name + " (" + homeworks[i].lecturer_name + ")");
             this.allSubjectIds.push(homeworks[i].id);
 
         }
@@ -57,16 +57,17 @@ export class AddHomeworksComponent implements OnInit {
         }
 
     }
-
-    addHomework(userSubjectID, userDescription, none, taskType) {
+ 
+    addHomework(userSubjectID, userDescription, none, taskType, lessonType) {
         let userData = {
             subject_id: userSubjectID,
             description: userDescription,
             deadline: this.userDeadline,
             type: taskType,
-            author: this.getUser()
+            author: this.getUser(),
+            taskClass: lessonType
         }
-        
+        console.log(userData);
         if (userDescription.length == 0 || this.userDeadline == null) {
             if (this.userDeadline == null) {
                 var datepicker = document.getElementById("datepickerNotTouched");

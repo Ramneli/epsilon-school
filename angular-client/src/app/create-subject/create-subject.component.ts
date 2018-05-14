@@ -11,16 +11,15 @@ import { AuthService } from '../auth-service/auth.service';
 export class CreateSubjectComponent implements OnInit {
 
   	constructor(private subjectService: SubjectService, private authService : AuthService) { }
-
-	addSubjectToTimetable(userSubjectName, userSubjectCode, userLecturerName, userChoice) {
+ 
+	addSubjectToTimetable(userSubjectName, userSubjectCode, userLecturerName) {
 		let userData = {
 			name: userSubjectName,
 			code: userSubjectCode,
 			lecturer_name: userLecturerName,
-			type: userChoice
 		};
-
-		console.log(userSubjectName, userSubjectCode, userLecturerName, userChoice);
+		console.log(userData);
+		console.log(userSubjectName, userSubjectCode, userLecturerName);
 		
 		
 		if (userSubjectName.length == 0 || userSubjectCode.length == 0 || userLecturerName.length == 0) {

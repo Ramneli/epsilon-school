@@ -127,6 +127,7 @@ label {
 }
 
 .dynamicSidebar.subject {
+	white-space: pre;
 	color:rgb(199, 201, 202);
 	padding: 10px;
 	text-decoration: none;
@@ -232,8 +233,36 @@ table td {
 }
 
 .tasksTable {
-	table-layout: auto; 
+	table-layout: fixed;
 	width: 100%;
+}
+
+@media only screen and (min-width: 541px) {
+	#standardColWidth {
+		width:15%;
+	}
+
+	#taskColWidth {
+		width:80%;
+	}
+
+	#editColWidth {
+		width:5%;
+	}
+}
+
+@media only screen and (max-width: 540px) {
+	#standardColWidth {
+		width:40%;
+	}
+
+	#taskColWidth {
+		width:50%;
+	}
+
+	#editColWidth {
+		width:10%;
+	}
 }
 
 .tasksTable td {
@@ -322,6 +351,7 @@ table td {
 }
 
 .subjectButton:focus {
+	white-space: pre;
     background-color:rgb(236, 236, 236);
     outline: none;
 }
@@ -329,4 +359,12 @@ table td {
 .addButton {
     width:100%;
     margin-top: 20px;
+}
+
+#subjectTypeHeader {
+	white-space: pre;
+}
+
+#subjectLecturerHeader {
+	white-space: pre;
 }
