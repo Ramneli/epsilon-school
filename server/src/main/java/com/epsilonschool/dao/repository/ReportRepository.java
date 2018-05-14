@@ -21,6 +21,5 @@ public interface ReportRepository extends CrudRepository<Report, String> {
     @Query(value = "SELECT Count(*) AS arv FROM reports WHERE task_id=?1", nativeQuery = true)
     int countReportsForTask(String taskId);
 
-    @Query(value = "SELECT * FROM reports", nativeQuery = true)
-    List<Report> findAllReports();
+    List<Report> findAll();
 }

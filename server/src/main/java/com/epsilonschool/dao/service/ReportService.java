@@ -2,8 +2,10 @@ package com.epsilonschool.dao.service;
 
 import com.epsilonschool.dao.repository.ReportRepository;
 import com.epsilonschool.dao.repository.TaskRepository;
+import com.epsilonschool.dao.repository.UserRepository;
 import com.epsilonschool.entity.Report;
 import com.epsilonschool.entity.Task;
+import com.epsilonschool.entity.User;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -14,15 +16,18 @@ import java.util.List;
 public class ReportService {
     private ReportRepository reportRepository;
     private TaskRepository taskRepository;
+    private UserRepository userRepository;
 
-    public ReportService(ReportRepository reportRepository, TaskRepository taskRepository) {
+    public ReportService(ReportRepository reportRepository, TaskRepository taskRepository, UserRepository userRepository) {
         this.reportRepository = reportRepository;
         this.taskRepository = taskRepository;
+        this.userRepository = userRepository;
     }
 
     public ResponseEntity addReport(Report report) {
         try {
             reportRepository.save(report);
+            userRepository.increaseReportCount(report.getReportee());
             return ResponseEntity.ok("Report accepted.");
         } catch (DataIntegrityViolationException e) {
             System.out.println("Cannot save report: " + e.getMessage());
@@ -43,6 +48,6 @@ public class ReportService {
     }
 
     public List<Report> getAll() {
-        return this.reportRepository.findAllReports();
+        return this.reportRepository.findAll();
     }
 }
