@@ -64,7 +64,7 @@ export class ShowHomeworksComponent implements OnInit {
 	}
 
 	showHomeworks(subjectWithTasks) {
-		var dataLength = Object.keys(subjectWithTasks.tasks).length;
+		var dataLength = Object.keys(subjectWithTasks.tasks[0]).length;
 		if (dataLength != 0) {
 			this.tasks = subjectWithTasks.tasks[0];
 			this.createTable(subjectWithTasks);
@@ -110,38 +110,41 @@ export class ShowHomeworksComponent implements OnInit {
 		subjectLecturerHeader.setAttribute("id", "subjectLecturerHeader");
 		subjectLecturerHeader.appendChild(document.createTextNode(subjectLecturerHeaderText + "\n\r"));
 		document.getElementById("tableDiv").appendChild(subjectLecturerHeader);
-
+		var hasSubjects : boolean = false;
 		if (Object.keys(tableData.tasks[0].Loeng).length > 0)  {
-	
+			hasSubjects = true;
 			this.populateTableWithTask(tableData, tableData.tasks[0].Loeng, "Loeng", "Loeng");
 		}
 
 		if (Object.keys(tableData.tasks[0].Harjutus).length > 0)  {
-			
+			hasSubjects = true;
 			this.populateTableWithTask(tableData, tableData.tasks[0].Harjutus, "Harjutus", "Harjutus");
 		}
 
 		if (Object.keys(tableData.tasks[0].Praktikum).length > 0)  {
-		
+			hasSubjects = true;
 			this.populateTableWithTask(tableData, tableData.tasks[0].Praktikum, "Praktikum", "Praktikum");
 		}
 
-		if (Object.keys(tableData.tasks[0].HarjutusPraktikum).length > 0)  {
-			
+		if (Object.keys(tableData.tasks[0].HarjutusPraktikum).length > 0)  {	
+			hasSubjects = true;
 			this.populateTableWithTask(tableData, tableData.tasks[0].HarjutusPraktikum, "Harjutus + Praktikum",
 			"HarjutusPraktikum");
 		}
 
 		if (Object.keys(tableData.tasks[0].LoengHarjutusPraktikum).length > 0)  {
-		
+			hasSubjects = true;
 			this.populateTableWithTask(tableData, tableData.tasks[0].LoengHarjutusPraktikum, "Loeng + Harjutus + Praktikum", 
 			"Loeng + Harjutus + Praktikum");
 		}
 
-		if (Object.keys(tableData.tasks[0].LoengHarjutus).length > 0)  {
-			
+		if (Object.keys(tableData.tasks[0].LoengHarjutus).length > 0)  {		
+			hasSubjects = true;
 			this.populateTableWithTask(tableData, tableData.tasks[0].LoengHarjutus, "Loeng + Harjutus", 
 			"LoengHarjutus");
+		}
+		if (!hasSubjects) {
+			this.createTableWithNoHomeworks();
 		}
     }
 	
@@ -209,26 +212,13 @@ export class ShowHomeworksComponent implements OnInit {
 	}
 
 	createTableWithNoHomeworks() {
-	    let table = document.getElementById("homeworkTable");
+	    let noHomeWorksMessage = document.getElementById("homeworkTable");
 
-	    if (!table) {
-		    table = document.createElement("Table");
-		    table.setAttribute("id", "homeworkTable");
-			table.setAttribute("class", "tasksTable");
-		    var tableHeader = document.createElement("tr");
-			var cell_message = document.createElement("th");
-			cell_message.setAttribute("class", "tasksTableHeader")
-		    var tableRow = document.createElement("tr");
-		    var cell_message_content = document.createElement("tr");
-
-		    cell_message.textContent = "Teade";
-		    cell_message_content.textContent = "Ülesandeid ei ole.";
-
-		    tableHeader.appendChild(cell_message);
-		    tableRow.appendChild(cell_message_content);
-		    table.appendChild(tableHeader);
-		    table.appendChild(tableRow);
-			document.getElementById("tableDiv").appendChild(table);
+	    if (!noHomeWorksMessage) {
+		    noHomeWorksMessage = document.createElement("h5");
+		    noHomeWorksMessage.setAttribute("id", "homeworkTable");
+		    noHomeWorksMessage.appendChild(document.createTextNode("Ülesandeid ei ole."));
+			document.getElementById("tableDiv").appendChild(noHomeWorksMessage);
 		}
 	}
 
