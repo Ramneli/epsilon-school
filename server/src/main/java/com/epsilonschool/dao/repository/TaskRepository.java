@@ -23,4 +23,7 @@ public interface TaskRepository extends CrudRepository<Task, String> {
     @Transactional
     @Query(value = "DELETE FROM task WHERE id=?1 AND author=?2", nativeQuery = true)
     void deleteTask(String taskId, String uid);
+
+    @Query(value = "SELECT * FROM task WHERE id IN (SELECT task_id FROM reports WHERE reportee=?1)", nativeQuery = true)
+    List<Task> findAllReportedTasks(String uid);
 }

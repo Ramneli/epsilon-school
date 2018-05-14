@@ -1,7 +1,9 @@
 package com.epsilonschool.dao.service;
 
 import com.epsilonschool.dao.repository.ReportRepository;
+import com.epsilonschool.dao.repository.TaskRepository;
 import com.epsilonschool.entity.Report;
+import com.epsilonschool.entity.Task;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -11,9 +13,11 @@ import java.util.List;
 @Service
 public class ReportService {
     private ReportRepository reportRepository;
+    private TaskRepository taskRepository;
 
-    public ReportService(ReportRepository reportRepository) {
+    public ReportService(ReportRepository reportRepository, TaskRepository taskRepository) {
         this.reportRepository = reportRepository;
+        this.taskRepository = taskRepository;
     }
 
     public ResponseEntity addReport(Report report) {
@@ -27,11 +31,14 @@ public class ReportService {
     }
 
     public List<Report> getReports(String reportee) {
-        System.out.println(reportee);
         return this.reportRepository.findAllByReportee(reportee);
     }
 
     public void clearReportsOfUser(String uid) {
         reportRepository.clearReportsOfUser(uid);
+    }
+
+    public List<Task> getReportedTasks(String reportee) {
+        return this.taskRepository.findAllReportedTasks(reportee);
     }
 }

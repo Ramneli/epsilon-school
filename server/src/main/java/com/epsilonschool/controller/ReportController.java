@@ -2,6 +2,7 @@ package com.epsilonschool.controller;
 
 import com.epsilonschool.dao.service.ReportService;
 import com.epsilonschool.entity.Report;
+import com.epsilonschool.entity.Task;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,5 +24,10 @@ public class ReportController {
     @GetMapping("/report/get")
     public List<Report> getReportCount(@RequestParam("reportee") String reportee) {
         return this.reportService.getReports(reportee);
+    }
+
+    @GetMapping("/report/reportedTasks")
+    public List<Task> getReportedTasks(@RequestParam("uid") String reportee) {
+        return this.reportService.getReportedTasks(reportee);
     }
 }
