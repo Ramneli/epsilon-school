@@ -159,8 +159,7 @@ public class EapSubjectTests {
         mockSubjects.add(eapSubject3);
         mockSubjects.add(eapSubject4);
         Mockito.when(eapSubjectRepository.findAllByUserId("1")).thenReturn(mockSubjects);
-        System.out.println(ResponseEntity.badRequest().body("Too many subjects for user."));
-
+        
         Assert.assertEquals(eapSubjectService.calculateUserAverageGrade("1"), 3.667, 0.001);
     }
 
