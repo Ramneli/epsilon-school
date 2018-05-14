@@ -26,6 +26,8 @@ public class Task {
     private String type;
     @JsonProperty(value = "author")
     private String author;
+    @JsonProperty(value = "taskClass")
+    private String taskClass;
 
     public Task(){}
 
@@ -78,5 +80,13 @@ public class Task {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public String getTaskClass() {
+        return taskClass;
+    }
+
+    public void setTaskClass(String taskClass) {
+        this.taskClass = taskClass;
     }
 }

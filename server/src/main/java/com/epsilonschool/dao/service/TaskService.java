@@ -100,7 +100,6 @@ public class TaskService {
         subjectWithTasks.put("lecturer_name", subject.getLecturerName());
         subjectWithTasks.put("subject_code", subject.getCode());
         subjectWithTasks.put("subject_id", subject.getId());
-        subjectWithTasks.put("subject_type", subject.getType());
     }
 
     public boolean updateTask(Task task) {

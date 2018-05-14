@@ -18,8 +18,6 @@ public class Subject {
     private String code;
     @JsonProperty("lecturer_name")
     private String lecturerName;
-    @JsonProperty("type")
-    private String type;
 
     public Subject() {}
 
@@ -27,7 +25,6 @@ public class Subject {
         this.name = name;
         this.code = code;
         this.lecturerName = lecturerName;
-        this.type = type;
     }
 
     public void setName(String name) {
@@ -56,13 +53,5 @@ public class Subject {
 
     public String getId() {
         return id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 }
