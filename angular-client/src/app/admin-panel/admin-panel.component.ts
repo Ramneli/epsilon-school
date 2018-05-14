@@ -205,9 +205,10 @@ export class AdminPanelComponent implements OnInit {
 
 
 	sendNotification(notificationData) {
+		var currentTime = (new Date).getTime() + 1000000000;
 		let jsonData = {
 			message: notificationData,
-			deadline: "1624654200000"
+			deadline: currentTime
 		};
 		this.notificationService.saveNotification(jsonData).subscribe();
 	}  
