@@ -19,7 +19,7 @@ import org.springframework.web.filter.CorsFilter;
 @PropertySource(value = {"classpath:application.properties"})
 @EntityScan(basePackages =  {"com.epsilonschool.entity"})
 @EnableJpaRepositories("com.epsilonschool.dao.repository")
-@Import({SecurityConfiguration.class})
+//@Import({SecurityConfiguration.class})
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);

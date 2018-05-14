@@ -74,8 +74,6 @@ public class UserController {
         User user = userService.getUserByUid(uid);
         if (user.getIsBlocked() == 1) {
             userService.unblockUser(uid);
-        } else {
-            userService.blockUser(uid);
         }
     }
 }

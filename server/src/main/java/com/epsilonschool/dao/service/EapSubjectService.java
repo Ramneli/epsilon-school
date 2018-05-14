@@ -10,8 +10,11 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 
+
 @Service
 public class EapSubjectService {
+
+    public static final int MAX_SUBJECTS = 50;
 
     private EapSubjectRepository eapSubjectRepository;
 
@@ -21,12 +24,23 @@ public class EapSubjectService {
 
     public ResponseEntity addEapSubject(EapSubject eapSubject) {
         try {
-            this.eapSubjectRepository.save(eapSubject);
-            return ResponseEntity.ok(HttpStatus.OK);
+            if (this.eapSubjectRepository.countSubjectsForUser(eapSubject.getUserId()) >= MAX_SUBJECTS) {
+                return ResponseEntity.badRequest().body("Too many subjects for user.");
+            } else {
+                if (isValidEapSubject(eapSubject)) {
+                    this.eapSubjectRepository.save(eapSubject);
+                    return ResponseEntity.ok(HttpStatus.OK);
+                }
+                return ResponseEntity.badRequest().body("Invalid data.");
+            }
         } catch (DataIntegrityViolationException e) {
             System.out.println(e.getMessage());
             return ResponseEntity.badRequest().body("Invalid data.");
         }
+    }
+
+    private boolean isValidEapSubject(EapSubject eapSubject) {
+        return eapSubject.getEap() > 0 && eapSubject.getGrade() <= 5 && eapSubject.getGrade() > 0;
     }
 
 
