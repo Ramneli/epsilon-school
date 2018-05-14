@@ -1,8 +1,6 @@
 package com.epsilonschool.dao.service;
 
-import com.epsilonschool.dao.repository.ReportRepository;
-import com.epsilonschool.dao.repository.SubjectRepository;
-import com.epsilonschool.dao.repository.TaskRepository;
+import com.epsilonschool.dao.repository.*;
 import com.epsilonschool.entity.Subject;
 import com.epsilonschool.entity.Task;
 import org.json.JSONArray;
@@ -20,11 +18,14 @@ public class TaskService {
     private TaskRepository taskRepository;
     private SubjectRepository subjectRepository;
     private ReportRepository reportRepository;
+    private SettingsRepository settingsRepository;
 
-    public TaskService(TaskRepository taskRepository, SubjectRepository subjectRepository, ReportRepository reportRepository) {
+    public TaskService(TaskRepository taskRepository, SubjectRepository subjectRepository,
+                       ReportRepository reportRepository, SettingsRepository settingsRepository) {
         this.taskRepository = taskRepository;
         this.subjectRepository = subjectRepository;
         this.reportRepository = reportRepository;
+        this.settingsRepository = settingsRepository;
     }
 
     public List<Task> getTask(String subjectId) {
@@ -49,11 +50,14 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
-    public JSONObject getSubjectWithAllTasks(String subjectId, boolean limitOldTasks) {
+    public JSONObject getSubjectWithAllTasks(String subjectId, String uid) {
         Subject subject = subjectRepository.findOne(subjectId);
         List<Task> tasksOfSubject;
 
-        if (limitOldTasks) {
+        char limitOldTasks = settingsRepository.findByUid(uid).getOldTasks();
+        System.out.println(limitOldTasks);
+
+        if (limitOldTasks == '0') {
             tasksOfSubject = this.getAllTasksOfSubject(subjectId).stream()
                     .filter(t -> t.getDeadline().after(Date.valueOf(LocalDate.now())))
                     .collect(Collectors.toList());
@@ -110,13 +114,13 @@ public class TaskService {
                 case "praktikum":
                     praktikum.put(currentTask);
                     break;
-                case "loeng + harjutus":
+                case "loengharjutus":
                     loengHarjutus.put(currentTask);
                     break;
-                case "harjutus + praktikum":
+                case "harjutuspraktikum":
                     harjutusPraktikum.put(currentTask);
                     break;
-                case "loeng + harjutus + praktikum":
+                case "loengharjutuspraktikum":
                     loengHarjutusPraktikum.put(currentTask);
                     break;
                 default:
