@@ -1,5 +1,6 @@
 package com.epsilonschool.dao.service;
 
+import com.epsilonschool.dao.repository.ReportRepository;
 import com.epsilonschool.dao.repository.SubjectRepository;
 import com.epsilonschool.dao.repository.TaskRepository;
 import com.epsilonschool.entity.Subject;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,10 +19,12 @@ import java.util.stream.Collectors;
 public class TaskService {
     private TaskRepository taskRepository;
     private SubjectRepository subjectRepository;
+    private ReportRepository reportRepository;
 
-    public TaskService(TaskRepository taskRepository, SubjectRepository subjectRepository) {
+    public TaskService(TaskRepository taskRepository, SubjectRepository subjectRepository, ReportRepository reportRepository) {
         this.taskRepository = taskRepository;
         this.subjectRepository = subjectRepository;
+        this.reportRepository = reportRepository;
     }
 
     public List<Task> getTask(String subjectId) {
@@ -57,6 +61,8 @@ public class TaskService {
             tasksOfSubject = this.getAllTasksOfSubject(subjectId);
         }
 
+        tasksOfSubject = filterReportedTasks(tasksOfSubject);
+
         JSONObject subjectWithTasks = new JSONObject();
         addSubjectDetails(subject, subjectWithTasks);
 
@@ -65,6 +71,16 @@ public class TaskService {
 
         subjectWithTasks.put("tasks", tasks);
         return subjectWithTasks;
+    }
+
+    private List<Task> filterReportedTasks(List<Task> tasksOfSubject) {
+        List<Task> tempTasks = new ArrayList<>();
+        for (Task task : tasksOfSubject) {
+            if (reportRepository.countReportsForTask(task.getTaskId()) < 3) {
+                tempTasks.add(task);
+            }
+        }
+        return tempTasks;
     }
 
     private void addTasksForSubject(List<Task> tasksOfSubject, JSONArray tasks) {

@@ -29,10 +29,9 @@ public class NotificationService {
 
     public List<Notification> loadNotifications() {
         List<Notification> allNotifications = this.notificationRepository.findAll();
-        List<Notification> filteredNotifications = allNotifications.stream()
+
+        return allNotifications.stream()
                 .filter(n -> n.getDeadline().after(Date.valueOf(LocalDate.now().minusDays(14))))
                 .collect(Collectors.toList());
-
-        return filteredNotifications;
     }
 }
