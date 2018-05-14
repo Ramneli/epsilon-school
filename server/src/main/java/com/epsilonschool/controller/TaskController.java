@@ -32,7 +32,7 @@ public class TaskController {
     }
 
     @PostMapping("/getAll/{subjectId}")
-    public String getTasksForHomework(@PathVariable String subjectId, @RequestParam("filter") boolean limitOldTasks) {
+    public String getTasksForSubject(@PathVariable String subjectId, @RequestParam("filter") boolean limitOldTasks) {
         return taskService.getSubjectWithAllTasks(subjectId, limitOldTasks).toString();
     }
 

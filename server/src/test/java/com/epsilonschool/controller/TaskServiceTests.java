@@ -11,11 +11,10 @@ import org.mockito.Mockito;
 
 import static org.mockito.Mockito.times;
 
-public class TaskControllerTests {
+public class TaskServiceTests {
     TaskRepository taskRepository;
     SubjectRepository subjectRepository;
     TaskService taskService;
-    TaskController taskController;
     ReportRepository reportRepository;
 
     @Before
@@ -24,28 +23,8 @@ public class TaskControllerTests {
         subjectRepository = Mockito.mock(SubjectRepository.class);
         reportRepository = Mockito.mock(ReportRepository.class);
         taskService = new TaskService(taskRepository, subjectRepository, reportRepository);
-        taskController = new TaskController(taskService);
     }
 
     @Test
-    public void testTaskControllerGetAllTasks() {
-        taskController.getAllTasks();
-
-        Mockito.verify(taskRepository, times(1)).findAll();
-    }
-
-    @Test
-    public void testTaskControllerGetTaskByID() {
-        taskController.getTask("34");
-
-        Mockito.verify(taskRepository, times(1)).findAll();
-    }
-
-    @Test
-    public void testTaskControllerAddNewTask() {
-        Task task = new Task();
-        taskController.addTask(task);
-
-        Mockito.verify(taskRepository, times(1)).save(task);
-    }
+    public void testTaskService
 }

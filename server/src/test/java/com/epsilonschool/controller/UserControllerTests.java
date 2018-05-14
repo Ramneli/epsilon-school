@@ -1,6 +1,9 @@
 package com.epsilonschool.controller;
 
+import com.epsilonschool.dao.repository.SettingsRepository;
 import com.epsilonschool.dao.repository.UserRepository;
+import com.epsilonschool.dao.service.ReportService;
+import com.epsilonschool.dao.service.SettingsService;
 import com.epsilonschool.dao.service.UserService;
 import com.epsilonschool.entity.User;
 import org.junit.Before;
@@ -12,12 +15,16 @@ public class UserControllerTests {
     UserRepository userRepository;
     UserService userService;
     UserController userController;
+    SettingsService settingsService;
+    ReportService reportService;
 
     @Before
     public void setUp() {
         userRepository = Mockito.mock(UserRepository.class);
+        settingsService = Mockito.mock(SettingsService.class);
+        reportService = Mockito.mock(ReportService.class);
         userService = new UserService(userRepository);
-        userController = new UserController(userService);
+        userController = new UserController(userService, settingsService, reportService);
     }
 
     @Test
