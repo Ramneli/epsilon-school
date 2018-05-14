@@ -39,4 +39,9 @@ export class UserService {
     const resolveReportURL = "http://localhost:8080/user/resolveReport?uid=" + uid;
     return this.http.get(resolveReportURL);
   }
+
+  getReportedUserTasks(uid) {
+    const reportedUserTasksURL = "http://localhost:8080/report/reportedTasks?uid=" + uid;
+    return this.http.get(reportedUserTasksURL);
+  }
 }

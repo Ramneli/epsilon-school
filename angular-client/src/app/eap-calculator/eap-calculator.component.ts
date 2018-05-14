@@ -51,6 +51,7 @@ export class EapCalculatorComponent implements OnInit {
 		table = <HTMLTableElement> document.createElement("Table");
 		table.classList.add("tasksTable");
 		table.setAttribute("id", "tasksTable");
+		table.setAttribute("style", "table-layout:fixed");
 
 		var tr = table.insertRow();
 		for (var i = 0; i < 3; i++) {
@@ -59,6 +60,9 @@ export class EapCalculatorComponent implements OnInit {
 			th.appendChild(document.createTextNode(headers[i]));
 			if (headers[i] != "Aine") {
 				th.className += " columnCenteredText";
+				th.setAttribute("style", "width:20%");
+			} else {
+				th.setAttribute("style", "width:50%");
 			}
 
 			tr.appendChild(th);
@@ -66,6 +70,7 @@ export class EapCalculatorComponent implements OnInit {
 		let removeHeader = document.createElement("th");
 		removeHeader.className = "tasksTableHeader";
 		removeHeader.appendChild(document.createTextNode(""));
+		removeHeader.setAttribute("style", "width: 5%");
 		tr.appendChild(removeHeader);
 
 		Object.keys(data).forEach(key => {
