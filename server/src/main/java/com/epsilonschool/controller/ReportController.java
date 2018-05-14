@@ -2,6 +2,7 @@ package com.epsilonschool.controller;
 
 import com.epsilonschool.dao.service.ReportService;
 import com.epsilonschool.entity.Report;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,8 +16,8 @@ public class ReportController {
     }
 
     @PostMapping("/report/add")
-    public void addReport(@RequestBody Report report) {
-        this.reportService.addReport(report);
+    public ResponseEntity addReport(@RequestBody Report report) {
+        return this.reportService.addReport(report);
     }
 
     @GetMapping("/report/get")

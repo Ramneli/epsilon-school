@@ -40,7 +40,7 @@ export class AddHomeworksComponent implements OnInit {
     displayHomeworks(homeworks) {
         console.log(homeworks)
         for (let i = 0; i < homeworks.length; i++) {
-            this.allSubjectNames.push(homeworks[i].name);
+            this.allSubjectNames.push(homeworks[i].name + " (" + homeworks[i].type + ")");
             this.allSubjectIds.push(homeworks[i].id);
 
         }

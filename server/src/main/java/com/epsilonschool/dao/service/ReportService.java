@@ -2,6 +2,8 @@ package com.epsilonschool.dao.service;
 
 import com.epsilonschool.dao.repository.ReportRepository;
 import com.epsilonschool.entity.Report;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +16,14 @@ public class ReportService {
         this.reportRepository = reportRepository;
     }
 
-    public void addReport(Report report) {
-        reportRepository.save(report);
+    public ResponseEntity addReport(Report report) {
+        try {
+            reportRepository.save(report);
+            return ResponseEntity.ok("Report accepted.");
+        } catch (DataIntegrityViolationException e) {
+            System.out.println("Cannot save report: " + e.getMessage());
+            return ResponseEntity.badRequest().body("The user has already reported this task.");
+        }
     }
 
     public List<Report> getReports(String reportee) {

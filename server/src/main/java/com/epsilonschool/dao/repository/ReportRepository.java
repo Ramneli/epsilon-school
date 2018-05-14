@@ -17,4 +17,7 @@ public interface ReportRepository extends CrudRepository<Report, String> {
     @Transactional
     @Query (value = "DELETE FROM reports WHERE reportee=?1", nativeQuery = true)
     void clearReportsOfUser(String uid);
+
+    @Query(value = "SELECT Count(*) AS arv FROM reports WHERE task_id=?1", nativeQuery = true)
+    int countReportsForTask(String taskId);
 }

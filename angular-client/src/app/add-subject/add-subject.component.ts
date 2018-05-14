@@ -1,105 +1,58 @@
-    import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-    import { SubjectService } from '../subject-service/subject.service';
-    import { TaskService } from '../task-service/task.service';
-    import { AuthService } from '../auth-service/auth.service';
-    import { Router } from '@angular/router';
+import { SubjectService } from '../subject-service/subject.service';
+import { TaskService } from '../task-service/task.service';
+import { AuthService } from '../auth-service/auth.service';
+import { Router } from '@angular/router';
 
-    @Component({
-    selector: 'app-add-subject',
-    templateUrl: './add-subject.component.html',
-    styleUrls: ['./add-subject.component.css']
-    })
-    export class AddSubjectComponent implements OnInit {
+@Component({
+  selector: 'app-add-subject',
+  templateUrl: './add-subject.component.html',
+  styleUrls: ['./add-subject.component.css']
+})
+export class AddSubjectComponent implements OnInit {
 
-    constructor(private subjectService: SubjectService,
-                private taskService: TaskService,
-                private authService: AuthService,
-                private router : Router
-                ) { }
+  constructor(private subjectService: SubjectService,
+              private taskService: TaskService,
+              private authService: AuthService,
+              private router : Router
+              ) { }
 
-    allSubjectNames = [];
-    allSubjectIds = [];
-    selectedSearchSubjectId = -1;
+  allSubjectNames = [];
+  allSubjectIds = [];
 
+  userId = "default";
 
-    userId = "default";
+  getAllSubjects() {
+    this.subjectService.getAllSubjects()
+      .subscribe(allSubjects => {
+          this.pushAllSubjectsToLists(allSubjects);
+      });
+  	}
 
-    getAllSubjects() {
-        this.subjectService.getAllSubjects()
-        .subscribe(allSubjects => {
-            this.pushAllSubjectsToLists(allSubjects);
+  
+  addSubjectToTimetable(subjectId) {
+    const userData = {
+      uid: this.userId,
+      subject_id: subjectId
+    };
+    this.subjectService.addSubjectToTimetable(userData).subscribe(d => {
+        this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+            this.router.navigate(['/homeworks']);
         });
+    });
+    this.displaySuccessAlert();
+  }
+
+  	pushAllSubjectsToLists(allSubjects) {
+    	console.log(allSubjects);
+    for (let i = 0; i < allSubjects.length; i++) {
+	      	this.allSubjectNames.push(allSubjects[i].name);
+	     	this.allSubjectIds.push(allSubjects[i].id);
     }
-
-    
-    addSubjectToTimetable(subjectId) {
-        if (subjectId == -1) {
-            this.displayAlert('Vali aine enne listamist.');
-        }
-
-        const userData = {
-        uid: this.userId,
-        subject_id: subjectId
-        };
-        this.subjectService.addSubjectToTimetable(userData).subscribe(d => {
-            this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-                this.router.navigate(['/homeworks']);
-            });
-        });
-        this.displayAlert('Aine tunniplaani lisatud.');
-    }
-
-    removeSearchPageChildren() {
-        var subjectList = document.getElementById("list");
-        while (subjectList.firstChild) {
-            subjectList.removeChild(subjectList.firstChild);
-        }
-
-        var subjectButtonDiv = document.getElementById("addButtonDiv");
-        while (subjectButtonDiv.firstChild) {
-            subjectButtonDiv.removeChild(subjectButtonDiv.firstChild);
-        }
-    }
-
-    searchSubject(keyword) {
-        this.subjectService.searchSubject(keyword).subscribe(res => {
-            var dataLength = Object.keys(res).length;
-            if (dataLength != 0) {
-                this.removeSearchPageChildren();
-                Object.keys(res).forEach(i => {
-                    let subjectButton = document.createElement("button");
-                    subjectButton.setAttribute("id", res[i].id);
-                    subjectButton.setAttribute("class", "subjectButton");
-                    subjectButton.appendChild(document.createTextNode(res[i].name + " (" + res[i].type + ")"));
-                    document.getElementById("list").appendChild(subjectButton);
-                    document.getElementById("list").appendChild(document.createElement("br"));
-                    subjectButton.addEventListener('click', e => {
-                        this.selectedSearchSubjectId = res[i].id;
-                        console.log(this.selectedSearchSubjectId);
-                    })
-                });
-                let addButton = document.createElement("button");
-                    addButton.setAttribute("class", "btn btn-primary");
-                    addButton.setAttribute("id", "addButton");
-                    addButton.appendChild(document.createTextNode("Lisa aine tunniplaani"));
-                    addButton.addEventListener('click', e => {
-                        this.addSubjectToTimetable(this.selectedSearchSubjectId);
-                    });
-                    document.getElementById("addButtonDiv").appendChild(addButton);
-            } else {
-                this.displayAlert('Ühtegi ainet ei leitud.');
-            }
-        });
-    }
-
-    pushAllSubjectsToLists(allSubjects) {
-        console.log(allSubjects);
-        for (let i = 0; i < allSubjects.length; i++) {
-                this.allSubjectNames.push(allSubjects[i].name + "(" + allSubjects.type + ")");
-                this.allSubjectIds.push(allSubjects[i].id);
-        }
-    }
+    console.log(this.allSubjectNames);
+    console.log(this.allSubjectIds);
+  }
 
     checkIfUserExists() {
         return this.taskService.checkIfUserExists(this.userId).subscribe();
@@ -109,11 +62,11 @@
         return this.authService.getAuth();
     }
 
-    displayAlert(message) {
+    displaySuccessAlert() {
         var successMsgDiv = document.createElement('div');
         successMsgDiv.setAttribute('id', "successMsgDiv");
         successMsgDiv.setAttribute("class", "alert alert-success");
-        successMsgDiv.appendChild(document.createTextNode(message));
+        successMsgDiv.appendChild(document.createTextNode('Aine tunniplaani lisatud.'));
 
         var validationFormDiv = document.getElementById('validation-form');
         validationFormDiv.appendChild(successMsgDiv);
@@ -134,5 +87,5 @@
             this.getAllSubjects();
         }
     }
-        
+	    
 }

@@ -4,7 +4,11 @@ import com.epsilonschool.dao.repository.NotificationRepository;
 import com.epsilonschool.entity.Notification;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class NotificationService {
@@ -24,6 +28,10 @@ public class NotificationService {
     }
 
     public List<Notification> loadNotifications() {
-        return this.notificationRepository.findAll();
+        List<Notification> allNotifications = this.notificationRepository.findAll();
+
+        return allNotifications.stream()
+                .filter(n -> n.getDeadline().after(Date.valueOf(LocalDate.now().minusDays(14))))
+                .collect(Collectors.toList());
     }
 }
