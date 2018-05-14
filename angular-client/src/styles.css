@@ -314,12 +314,16 @@ table td {
 }
 
 .subjectButton {
-    border: 1px solid transparent;
+    border: 0px solid transparent;
     background-color:white;
+    width: 100%;
+    text-align: left;
+    outline: none;
 }
 
 .subjectButton:focus {
-    background-color:gray;
+    background-color:rgb(236, 236, 236);
+    outline: none;
 }
 
 .addButton {

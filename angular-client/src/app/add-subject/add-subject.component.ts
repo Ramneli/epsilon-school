@@ -35,7 +35,7 @@
     
     addSubjectToTimetable(subjectId) {
         if (subjectId == -1) {
-            this.displayAlert('Vali aine enne listamist.');
+            this.displayAlert('Vali aine enne lisamist.', "danger");
         }
 
         const userData = {
@@ -47,7 +47,7 @@
                 this.router.navigate(['/homeworks']);
             });
         });
-        this.displayAlert('Aine tunniplaani lisatud.');
+        this.displayAlert('Aine tunniplaani lisatud.', "success");
     }
 
     removeSearchPageChildren() {
@@ -81,14 +81,15 @@
                 });
                 let addButton = document.createElement("button");
                     addButton.setAttribute("class", "btn btn-primary");
-                    addButton.setAttribute("id", "addButton");
+                    addButton.setAttribute("style", "width: 100%");
+                    addButton.id = "addButton";
                     addButton.appendChild(document.createTextNode("Lisa aine tunniplaani"));
                     addButton.addEventListener('click', e => {
                         this.addSubjectToTimetable(this.selectedSearchSubjectId);
                     });
                     document.getElementById("addButtonDiv").appendChild(addButton);
             } else {
-                this.displayAlert('Ühtegi ainet ei leitud.');
+                this.displayAlert('Ühtegi ainet ei leitud.', "danger");
             }
         });
     }
@@ -109,10 +110,14 @@
         return this.authService.getAuth();
     }
 
-    displayAlert(message) {
+    displayAlert(message, alertType) {
         var successMsgDiv = document.createElement('div');
         successMsgDiv.setAttribute('id', "successMsgDiv");
-        successMsgDiv.setAttribute("class", "alert alert-success");
+        if (alertType == "success") {
+            successMsgDiv.setAttribute("class", "alert alert-success");
+        } else if (alertType == "danger") {
+            successMsgDiv.setAttribute("class", "alert alert-danger");
+        }
         successMsgDiv.appendChild(document.createTextNode(message));
 
         var validationFormDiv = document.getElementById('validation-form');
