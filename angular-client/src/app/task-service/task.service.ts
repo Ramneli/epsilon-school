@@ -79,6 +79,4 @@ export class TaskService {
 	private log(message: string) {
 		this.messageService.add('HeroService: ' + message + '.');
 	}
-
-	private homeworksUrl = 'http://localhost:8080/timetable/get';
 }

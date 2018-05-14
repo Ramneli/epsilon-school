@@ -66,7 +66,7 @@ export class ShowHomeworksComponent implements OnInit {
 	showHomeworks(subjectWithTasks) {
 		var dataLength = Object.keys(subjectWithTasks.tasks).length;
 		if (dataLength != 0) {
-            this.tasks = subjectWithTasks.tasks;
+			this.tasks = subjectWithTasks.tasks[0];
 			this.createTable(subjectWithTasks);
 		} else {
 			this.createTableWithNoHomeworks();
@@ -113,36 +113,39 @@ export class ShowHomeworksComponent implements OnInit {
 
 		if (Object.keys(tableData.tasks[0].Loeng).length > 0)  {
 	
-			this.populateTableWithTask(tableData, tableData.tasks[0].Loeng, "Loeng");
+			this.populateTableWithTask(tableData, tableData.tasks[0].Loeng, "Loeng", "Loeng");
 		}
 
 		if (Object.keys(tableData.tasks[0].Harjutus).length > 0)  {
 			
-			this.populateTableWithTask(tableData, tableData.tasks[0].Harjutus, "Harjutus");
+			this.populateTableWithTask(tableData, tableData.tasks[0].Harjutus, "Harjutus", "Harjutus");
 		}
 
 		if (Object.keys(tableData.tasks[0].Praktikum).length > 0)  {
 		
-			this.populateTableWithTask(tableData, tableData.tasks[0].Praktikum, "Praktikum");
+			this.populateTableWithTask(tableData, tableData.tasks[0].Praktikum, "Praktikum", "Praktikum");
 		}
 
 		if (Object.keys(tableData.tasks[0].HarjutusPraktikum).length > 0)  {
 			
-			this.populateTableWithTask(tableData, tableData.tasks[0].HarjutusPraktikum, "Harjutus + Praktikum");
+			this.populateTableWithTask(tableData, tableData.tasks[0].HarjutusPraktikum, "Harjutus + Praktikum",
+			"HarjutusPraktikum");
 		}
 
 		if (Object.keys(tableData.tasks[0].LoengHarjutusPraktikum).length > 0)  {
 		
-			this.populateTableWithTask(tableData, tableData.tasks[0].LoengHarjutusPraktikum, "Loeng + Harjutus + Praktikum");
+			this.populateTableWithTask(tableData, tableData.tasks[0].LoengHarjutusPraktikum, "Loeng + Harjutus + Praktikum", 
+			"Loeng + Harjutus + Praktikum");
 		}
 
 		if (Object.keys(tableData.tasks[0].LoengHarjutus).length > 0)  {
 			
-			this.populateTableWithTask(tableData, tableData.tasks[0].LoengHarjutus, "Loeng + Harjutus");
+			this.populateTableWithTask(tableData, tableData.tasks[0].LoengHarjutus, "Loeng + Harjutus", 
+			"LoengHarjutus");
 		}
     }
 	
-	populateTableWithTask(tableData, tasks, taskType) {
+	populateTableWithTask(tableData, tasks, taskType, name) {
 		var subjectTypeHeader = document.createElement("h4");
 		subjectTypeHeader.setAttribute("id", "subjectTypeHeader");
 		var subjectTypeHeaderText = taskType;
@@ -185,8 +188,8 @@ export class ShowHomeworksComponent implements OnInit {
                 editButton.setAttribute("style", "cursor: pointer;")
                 editButton.addEventListener('click', e => {
                  
-                    var editButtonId = editButton.getAttribute("id");
-                    var cookieData: string = this.tasks[parseInt(editButtonId)].task_description + ":" + tasks[i].task_id;
+					var editButtonId = editButton.getAttribute("id");
+                    var cookieData: string = this.tasks[name][parseInt(editButtonId)].task_description + ":" + tasks[i].task_id;
                     localStorage.setItem("currentTask", cookieData);
                     this.editHomework();
                 });
