@@ -37,6 +37,6 @@ public interface UserRepository extends CrudRepository<User, String>{
 
     @Modifying
     @Transactional
-    @Query (value = "UPDATE user SET report_count = report_count + 1 WHERE reportee =?1", nativeQuery = true)
+    @Query (value = "UPDATE user SET report_count = report_count + 1 WHERE uid =?1", nativeQuery = true)
     void increaseReportCount(String reportee);
 }
