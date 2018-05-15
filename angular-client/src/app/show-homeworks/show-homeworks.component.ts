@@ -61,7 +61,7 @@ export class ShowHomeworksComponent implements OnInit {
 		this.taskService.getTasksWithSubject(subjectId, this.userId)
 	        .subscribe(subjectWithTasks => {
 	        	this.showHomeworks(subjectWithTasks);
-	    });
+		});
 	}
 
 	showHomeworks(subjectWithTasks) {
@@ -87,8 +87,8 @@ export class ShowHomeworksComponent implements OnInit {
 	}
 	
 	makeNewTable(taskType) {
-		var headers = ["Ülesanne", "Tähtaeg", ""];
-		var listWidth = ["taskColWidth", "standardColWidth", "editColWidth"];
+		var headers = ["Ülesanne", "Tähtaeg", "", ""];
+		var listWidth = ["taskColWidth", "standardColWidth", "editColWidth", "editColWidth"];
 		var table: HTMLTableElement = <HTMLTableElement> document.createElement("Table");
 		table.setAttribute("id", taskType);
 		var tableHeader = document.createElement("tr");
@@ -163,9 +163,7 @@ export class ShowHomeworksComponent implements OnInit {
 		table.setAttribute("class", "tasksTable")
 
 		Object.keys(tasks).forEach(i => {
-	
 			var tr = table.insertRow();
-
 
 			var header_task = tr.insertCell();
 			var header_deadline = tr.insertCell();
@@ -215,12 +213,13 @@ export class ShowHomeworksComponent implements OnInit {
 		});
 		table.setAttribute("cellpadding", "15");
 		table.appendChild(document.createElement("br"));
+
 		document.getElementById("tableDiv").appendChild(table);
 	}
     reportHomework() {
         let dialogRef = this.dialog.open(ReportHomeworkComponent, {
 			width: '45%',
-			height: '75%'
+			height: '50%'
 		});
     }
 	editHomework() {
@@ -243,8 +242,11 @@ export class ShowHomeworksComponent implements OnInit {
 
 	deleteTable() {	
 		var parent = document.getElementById("tableDiv");
-		while (parent.firstChild) {
-			parent.removeChild(parent.firstChild);
+
+		if (parent) {
+			while (parent.firstChild) {
+				parent.removeChild(parent.firstChild);
+			}
 		}
     }
     

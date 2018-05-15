@@ -36,15 +36,6 @@ export class EapCalculatorComponent implements OnInit {
 	var table : HTMLTableElement = <HTMLTableElement> document.getElementById("tasksTable");
 	if (table) table.parentNode.removeChild(table);
 
-	const combined = Observable.forkJoin(
-		this.subjectService.getUserEapSubjects(),
-		this.subjectService.getAverageGrade()
-	);
-	
-	combined.subscribe(data => {
-		console.log(data);
-	});
-
 	var eapSubjects = this.subjectService.getUserEapSubjects().subscribe(data => {
 		var eapSubjectDiv = document.getElementById("eapSubjectsDiv");
 		var headers = ["Aine", "Hinne", "EAP"];
