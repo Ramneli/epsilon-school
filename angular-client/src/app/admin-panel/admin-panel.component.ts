@@ -151,7 +151,7 @@ export class AdminPanelComponent implements OnInit {
 
 		tableHead = document.createElement("h4");
 		tableHead.setAttribute("id", "tableHead");
-		tableHead.appendChild(document.createTextNode("Raporteeritud ained"));
+		tableHead.appendChild(document.createTextNode("Raporteeritud ülesanded"));
 		parentDiv.appendChild(tableHead);
 
 		
