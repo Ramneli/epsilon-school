@@ -219,7 +219,7 @@ export class ShowHomeworksComponent implements OnInit {
     reportHomework() {
         let dialogRef = this.dialog.open(ReportHomeworkComponent, {
 			width: '45%',
-			height: '50%'
+			height: '55%'
 		});
     }
 	editHomework() {

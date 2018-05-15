@@ -87,7 +87,7 @@ export class AppComponent {
   openAddHomeworkDialog(): void {
     let dialogRef = this.dialog.open(AddHomeworksComponent, {
       width: '45%',
-      height: '85%'
+      height: '92%'
     });
   }
 }

@@ -21,7 +21,7 @@ export class NotificationsComponent implements OnInit {
 		var header_message = document.createElement("th");
 		var header_deadline = document.createElement("th");
 		header_message.appendChild(document.createTextNode("Teavitus"));
-		header_deadline.appendChild(document.createTextNode("Aegub"));
+		header_deadline.appendChild(document.createTextNode("Saadetud"));
 
 		header_message.setAttribute("class", "tasksTableHeader");
 		header_deadline.setAttribute("class", "tasksTableHeader");

@@ -19,6 +19,7 @@ export class AdminPanelComponent implements OnInit {
 
 	getReportedUsers() {
 		this.userService.getReportedUsers().subscribe(data => {
+			if (Object.keys(data).length != 0) {
 			var table : HTMLTableElement = <HTMLTableElement> document.getElementById("tasksTable");
 			if (table) table.parentNode.removeChild(table);
 			var eapSubjectDiv = document.getElementById("reports");
@@ -127,7 +128,14 @@ export class AdminPanelComponent implements OnInit {
 				
 			});
 				eapSubjectDiv.appendChild(table);
+			} else {
+				var eapSubjectDiv = document.getElementById("reports");
+				var noReportsMessage = document.createElement("p");
+				noReportsMessage.appendChild(document.createTextNode("Raporteid ei ole."));
+				eapSubjectDiv.appendChild(noReportsMessage);
+			}
 		});
+		
 	}
 
 	createReportDetails(reportData, tasks) {
@@ -208,12 +216,15 @@ export class AdminPanelComponent implements OnInit {
 
 
 	sendNotification(notificationData) {
-		var currentTime = (new Date).getTime() + 1000000000;
+		var currentTime = (new Date).getTime();
 		let jsonData = {
 			message: notificationData,
 			deadline: currentTime
 		};
-		this.notificationService.saveNotification(jsonData).subscribe();
+		this.notificationService.saveNotification(jsonData).subscribe(res => {
+			var notificationBox: HTMLTextAreaElement = <HTMLTextAreaElement> document.getElementById("notificationTextArea");
+			notificationBox.value = "";
+		});
 	}  
 
 

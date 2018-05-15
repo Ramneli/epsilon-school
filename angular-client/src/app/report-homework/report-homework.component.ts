@@ -30,9 +30,26 @@ export class ReportHomeworkComponent implements OnInit {
             };
             console.log(reportData);
             this.taskService.reportHomework(reportData).subscribe();
+            this.displaySuccessAlert();
         }
-       
-        
+    }
+
+    displaySuccessAlert() {
+        var successMsgDiv = document.createElement('div');
+        successMsgDiv.setAttribute('id', "successMsgDiv");
+        successMsgDiv.setAttribute("class", "alert alert-success");
+        successMsgDiv.appendChild(document.createTextNode('Täname raporti eest. Tegeleme sellega peatselt.'));
+
+        var validationFormDiv = document.getElementById('validation-form');
+        validationFormDiv.appendChild(successMsgDiv);
+        this.startAlertTimeout();
+    }
+
+    startAlertTimeout() {
+        setTimeout(function () {
+            var successMsgDiv = document.getElementById('successMsgDiv');
+            successMsgDiv.parentNode.removeChild(successMsgDiv);
+        }, 3000);
     }
 
     ngOnInit() {
