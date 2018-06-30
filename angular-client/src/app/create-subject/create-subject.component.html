@@ -2,29 +2,36 @@
   <div id="validation-form" style="width:80%; margin: 0 auto"></div>
 </div>
 <form class="needs-validation" novalidate id="createSubjectForm">
-	<div style="width: 80%; margin: 0 auto">
+  <div style="width: 80%; margin: 0 auto">
     <div>
-					<label for="subjectName">Aine nimi</label><br>
-					<input class="form-control" placeholder="Õppeaine nimetus" #userSubjectName id="subjectName" autocomplete="off" type="text" name="subjectName" required>
-          <div class="invalid-feedback">
-            Palun sisesta aine nimi.
-          </div><br>
+      <label for="subjectName">Aine nimi</label><br>
+      <input class="form-control" placeholder="Õppeaine nimetus" #userSubjectName id="subjectName" autocomplete="off"
+             type="text" name="subjectName" required>
+      <div class="invalid-feedback">
+        Palun sisesta aine nimi.
+      </div>
+      <br>
     </div>
 
     <div>
-					<label for="subjectCode">Ainekood</label><br>
-					<input class="form-control" placeholder="Õppeaine kood" #userSubjectCode id="subjectCode" autocomplete="off" type="text" name="subjectCode" required>
-          <div class="invalid-feedback">
-            Palun sisesta ainekood.
-          </div><br>
+      <label for="subjectCode">Ainekood</label><br>
+      <input class="form-control" placeholder="Õppeaine kood" #userSubjectCode id="subjectCode" autocomplete="off"
+             type="text" name="subjectCode" required>
+      <div class="invalid-feedback">
+        Palun sisesta ainekood.
+      </div>
+      <br>
     </div>
-					<label for="lecturerName">Õppejõud</label><br>
-					<input class="form-control" placeholder="Õppejõu nimi" #userLecturerName id="lecturerName" autocomplete="off" type="text" name="lecturerName" required>
-          <div class="invalid-feedback">
-            Palun sisesta õppejõu nimi.
-          </div><br>
+    <label for="lecturerName">Õppejõud</label><br>
+    <input class="form-control" placeholder="Õppejõu nimi" #userLecturerName id="lecturerName" autocomplete="off"
+           type="text" name="lecturerName" required>
+    <div class="invalid-feedback">
+      Palun sisesta õppejõu nimi.
+    </div>
+    <br>
 
-					<button class = "btn btn-primary" style="width:100%; margin-top: 20px;" type="submit" (click)="addSubjectToTimetable
-          (userSubjectName.value, userSubjectCode.value, userLecturerName.value)" name="Loo Aine">Loo uus aine</button>
+    <button class="btn btn-primary" style="width:100%; margin-top: 20px;" type="submit" (click)="addSubjectToTimetable
+          (userSubjectName.value, userSubjectCode.value, userLecturerName.value)" name="Loo Aine">Loo uus aine
+    </button>
   </div>
 </form>

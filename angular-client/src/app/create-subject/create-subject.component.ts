@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { SubjectService } from '../subject-service/subject.service';
-import { AuthService } from '../auth-service/auth.service';
 
 @Component({
   selector: 'app-create-subject',
@@ -10,59 +9,55 @@ import { AuthService } from '../auth-service/auth.service';
 })
 export class CreateSubjectComponent implements OnInit {
 
-  	constructor(private subjectService: SubjectService, private authService : AuthService) { }
- 
-	addSubjectToTimetable(userSubjectName, userSubjectCode, userLecturerName) {
-		let userData = {
-			name: userSubjectName,
-			code: userSubjectCode,
-			lecturer_name: userLecturerName,
-		};
-		console.log(userData);
-		console.log(userSubjectName, userSubjectCode, userLecturerName);
-		
-		
-		if (userSubjectName.length == 0 || userSubjectCode.length == 0 || userLecturerName.length == 0) {
-			var objectsToValidate = document.getElementsByClassName("needs-validation");
-			objectsToValidate[objectsToValidate.length - 1].className = "was-validated";
-		} else {
+  constructor(private subjectService: SubjectService) {
+  }
 
-			//var objectsToValidate = document.getElementsByClassName("was-validated");
-			//objectsToValidate[0].className = "needs-validation";
+  static resetPageForm() {
+    let subjectCreationForm: HTMLFormElement;
+    subjectCreationForm = <HTMLFormElement>document.getElementById('createSubjectForm');
+    subjectCreationForm.reset();
+    const objectsNeedToValidate = document.getElementsByClassName('was-validated');
+    objectsNeedToValidate[0].className = 'needs-validation';
+  }
 
-			this.subjectService.createNewSubject(userData).subscribe();
-			this.displaySuccessAlert();
-			this.resetPageForm();
-		}
-	}
+  addSubjectToTimetable(userSubjectName, userSubjectCode, userLecturerName) {
+    const userData = {
+      name: userSubjectName,
+      code: userSubjectCode,
+      lecturer_name: userLecturerName,
+    };
+    console.log(userData);
+    console.log(userSubjectName, userSubjectCode, userLecturerName);
 
-	resetPageForm() {
-        var subjectCreationForm : HTMLFormElement;
-        subjectCreationForm = <HTMLFormElement>document.getElementById("createSubjectForm");
-        subjectCreationForm.reset();
-        var objectsNeedToValidate = document.getElementsByClassName("was-validated");
-        objectsNeedToValidate[0].className = "needs-validation";
+
+    if (userSubjectName.length === 0 || userSubjectCode.length === 0 || userLecturerName.length === 0) {
+      const objectsToValidate = document.getElementsByClassName('needs-validation');
+      objectsToValidate[objectsToValidate.length - 1].className = 'was-validated';
+    } else {
+      this.subjectService.createNewSubject(userData).subscribe();
+      this.displaySuccessAlert();
+      CreateSubjectComponent.resetPageForm();
     }
+  }
 
-	displaySuccessAlert() {
-		var successMsgDiv = document.createElement('div');
-		successMsgDiv.setAttribute('id', "successMsgDiv");
-		successMsgDiv.setAttribute("class", "alert alert-success");
-		successMsgDiv.appendChild(document.createTextNode('Aine edukalt loodud!'));
+  displaySuccessAlert() {
+    const successMsgDiv = document.createElement('div');
+    successMsgDiv.setAttribute('id', 'successMsgDiv');
+    successMsgDiv.setAttribute('class', 'alert alert-success');
+    successMsgDiv.appendChild(document.createTextNode('Aine edukalt loodud!'));
 
-		var validationFormDiv = document.getElementById('validation-form');
-		validationFormDiv.appendChild(successMsgDiv);
-		this.startAlertTimeout();
-	}
+    const validationFormDiv = document.getElementById('validation-form');
+    validationFormDiv.appendChild(successMsgDiv);
+    this.startAlertTimeout();
+  }
 
-	startAlertTimeout() {
-	    setTimeout(function () {
-	    	var successMsgDiv = document.getElementById('successMsgDiv');
-	    	successMsgDiv.parentNode.removeChild(successMsgDiv);
-	    }, 3000);
-	} 
+  startAlertTimeout() {
+    setTimeout(function () {
+      const successMsgDiv = document.getElementById('successMsgDiv');
+      successMsgDiv.parentNode.removeChild(successMsgDiv);
+    }, 3000);
+  }
 
-	ngOnInit() {
-    	
-	}
+  ngOnInit() {
+  }
 }

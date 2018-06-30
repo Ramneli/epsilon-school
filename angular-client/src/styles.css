@@ -1,386 +1,388 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+
 @media only screen and (max-width: 1366px) {
 
-	.subjectButton {
-	font-size: 12px;
-	}
+  .subjectButton {
+    font-size: 12px;
+  }
 
-	.navbar-toggler {
-  		color: white;
-	}
+  .navbar-toggler {
+    color: white;
+  }
 
-	.navbar-toggler:hover {
-  		background-color: white;
-	}
-	.nav-link {
-		border-radius: 3px;
-	}
+  .navbar-toggler:hover {
+    background-color: white;
+  }
 
-	.nav-link:hover {
-		background-color: #2c3a41;
-	}
+  .nav-link {
+    border-radius: 3px;
+  }
 
-	#homeworkTable td {
-		font-size: 12px;
-	}
+  .nav-link:hover {
+    background-color: #2c3a41;
+  }
 
-	#homeworkTable tr {
-		font-size: 12px;
-	}
+  #homeworkTable td {
+    font-size: 12px;
+  }
 
-   	#wrapper th {
-    	font-size: 12px;
-    }
+  #homeworkTable tr {
+    font-size: 12px;
+  }
 
-    #navBar li a {
-    	font-size: 12px;
-    }
+  #wrapper th {
+    font-size: 12px;
+  }
 
-    * {
-    	font-size: 12px;
-    }
+  #navBar li a {
+    font-size: 12px;
+  }
+
+  * {
+    font-size: 12px;
+  }
 }
 
 @media only screen and (max-width: 1920px) {
-	.subjectButton {
-	font-size: 14px;
-	}
+  .subjectButton {
+    font-size: 14px;
+  }
 
-	#homeworkTable td {
-		font-size: 14px;
-	}
+  #homeworkTable td {
+    font-size: 14px;
+  }
 
-	#homeworkTable tr {
-		font-size: 14px;
-	}
+  #homeworkTable tr {
+    font-size: 14px;
+  }
 
-   	#wrapper th {
-    	font-size: 14px;
-    }
+  #wrapper th {
+    font-size: 14px;
+  }
 
-    #navBar li a {
-    	font-size: 14px;
-    }
+  #navBar li a {
+    font-size: 14px;
+  }
 
-    * {
-    	font-size: 14px;
-    }
+  * {
+    font-size: 14px;
+  }
 }
 
 @media only screen and (min-width: 1921px) {
-	.subjectButton {
-	font-size: 16px;
-	}
+  .subjectButton {
+    font-size: 16px;
+  }
 
-	#homeworkTable td {
-		font-size: 16px;
-	}
+  #homeworkTable td {
+    font-size: 16px;
+  }
 
-	#homeworkTable tr {
-		font-size: 16px;
-	}
+  #homeworkTable tr {
+    font-size: 16px;
+  }
 
-   	#wrapper th {
-    	font-size: 16px;
-    }
+  #wrapper th {
+    font-size: 16px;
+  }
 
-    #navBar li a {
-    	font-size: 16px;
-    }
+  #navBar li a {
+    font-size: 16px;
+  }
 
-    * {
-    	font-size: 16px;
-    }
+  * {
+    font-size: 16px;
+  }
 }
 
 textarea {
-	width: 398px;
-	resize: none;
-	margin-top: 5px;
+  width: 398px;
+  resize: none;
+  margin-top: 5px;
 }
 
 input {
-	margin-top: 5px;
-	margin-bottom: 10px;
-	width: 400px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  width: 400px;
 }
 
 label {
-	margin-top: 5px;
-	margin-bottom: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
-
-
 .dynamicSidebar.subject:hover {
-	background-color: #273135;
-	text-decoration: none;
-	color:white;
+  background-color: #273135;
+  text-decoration: none;
+  color: white;
 }
 
 .dynamicSidebar.subject:focus {
-	background-color: #273135;
-	border-left: 4px solid #cf4a33;
-	text-decoration: none;
-	color:white;
+  background-color: #273135;
+  border-left: 4px solid #cf4a33;
+  text-decoration: none;
+  color: white;
 }
 
 .dynamicSidebar.subject {
-	white-space: pre;
-	color:rgb(199, 201, 202);
-	padding: 10px;
-	text-decoration: none;
+  white-space: pre;
+  color: rgb(199, 201, 202);
+  padding: 10px;
+  text-decoration: none;
 }
 
 .addSubject:hover {
-	background-color: #273135;
-	text-decoration: none;
-	color:white;
+  background-color: #273135;
+  text-decoration: none;
+  color: white;
 }
 
 .addSubject {
-	color:rgb(81, 177, 89);
-	padding: 10px;
-	text-decoration: none;
+  color: rgb(81, 177, 89);
+  padding: 10px;
+  text-decoration: none;
 }
 
 .dynamicSidebar.option {
-	color:rgb(199, 201, 202);
-	padding: 10px;
-	text-decoration: none;
+  color: rgb(199, 201, 202);
+  padding: 10px;
+  text-decoration: none;
 }
 
 .dynamicSidebar.option:hover {
-	background-color: #273135;
-	text-decoration: none;
-	color:white;
+  background-color: #273135;
+  text-decoration: none;
+  color: white;
 }
 
 .staticSidebar.option {
-	color:rgb(199, 201, 202);
-	padding: 10px;
-	text-decoration: none;
+  color: rgb(199, 201, 202);
+  padding: 10px;
+  text-decoration: none;
 }
 
 .staticSidebar.option:hover {
-	background-color: #273135;
-	text-decoration: none;
-	color:white;
+  background-color: #273135;
+  text-decoration: none;
+  color: white;
 }
 
 .dynamicSidebar.option:focus {
-	border-left: 3px solid cyan;
+  border-left: 3px solid cyan;
 }
 
 select {
-	width: 100%;
-	margin-bottom: 7px;
-	margin-top: 5px;
+  width: 100%;
+  margin-bottom: 7px;
+  margin-top: 5px;
 }
 
 #navBar {
-    list-style-type: none;
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
-    background-color: #96004f;
-}
-#navBar li {
-    float: left;
+  list-style-type: none;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  background-color: #96004f;
 }
 
+#navBar li {
+  float: left;
+}
 
 #navBar a {
-    display: inline-block;
-    color: rgb(202, 199, 199);
-    text-align: center;
-    padding: 10px 10px;
-    text-decoration: none;
-    font-family: Helvetica;
+  display: inline-block;
+  color: rgb(202, 199, 199);
+  text-align: center;
+  padding: 10px 10px;
+  text-decoration: none;
+  font-family: Helvetica, serif;
 }
 
 #navBar a:hover {
-    background-color: #293135;
+  background-color: #293135;
 }
+
 table td {
-	border-bottom: 1px solid rgb(199, 199, 199);
+  border-bottom: 1px solid rgb(199, 199, 199);
 }
 
 .container-fluid.h-100 {
-	position: absolute; 
-	padding: 0;
-	background-color: #f4f4f4;
+  position: absolute;
+  padding: 0;
+  background-color: #f4f4f4;
 }
 
 .h-100.d-inline-block {
-	width: 100%; 
-	background-color: #344146;
+  width: 100%;
+  background-color: #344146;
 }
 
 .tasksTableHeader {
-	border: none; 
-	border-bottom:1px solid black; 
-	font-family: Helvetica;
+  border: none;
+  border-bottom: 1px solid black;
+  font-family: Helvetica, serif;
 }
 
 .columnCenteredText {
-	text-align: center;
+  text-align: center;
 }
 
 .jumbotron {
-	background-color: #f4f4f4;
+  background-color: #f4f4f4;
 }
 
 .tasksTable {
-	table-layout: fixed;
-	width: 100%;
+  table-layout: fixed;
+  width: 100%;
 }
 
 .reportedTasksTable {
-	table-layout: fixed;
-	width: 100%;
+  table-layout: fixed;
+  width: 100%;
 }
 
 @media only screen and (min-width: 541px) {
-	#standardColWidth {
-		width:15%;
-	}
+  #standardColWidth {
+    width: 15%;
+  }
 
-	#taskColWidth {
-		width:80%;
-	}
+  #taskColWidth {
+    width: 80%;
+  }
 
-	#editColWidth {
-		width:5%;
-	}
+  #editColWidth {
+    width: 5%;
+  }
 
-	#messageColWidth {
-		width: 90%;
-	}
-	#deadlineColWidth {
-		width: 10%;
-	}
+  #messageColWidth {
+    width: 90%;
+  }
+
+  #deadlineColWidth {
+    width: 10%;
+  }
 }
 
 @media only screen and (max-width: 540px) {
-	#standardColWidth {
-		width:40%;
-	}
+  #standardColWidth {
+    width: 40%;
+  }
 
-	#taskColWidth {
-		width:50%;
-	}
+  #taskColWidth {
+    width: 50%;
+  }
 
-	#editColWidth {
-		width:10%;
-	}
+  #editColWidth {
+    width: 10%;
+  }
 }
 
 .tasksTable td {
-	font-family: Helvetica;
+  font-family: Helvetica, serif;
 }
 
 .reportedTasksTable td {
-	font-family: Helvetica;
+  font-family: Helvetica, serif;
 }
 
 .sidebar.seperator {
-	border-top: 4px solid #4f6068;
+  border-top: 4px solid #4f6068;
 }
 
 .sidebar {
-	background-color: #344146;
+  background-color: #344146;
 }
-
-
 
 .switch {
-	position: relative;
-	display: inline-block;
-	width: 40px;
-	height: 24px;
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 24px;
 }
 
-  .switch input {display:none;}
-  
-  .slider {
-	position: absolute;
-	cursor: pointer;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: #ccc;
-	-webkit-transition: .4s;
-	transition: .4s;
-  }
-  
-  .slider:before {
-	position: absolute;
-	content: "";
-	height: 16px;
-	width: 16px;
-	left: 4px;
-	bottom: 4px;
-	background-color: white;
-	-webkit-transition: .4s;
-	transition: .4s;
-  }
-  
-  input:checked + .slider {
-	background-color: #2196F3;
-  }
-  
-  input:focus + .slider {
-	box-shadow: 0 0 1px #2196F3;
-  }
-  
-  input:checked + .slider:before {
-	-webkit-transform: translateX(16px);
-	-ms-transform: translateX(16px);
-	transform: translateX(16px);
-  }
-  
-  /* Rounded sliders */
-  .slider.round {
-	border-radius: 34px;
-  }
-  
-  .slider.round:before {
-	border-radius: 50%;
-  }
+.switch input {
+  display: none;
+}
 
-  .errorMessageAlert {
-	color: #DC3545;
-	font-family: "Segoe UI", "Roboto", "Helvetica Neue", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-	font-size: 11px;
-	margin-top: 3px;
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.errorMessageAlert {
+  color: #DC3545;
+  font-family: "Segoe UI", "Roboto", "Helvetica Neue", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", serif;
+  font-size: 11px;
+  margin-top: 3px;
 }
 
 .subjectButton {
-    border: 0px solid transparent;
-    background-color:white;
-    width: 100%;
-    text-align: left;
-    outline: none;
+  border: 0 solid transparent;
+  background-color: white;
+  width: 100%;
+  text-align: left;
+  outline: none;
 }
 
 .subjectButton:focus {
-	white-space: pre;
-    background-color:rgb(236, 236, 236);
-    outline: none;
+  white-space: pre;
+  background-color: rgb(236, 236, 236);
+  outline: none;
 }
 
 .addButton {
-    width:100%;
-    margin-top: 20px;
+  width: 100%;
+  margin-top: 20px;
 }
 
 #subjectTypeHeader {
-	white-space: pre;
+  white-space: pre;
 }
 
 #subjectLecturerHeader {
-	white-space: pre;
+  white-space: pre;
 }

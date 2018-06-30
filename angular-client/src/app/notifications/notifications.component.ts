@@ -1,81 +1,80 @@
 import { Component, OnInit } from '@angular/core';
 
 import { NotificationService } from '../notification-service/notification.service';
-import { AuthService } from '../auth-service/auth.service';
 
 @Component({
-selector: 'app-notifications',
-templateUrl: './notifications.component.html',
-styleUrls: ['./notifications.component.css']
+  selector: 'app-notifications',
+  templateUrl: './notifications.component.html',
+  styleUrls: ['./notifications.component.css']
 })
 export class NotificationsComponent implements OnInit {
 
-	constructor(private notificationService: NotificationService, private authService : AuthService) { }
+  constructor(private notificationService: NotificationService) {
+  }
 
-	createNotificationsTable(notifications) {
-		this.deleteTable();
-		var table = document.createElement("table");
-		table.setAttribute("class", "tasksTable");
-		table.setAttribute("cellpadding", "15");
+  static deleteTable() {
+    const currentTable = document.getElementById('table');
+    if (currentTable) {
+      currentTable.parentNode.removeChild(currentTable);
+    }
+  }
 
-		var header_message = document.createElement("th");
-		var header_deadline = document.createElement("th");
-		header_message.appendChild(document.createTextNode("Teavitus"));
-		header_deadline.appendChild(document.createTextNode("Saadetud"));
+  static createNotificationsTable(notifications) {
+    NotificationsComponent.deleteTable();
+    const table = document.createElement('table');
+    table.setAttribute('class', 'tasksTable');
+    table.setAttribute('cellpadding', '15');
 
-		header_message.setAttribute("class", "tasksTableHeader");
-		header_deadline.setAttribute("class", "tasksTableHeader");
-		header_deadline.className += " columnCenteredText";
+    const header_message = document.createElement('th');
+    const header_deadline = document.createElement('th');
+    header_message.appendChild(document.createTextNode('Teavitus'));
+    header_deadline.appendChild(document.createTextNode('Saadetud'));
 
-		header_message.setAttribute("id", "messageColWidth");
-		header_deadline.setAttribute("id", "deadlineColWidth");
+    header_message.setAttribute('class', 'tasksTableHeader');
+    header_deadline.setAttribute('class', 'tasksTableHeader');
+    header_deadline.className += ' columnCenteredText';
 
-		var header_Row = document.createElement("tr");
+    header_message.setAttribute('id', 'messageColWidth');
+    header_deadline.setAttribute('id', 'deadlineColWidth');
 
-		header_Row.appendChild(header_message);
-		header_Row.appendChild(header_deadline);
+    const header_Row = document.createElement('tr');
 
-		table.appendChild(header_Row);
+    header_Row.appendChild(header_message);
+    header_Row.appendChild(header_deadline);
 
-		for (var i = 0; i < notifications.length; i++) {
-			var tr = table.insertRow();
+    table.appendChild(header_Row);
 
-			var message = tr.insertCell();
-			var deadline = tr.insertCell();
+    for (let i = 0; i < notifications.length; i++) {
+      const tr = table.insertRow();
 
-			message.appendChild(document.createTextNode(notifications[i].message));
-			deadline.appendChild(document.createTextNode(notifications[i].deadline));
-		}
-	    document.getElementById("tableDiv").appendChild(table);
-	}
+      const message = tr.insertCell();
+      const deadline = tr.insertCell();
 
-	displayNoContent() {
-		this.deleteTable();
+      message.appendChild(document.createTextNode(notifications[i].message));
+      deadline.appendChild(document.createTextNode(notifications[i].deadline));
+    }
+    document.getElementById('tableDiv').appendChild(table);
+  }
 
-		var noNotificationsMessage = document.createElement("p").appendChild(
-			document.createTextNode("Teil ei ole ühtegi teavitust."));
-		document.getElementById("tableDiv").appendChild(noNotificationsMessage);
-	}
-	
-	getNotifications() {
-		this.notificationService.loadNotifications().subscribe(notifications => {
-			if (Object.keys(notifications).length == 0) {
-				this.displayNoContent();
-			} else {
-				this.createNotificationsTable(notifications);
-			}
-		});
-	}
+  static displayNoContent() {
+    NotificationsComponent.deleteTable();
 
-	deleteTable() {
-		var currentTable = document.getElementById("table");
-		if (currentTable) {
-			currentTable.parentNode.removeChild(currentTable);
-		}
-	}
+    const noNotificationsMessage = document.createElement('p').appendChild(
+      document.createTextNode('Teil ei ole ühtegi teavitust.'));
+    document.getElementById('tableDiv').appendChild(noNotificationsMessage);
+  }
 
-	ngOnInit() {
-		this.getNotifications();
-	}
+  getNotifications() {
+    this.notificationService.loadNotifications().subscribe(notifications => {
+      if (Object.keys(notifications).length === 0) {
+        NotificationsComponent.displayNoContent();
+      } else {
+        NotificationsComponent.createNotificationsTable(notifications);
+      }
+    });
+  }
 
+  ngOnInit() {
+    this.getNotifications();
+  }
 }

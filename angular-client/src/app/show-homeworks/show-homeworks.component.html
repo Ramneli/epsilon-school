@@ -1,43 +1,54 @@
-
-
-<div *ngIf="!isAuthenticated() else homeworks">
-	<div style="text-align: center; vertical-align: middle; line-height: 500px">
-		<fa name="cog" animation="spin" size="5x"></fa>
-	</div>
+<div *ngIf="!isAuthenticated()">
+  <div style="text-align: center; vertical-align: middle; line-height: 500px">
+    <fa name="cog" animation="spin" size="5x"></fa>
+  </div>
 </div>
 
 <ng-template #homeworks>
-<div class="container-fluid h-100">
-	<div class="row no-gutters h-100">
-		<div class="col-lg-2">
-			<div class="h-100 d-inline-block">
-				<div class="sidebar">
+  <div class="container-fluid h-100">
+    <div class="row no-gutters h-100">
+      <div class="col-lg-2">
+        <div class="h-100 d-inline-block">
+          <div class="sidebar">
 
-					<div class="list-group">
-						<a 
-							routerLink="/homeworks"
-							class="dynamicSidebar subject"
-							*ngFor="let subject of subjects"
-							id="{{subjectIDs[subjects.indexOf(subject)]}}"
-							(click)="getSubjectHomeworksDetails(subjectIDs[subjects.indexOf(subject)])"
-							>{{ subject }}</a>
-						
-						<a (click)="openAddSubjectToTimetableDialog()" class="staticSidebar option" style="color:rgb(199, 201, 202)"><fa name="plus-square"></fa>Lisa aine tunniplaani</a>
-						<div class="sidebar seperator"></div>
-						<a routerLink="/homeworks/notifications" class="dynamicSidebar option"><fa name="envelope"></fa>Teavitused</a>
-						<a id="eap" routerLink="/homeworks/eapcalculator" class="dynamicSidebar option"><fa name="calculator"></fa>EAP kalkulaator</a>
-						<a routerLink="/homeworks/settings" class="dynamicSidebar option"><fa name="cog"></fa>Seaded</a>
-						<a *ngIf="isAdmin()" routerLink="/homeworks/admin" class="dynamicSidebar option"><fa name="user"></fa>Administraator</a>
-						<a routerLink="" (click)="logout()" class="staticSidebar option"><fa name="sign-out"></fa>Logi välja</a>
-						
-					</div>
+            <div class="list-group">
+              <a
+                routerLink="/homeworks"
+                class="dynamicSidebar subject"
+                *ngFor="let subject of subjects"
+                id="{{subjectIDs[subjects.indexOf(subject)]}}"
+                (click)="getSubjectHomeworksDetails(subjectIDs[subjects.indexOf(subject)])"
+              >{{ subject }}</a>
 
-				</div>
-			</div>
-		</div>
-		<div class="col-lg-10" style="background-color: #f4f4f4">
-			<router-outlet></router-outlet>
-		</div>
-	</div>
-</div>
+              <a (click)="openAddSubjectToTimetableDialog()" class="staticSidebar option"
+                 style="color:rgb(199, 201, 202)">
+                <fa name="plus-square"></fa>
+                Lisa aine tunniplaani</a>
+              <div class="sidebar seperator"></div>
+              <a routerLink="/homeworks/notifications" class="dynamicSidebar option">
+                <fa name="envelope"></fa>
+                Teavitused</a>
+              <a id="eap" routerLink="/homeworks/eapcalculator" class="dynamicSidebar option">
+                <fa name="calculator"></fa>
+                EAP kalkulaator</a>
+              <a routerLink="/homeworks/settings" class="dynamicSidebar option">
+                <fa name="cog"></fa>
+                Seaded</a>
+              <a *ngIf="isAdmin()" routerLink="/homeworks/admin" class="dynamicSidebar option">
+                <fa name="user"></fa>
+                Administraator</a>
+              <a routerLink="" (click)="logout()" class="staticSidebar option">
+                <fa name="sign-out"></fa>
+                Logi välja</a>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-10" style="background-color: #f4f4f4">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
 </ng-template>

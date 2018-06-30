@@ -1,45 +1,41 @@
 <div class="jumbotron">
-    <div id="alert"></div>
-    <h3>Seaded</h3>
+  <div id="alert"></div>
+  <h3>Seaded</h3>
 
-        <!--<div *ngIf="!settingsLoaded">
-            <div style="text-align: center; line-height: 100px; vertical-align: middle;">
-                <fa name="cog" animation="spin" size="5x"></fa>
-            </div>
-        </div>-->
-        
-    <div>
-    
-      <div class="row">
-              <div class="col sm-10">
-                  <p style="display: inline; font-family: Helvetica; font-size:14px;">
-                    Näita tähtaegu ületanud koduseid ülesandeid   
-                  </p>
-              </div>
-          
-            <div class="col sm-2" style="text-align:right;">
-                <label class="switch">
-                    <input #deadline type="checkbox" id="oldTasks">
-                    <span class="slider round"></span>
-                </label>
-            </div>
-        </div>
+  <div>
 
-        <div>
-                <button (click)="saveSettings(deadline)" class="btn btn-primary">Salvesta</button>
-        </div>
+    <div class="row">
+      <div class="col sm-10">
+        <p style="display: inline; font-family: Helvetica; font-size:14px;">
+          Näita tähtaegu ületanud koduseid ülesandeid
+        </p>
+      </div>
+
+      <div class="col sm-2" style="text-align:right;">
+        <label class="switch">
+          <input #deadline type="checkbox" id="oldTasks">
+          <span class="slider round"></span>
+        </label>
+      </div>
     </div>
+
     <div>
+      <button (click)="saveSettings(deadline)" class="btn btn-primary">Salvesta</button>
     </div>
-    <h4 style="margin-top: 45px;">Kustuta aineid tunniplaanist</h4><br>
-    <div style="text-align: right;">
-        <label for="taskID">Vali aine</label><br>
-        <select class="form-control" #userChoice id="subjectID" required>
-            
-            <option *ngFor="let subject of subjects" id="{{subjectIDs[subjects.indexOf(subject)]}}"
-            >{{ subject }}</option>
-        </select>
-        <button (click)="deleteSubject(userChoice[userChoice.selectedIndex].id)"
-        class="btn btn-danger" style="margin-top: 15px;">Kustuta aine tunniplaanist</button>
-    </div>
+  </div>
+  <div>
+  </div>
+  <h4 style="margin-top: 45px;">Kustuta aineid tunniplaanist</h4><br>
+  <div style="text-align: right;">
+    <label>Vali aine</label><br>
+    <select class="form-control" #userChoice id="subjectID" required>
+
+      <option *ngFor="let subject of subjects" id="{{subjectIDs[subjects.indexOf(subject)]}}"
+      >{{ subject }}
+      </option>
+    </select>
+    <button (click)="deleteSubject(userChoice[userChoice.selectedIndex].id)"
+            class="btn btn-danger" style="margin-top: 15px;">Kustuta aine tunniplaanist
+    </button>
+  </div>
 </div>

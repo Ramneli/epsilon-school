@@ -2,7 +2,7 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { MatDatepickerModule, MatNativeDateModule, MatFormFieldModule, MatInputModule, MatFormFieldControl } from '@angular/material';
+import { MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DatePipe } from '@angular/common';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -34,19 +34,18 @@ import { AuthService } from './auth-service/auth.service';
 import { AuthGuardService } from './auth-guard/auth-guard.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
-import { HomeComponent } from './home/home.component';
 import { SettingsService } from './settings-service/settings.service';
 import { AdminGuardService } from './admin-guard/admin-guard.service';
 import { ReportHomeworkComponent } from './report-homework/report-homework.component';
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyD98RBDQEBAKyyxGv2oZ1-oKECwBU5NUew",
-  authDomain: "ngfbauth-594bd.firebaseapp.com",
-  databaseURL: "https://ngfbauth-594bd.firebaseio.com",
-  projectId: "ngfbauth-594bd",
-  storageBucket: "ngfbauth-594bd.appspot.com",
-  messagingSenderId: "1017467839160"
-}
+  apiKey: 'AIzaSyD98RBDQEBAKyyxGv2oZ1-oKECwBU5NUew',
+  authDomain: 'ngfbauth-594bd.firebaseapp.com',
+  databaseURL: 'https://ngfbauth-594bd.firebaseio.com',
+  projectId: 'ngfbauth-594bd',
+  storageBucket: 'ngfbauth-594bd.appspot.com',
+  messagingSenderId: '1017467839160'
+};
 
 @NgModule
 ({
@@ -57,7 +56,6 @@ export const firebaseConfig = {
     AddSubjectComponent,
     CreateSubjectComponent,
     MessagesComponent,
-    HomeComponent,
     TasksComponent,
     NotificationsComponent,
     EapCalculatorComponent,
@@ -93,8 +91,9 @@ export const firebaseConfig = {
     AuthGuardService,
     SettingsService,
     AdminGuardService
-    ],
+  ],
   bootstrap: [AppComponent]
 })
 
-export class AppModule { }
+export class AppModule {
+}
