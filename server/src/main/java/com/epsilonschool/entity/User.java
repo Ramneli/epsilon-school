@@ -1,76 +1,18 @@
 package com.epsilonschool.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder(toBuilder = true)
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String uid;
     private int admin;
     private int isBlocked;
     private int reportCount;
-
-    @JsonIgnore
-    private double averageGrade;
-
-    public User() {}
-
-    public User(String uid) {
-        this.uid = uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
-
-    public String getUid() {
-        return uid;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public double getAverageGrade() {
-        return averageGrade;
-    }
-
-    public void setAverageGrade(double averageGrade) {
-        this.averageGrade = averageGrade;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public int getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(int admin) {
-        this.admin = admin;
-    }
-
-    public int getIsBlocked() {
-        return isBlocked;
-    }
-
-    public void setIsBlocked(int isBlocked) {
-        this.isBlocked = isBlocked;
-    }
-
-    public int getReportCount() {
-        return reportCount;
-    }
-
-    public void setReportCount(int reportCount) {
-        this.reportCount = reportCount;
-    }
 }
