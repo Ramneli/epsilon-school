@@ -2,33 +2,34 @@ package com.epsilonschool.controller;
 
 import com.epsilonschool.dao.service.NotificationService;
 import com.epsilonschool.entity.Notification;
+import org.apache.commons.lang3.Validate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@Controller
 @RequestMapping("/notification")
 public class NotificationController {
 
+    @Autowired
     private NotificationService notificationService;
 
-    public NotificationController(NotificationService notificationService) {
-        this.notificationService = notificationService;
+    @PutMapping()
+    public void update(@RequestBody Notification notification) {
+        Validate.isTrue(notification.getId() != null, "Id can not be null on update.");
+        this.notificationService.update(notification);
     }
 
-    @PostMapping("/update")
-    public void updateNotification(@RequestBody Notification notification) {
-        this.notificationService.updateNotifications(notification);
-    }
-
-    @PostMapping("/save")
-    public void saveNotification(@RequestBody Notification notification) {
+    @PostMapping()
+    public void insert(@RequestBody Notification notification) {
+        Validate.isTrue(notification.getId() == null, "Id must be null on insert.");
         this.notificationService.save(notification);
     }
 
-    @PostMapping("/load")
-    public List<Notification> loadNotifications() {
-        return this.notificationService.loadNotifications();
+    @GetMapping()
+    public List<Notification> getNotifications() {
+        return this.notificationService.getValidNotifications();
     }
 }

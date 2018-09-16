@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Repository
-public class EapRepository extends JdbcDaoSupport {
+public class EapDao extends JdbcDaoSupport {
 
     @Autowired
     public DataSource dataSource;

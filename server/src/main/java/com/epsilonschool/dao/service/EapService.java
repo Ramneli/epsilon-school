@@ -1,6 +1,6 @@
 package com.epsilonschool.dao.service;
 
-import com.epsilonschool.dao.repository.EapRepository;
+import com.epsilonschool.dao.repository.EapDao;
 import com.epsilonschool.entity.EapSubject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,15 +19,15 @@ public class EapService {
     private static final int MAX_EAP = 120;
 
     @Autowired
-    private EapRepository eapRepository;
+    private EapDao eapDao;
 
     public void addSubject(EapSubject eapSubject) {
-        int subjectsForUser = this.eapRepository.getCountSubjectsForUser(eapSubject.getUserId());
+        int subjectsForUser = this.eapDao.getCountSubjectsForUser(eapSubject.getUserId());
         if (subjectsForUser >= MAX_SUBJECTS) {
             throw new IllegalArgumentException("Too many subjects for user.");
         } else {
             if (isValidSubject(eapSubject)) {
-                this.eapRepository.insert(eapSubject);
+                this.eapDao.insert(eapSubject);
                 return;
             }
             throw new IllegalArgumentException("Invalid data.");
@@ -48,11 +48,11 @@ public class EapService {
 
 
     public List<EapSubject> getAllSubjectsByUserId(String userId) {
-        return eapRepository.findAllByUserId(userId);
+        return eapDao.findAllByUserId(userId);
     }
 
     public double getUserAverageGrade(String userId) {
-        List<EapSubject> userEapSubjects = eapRepository.findAllByUserId(userId);
+        List<EapSubject> userEapSubjects = eapDao.findAllByUserId(userId);
         double eapSum = 0;
         double weighedEap = 0;
         for (EapSubject eapSubject : userEapSubjects) {
@@ -66,6 +66,6 @@ public class EapService {
     }
 
     public void deleteSubject(String id) {
-        eapRepository.delete(id);
+        eapDao.delete(id);
     }
 }
