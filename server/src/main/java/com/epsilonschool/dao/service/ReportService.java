@@ -25,12 +25,13 @@ public class ReportService {
     }
 
     public ResponseEntity addReport(Report report) {
+        // FIXME: response entity - wtf?
         try {
             reportRepository.save(report);
             userRepository.increaseReportCount(report.getReportee());
             return ResponseEntity.ok("Report accepted.");
         } catch (DataIntegrityViolationException e) {
-            System.out.println("Cannot save report: " + e.getMessage());
+            System.out.println("Cannot insert report: " + e.getMessage());
             return ResponseEntity.badRequest().body("The user has already reported this task.");
         }
     }

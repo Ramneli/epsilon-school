@@ -3,35 +3,37 @@ package com.epsilonschool.controller;
 import com.epsilonschool.dao.service.ReportService;
 import com.epsilonschool.entity.Report;
 import com.epsilonschool.entity.Task;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
+@RequestMapping("/report")
 public class ReportController {
+
+    @Autowired
     private ReportService reportService;
 
-    public ReportController(ReportService reportService) {
-        this.reportService = reportService;
+    @GetMapping
+    public ResponseEntity<List<Report>> getAllReports() {
+        return ResponseEntity.ok().body(reportService.getAll());
     }
 
-    @PostMapping("/report/add")
-    public ResponseEntity addReport(@RequestBody Report report) {
-        return this.reportService.addReport(report);
+    @GetMapping("/count")
+    public ResponseEntity<List<Report>> getReportCount(@RequestParam String reportee) {
+        return ResponseEntity.ok().body(reportService.getReports(reportee));
     }
 
-    @GetMapping("/report/get")
-    public List<Report> getReportCount(@RequestParam("reportee") String reportee) {
-        return this.reportService.getReports(reportee);
-    }
-    @GetMapping("/report/getAll")
-    public List<Report> getAllReports() {
-        return this.reportService.getAll();
+    @GetMapping("/reported")
+    public ResponseEntity<List<Task>> getReportedTasks(@RequestParam("uid") String reportee) {
+        return ResponseEntity.ok().body(reportService.getReportedTasks(reportee));
     }
 
-    @GetMapping("/report/reportedTasks")
-    public List<Task> getReportedTasks(@RequestParam("uid") String reportee) {
-        return this.reportService.getReportedTasks(reportee);
+    @PostMapping
+    public void addReport(@RequestBody Report report) {
+        reportService.addReport(report);
     }
 }
